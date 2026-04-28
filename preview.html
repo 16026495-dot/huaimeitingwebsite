@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>家 - 怀美婷医疗</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #7B2D8E;
+            --secondary-color: #9B4DCA;
+            --accent-color: #E8D5F0;
+            --text-dark: #1a1a1a;
+            --text-light: #666666;
+            --white: #ffffff;
+            --gradient-primary: linear-gradient(135deg, #7B2D8E 0%, #9B4DCA 100%);
+            --shadow-sm: 0 2px 8px rgba(123, 45, 142, 0.1);
+            --shadow-md: 0 4px 20px rgba(123, 45, 142, 0.15);
+            --shadow-lg: 0 8px 40px rgba(123, 45, 142, 0.2);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            box-shadow: var(--shadow-sm);
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            box-shadow: var(--shadow-md);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--gradient-primary);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: bold;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-text .company-name {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .logo-text .tagline {
+            font-size: 12px;
+            color: var(--text-light);
+            font-weight: 400;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #F8F4FA 0%, #E8D5F0 100%);
+            padding-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(155, 77, 202, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero-content {
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-size: 48px;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .hero-title span {
+            color: var(--primary-color);
+        }
+
+        .hero-description {
+            font-size: 18px;
+            color: var(--text-light);
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: var(--white);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .hero-image {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-image-placeholder {
+            width: 100%;
+            height: 500px;
+            background: var(--gradient-primary);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 80px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .strengths {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--text-light);
+        }
+
+        .strengths-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .strength-card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--accent-color);
+        }
+
+        .strength-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transition: var(--transition);
+        }
+
+        .strength-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-color);
+        }
+
+        .strength-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .strength-number {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .strength-title {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+        }
+
+        .strength-description {
+            font-size: 15px;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .products {
+            padding: 100px 0;
+            background: linear-gradient(180deg, #F8F4FA 0%, var(--white) 100%);
+        }
+
+        .products-intro {
+            text-align: center;
+            font-size: 16px;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .product-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            text-align: center;
+            border: 1px solid var(--accent-color);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-color);
+        }
+
+        .product-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 28px;
+            color: var(--white);
+        }
+
+        .product-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .product-description {
+            font-size: 13px;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .partners {
+            padding: 100px 0;
+            background: var(--white);
+        }
+
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .partner-card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-sm);
+            border: 2px solid var(--accent-color);
+            transition: var(--transition);
+        }
+
+        .partner-card:hover {
+            border-color: var(--primary-color);
+            box-shadow: var(--shadow-md);
+        }
+
+        .partner-card h3 {
+            font-size: 22px;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .partner-card ul {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .partner-card li {
+            padding: 8px 0;
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        .partner-card li::before {
+            content: '• ';
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .partner-price {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        footer {
+            background: linear-gradient(135deg, #5a1f6d 0%, #7B2D8E 100%);
+            color: var(--white);
+            padding: 60px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            font-size: 14px;
+        }
+
+        .footer-links h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 30px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+        }
+
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .hero-image {
+                order: -1;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .strengths-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .partners-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero-title {
+                font-size: 32px;
+            }
+            
+            .hero-description {
+                font-size: 16px;
+            }
+            
+            .strengths-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .partners-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="masthead">
+        <div class="header-container">
+            <a href="#" class="logo">
+                <div class="logo-icon"><i class="fas fa-hospital"></i></div>
+                <div class="logo-text">
+                    <span class="company-name">怀美婷医疗</span>
+                    <span class="tagline">医用塑身衣全生命周期解决方案</span>
+                </div>
+            </a>
+            
+            <nav id="site-navigation">
+                <ul>
+                    <li><a href="#home">首页</a></li>
+                    <li><a href="#strengths">核心优势</a></li>
+                    <li><a href="#products">产品服务</a></li>
+                    <li><a href="#partners">合作伙伴</a></li>
+                    <li><a href="#contact">联系我们</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <section id="home" class="hero">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <span class="hero-badge">专业医用塑身衣品牌</span>
+                    <h1 class="hero-title">
+                        医疗级塑身衣<br>
+                        <span>守护您的康复之路</span>
+                    </h1>
+                    <p class="hero-description">
+                        怀美婷专注医用塑身衣研发与生产，联合三甲医院临床医师共同研发，为术后、产后人群提供安全有效的康复解决方案。
+                    </p>
+                    <div class="hero-buttons">
+                        <a href="#products" class="btn btn-primary">
+                            探索产品
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">联系我们</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="hero-image-placeholder">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="strengths" class="strengths">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">我们的优势 核心优势</h2>
+                </div>
+                
+                <div class="strengths-grid">
+                    <div class="strength-card">
+                        <div class="strength-number">01</div>
+                        <h3 class="strength-title">品牌使命</h3>
+                        <p class="strength-description">
+                            我们秉持"专注医疗"的理念，专注医用塑身衣研发与生产，致力于为术后、产后人群提供安全有效的康复解决方案。
+                        </p>
+                    </div>
+                    
+                    <div class="strength-card">
+                        <div class="strength-number">02</div>
+                        <h3 class="strength-title">研发力量</h3>
+                        <p class="strength-description">
+                            联合三甲医院临床医师共同研发，依据人体工学与临床数据，确保压力值精准达标，符合医用级标准。
+                        </p>
+                    </div>
+                    
+                    <div class="strength-card">
+                        <div class="strength-number">03</div>
+                        <h3 class="strength-title">服务网络</h3>
+                        <p class="strength-description">
+                            提供从产品定制到临床指导的一站式服务，覆盖全国的销售与售后网络，支持医疗机构与终端用户。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="products" class="products">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">我们的产品与服务 / 产品与服务</h2>
+                </div>
+                
+                <p class="products-intro">
+                    专业医用压力衣，适用于术后恢复和产后护理。
+                </p>
+                
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-icon">
+                            <i class="fas fa-user-md"></i>
+                        </div>
+                        <h3 class="product-title">术后恢复系列<br>童话修复系列</h3>
+                        <p class="product-description">吸脂/隆胸/胸外科专用塑身衣</p>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-icon">
+                            <i class="fas fa-baby"></i>
+                        </div>
+                        <h3 class="product-title">产后护理系列<br>产后康复系列</h3>
+                        <p class="product-description">收腹/束身/哺乳专用塑身衣</p>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-icon">
+                            <i class="fas fa-hospital"></i>
+                        </div>
+                        <h3 class="product-title">定制化医疗解决方案<br>医疗机构定制方案</h3>
+                        <p class="product-description">为医疗机构提供定制解决方案</p>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3 class="product-title">24/7临床指导<br>7×24小时专业穿戴指导</h3>
+                        <p class="product-description">全天候专业穿戴指导服务</p>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <h3 class="product-title">医疗器械认证<br>二类医疗器械资质认证</h3>
+                        <p class="product-description">通过二类医疗器械资质认证</p>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-icon">
+                            <i class="fas fa-industry"></i>
+                        </div>
+                        <h3 class="product-title">OEM/ODM生产<br>贴牌与定制生产服务</h3>
+                        <p class="product-description">提供OEM/ODM贴牌生产服务</p>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3 class="product-title">卫生安全保障<br>医用级卫生安全</h3>
+                        <p class="product-description">医用级卫生安全保障</p>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-icon">
+                            <i class="fas fa-globe-asia"></i>
+                        </div>
+                        <h3 class="product-title">全国售后网络<br>全国售后覆盖网络</h3>
+                        <p class="product-description">覆盖全国的售后服务网络</p>
+                    </div>
+                    
+                    <div class="product-card">
+                        <div class="product-icon">
+                            <i class="fas fa-user-nurse"></i>
+                        </div>
+                        <h3 class="product-title">私人康复顾问<br>专属康复顾问服务</h3>
+                        <p class="product-description">一对一专属康复顾问服务</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="partners" class="partners">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">标准合作伙伴计划</h2>
+                </div>
+                
+                <div class="partners-grid">
+                    <div class="partner-card">
+                        <h3>标准合作伙伴计划</h3>
+                        <ul>
+                            <li>基础款医用塑身衣供应</li>
+                            <li>标准包装与48小时发货</li>
+                            <li>7×12小时售后支持</li>
+                        </ul>
+                        <div class="partner-price">最低起订量500件 | 单价28美元</div>
+                        <a href="#contact" class="btn btn-primary" style="width: 100%; justify-content: center;">立即咨询</a>
+                    </div>
+                    
+                    <div class="partner-card">
+                        <h3>战略合作伙伴计划</h3>
+                        <ul>
+                            <li>全系列产品授权</li>
+                            <li>临床研究与学术推广联合</li>
+                            <li>区域独家代理权益</li>
+                            <li>24/7 临床指导与培训</li>
+                        </ul>
+                        <div class="partner-price">联系我们获取专属条款</div>
+                        <a href="#contact" class="btn btn-primary" style="width: 100%; justify-content: center;">预约咨询</a>
+                    </div>
+                    
+                    <div class="partner-card">
+                        <h3>定制化合作伙伴计划</h3>
+                        <ul>
+                            <li>专属版型/服装定制</li>
+                            <li>医院LOGO定制包装</li>
+                            <li>优先排产与加急交付</li>
+                            <li>一对一客户经理服务</li>
+                        </ul>
+                        <div class="partner-price">定制定价 | 最低起订量 1000 件</div>
+                        <a href="#contact" class="btn btn-primary" style="width: 100%; justify-content: center;">获取定制报价</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" style="padding: 80px 0; background: var(--gradient-primary); color: var(--white); text-align: center;">
+            <div class="container">
+                <h2 style="font-size: 36px; font-weight: 700; margin-bottom: 20px;">联系我们 / 联系我们</h2>
+                <p style="font-size: 18px; margin-bottom: 30px; opacity: 0.9; max-width: 600px; margin-left: auto; margin-right: auto;">
+                    请与我们联系，了解医疗压缩衣咨询、定制解决方案或合作机会。<br>
+                    欢迎咨询医用塑身衣产品、定制方案或合作急救，我们将加快与您的联系。
+                </p>
+                <a href="mailto:contact@huaimeiting.com" class="btn btn-primary" style="background: var(--white); color: var(--primary-color);">
+                    <i class="fas fa-envelope"></i>
+                    联系我们
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer id="colophon">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3><i class="fas fa-hospital"></i> 上海娇美医疗科技</h3>
+                    <p>我们提供专业的医用压力衣，适用于术后恢复和产后护理。我们提供经认证的医用级产品，并提供临床支持。</p>
+                    <p style="margin-top: 10px;">医用雕塑身衣研发与生产，为术后康复、产后修复提供医用级质量解决方案，拥有专业临床支持与资质认证。</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>有用信息</h4>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> 产品中心</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> 术后恢复系列</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> 产后康复系列</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> 定制医疗解决方案</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>支持</h4>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> 客户支持</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> 临床指导</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> 临床穿戴指导</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>关于我们</h4>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> 公司介绍</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> 资质认证</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> 联系我们</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 上海娇美医疗科技. All rights reserved. | 怀美婷医疗</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const header = document.getElementById('masthead');
+            const navLinks = document.querySelectorAll('nav a[href^="#"]');
+            
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        const headerHeight = header.offsetHeight;
+                        const targetPosition = targetElement.offsetTop - headerHeight;
+                        
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            const animatedElements = document.querySelectorAll('.strength-card, .product-card, .partner-card');
+            animatedElements.forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
