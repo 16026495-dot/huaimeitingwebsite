@@ -1,15 +1,2 @@
 [build]
   publish = "."
-
-# 重定向根路径到 preview.html
-[[redirects]]
-  from = "/"
-  to = "/preview.html"
-  status = 200
-  force = true
-
-# 处理所有其他路径
-[[redirects]]
-  from = "/*"
-  to = "/preview.html"
-  status = 404
