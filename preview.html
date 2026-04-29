@@ -196,6 +196,10 @@
             from { opacity: 0; transform: translateY(40px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        @keyframes floatUp {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
         .hero-badge {
             display: inline-flex;
             align-items: center;
@@ -437,42 +441,55 @@
             background: white;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
-            transition: all 0.4s ease;
+            box-shadow: 0 2px 16px rgba(30,0,70,0.08);
+            transition: all 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
             cursor: pointer;
-            border: 1px solid rgba(124,58,237,0.06);
+            border: 1px solid rgba(124,58,237,0.08);
+            position: relative;
         }
         .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 50px rgba(124,58,237,0.15);
+            transform: translateY(-10px);
+            box-shadow: 0 24px 60px rgba(30,0,70,0.18);
+            border-color: var(--purple-300);
         }
         .product-image-container {
             width: 100%;
-            height: 280px;
+            height: 320px;
             overflow: hidden;
-            background: linear-gradient(135deg, var(--purple-50), var(--purple-100));
+            background: linear-gradient(145deg, #f8f6ff, #ede9fe);
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
+        }
+        .product-image-container::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(to top, rgba(255,255,255,0.9), transparent);
+            pointer-events: none;
         }
         .product-image-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
         }
         .product-card:hover .product-image-container img {
-            transform: scale(1.05);
+            transform: scale(1.08);
         }
         .product-info {
-            padding: 24px;
+            padding: 26px 28px 28px;
         }
         .product-category-tag {
             display: inline-block;
-            background: var(--purple-100);
+            background: linear-gradient(135deg, var(--purple-100), var(--purple-50));
             color: var(--purple-700);
-            padding: 4px 12px;
-            border-radius: 6px;
+            padding: 5px 14px;
+            border-radius: 20px;
             font-size: 11px;
             font-weight: 600;
             margin-bottom: 10px;
@@ -1144,6 +1161,22 @@
                 <strong>ISO9001</strong>
                 <span>质量管理体系</span>
             </div>
+
+            <!-- 面部类产品展示卡 -->
+            <div style="position:absolute;bottom:-30px;right:-20px;width:220px;background:white;border-radius:18px;padding:16px;box-shadow:0 12px 40px rgba(30,0,70,0.2);border:2px solid var(--purple-200);z-index:5;animation:floatUp 3s ease-in-out infinite;">
+                <div style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--purple-700),var(--purple-500));color:white;padding:4px 14px;border-radius:20px;font-size:10px;font-weight:700;white-space:nowrap;">FEATURED 热销面部系列</div>
+                <img src="reference/医美术后修复类/WechatIMG24.jpeg" alt="面部弹力头套" style="width:100%;height:140px;object-fit:cover;border-radius:12px;margin-bottom:10px;">
+                <h4 style="font-size:13px;font-weight:800;color:var(--purple-900);margin-bottom:4px;text-align:center;">面部弹力头套</h4>
+                <p style="font-size:10px;color:#888;text-align:center;margin-bottom:8px;">面部拉皮/下颌角术后专用</p>
+                <a href="#products" onclick="setTimeout(()=>filterProducts('medical'),100)" style="display:block;text-align:center;background:linear-gradient(135deg,var(--purple-700),var(--purple-500));color:white;padding:8px;border-radius:10px;font-size:11px;font-weight:700;text-decoration:none;transition:all 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform=''">查看详情 →</a>
+            </div>
+
+            <!-- 下颌套展示 -->
+            <div style="position:absolute;top:80px;left:-30px;width:180px;background:white;border-radius:16px;padding:14px;box-shadow:0 10px 35px rgba(30,0,70,0.15);border:2px solid var(--gold-light);z-index:4;animation:floatUp 3.5s ease-in-out infinite 0.5s;">
+                <img src="reference/医美术后修复类/WechatIMG23.png" alt="下颌套" style="width:100%;height:110px;object-fit:contain;border-radius:10px;margin-bottom:8px;background:#fafafa;padding:8px;">
+                <h4 style="font-size:12px;font-weight:700;color:var(--purple-900);margin-bottom:2px;text-align:center;">V脸下颌套</h4>
+                <p style="font-size:9px;color:#999;text-align:center;">双下巴/线雕提升专用</p>
+            </div>
         </div>
     </div>
 </section>
@@ -1254,28 +1287,85 @@
     </div>
 </section>
 
-<!-- WHY CHOOSE US -->
-<section class="why-section" id="about">
-    <div class="section-header">
-        <div class="section-tag">WHY CHOOSE US 为什么选择我们</div>
-        <h2 class="section-title">专业值得信赖</h2>
-        <p class="section-subtitle">十年深耕医疗康复领域，为每一位客户提供最专业的产品与服务</p>
-    </div>
-    <div class="features-grid">
-        <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-certificate"></i></div>
-            <div class="feature-title">医疗级资质认证</div>
-            <div class="feature-desc">NMPA二类医疗器械注册证、ISO9001质量管理体系、多项专利技术认证，确保每一件产品都符合国际医疗标准。</div>
+<!-- TESTIMONIALS & PARTNERS -->
+<section style="background:linear-gradient(180deg,#fff 0%,var(--purple-50) 100%);padding:90px 0;">
+    <div style="max-width:1400px;margin:0 auto;padding:0 40px;">
+
+        <!-- User Testimonials -->
+        <div class="section-header" style="margin-bottom:52px;">
+            <div class="section-tag">TESTIMONIALS 用户反馈</div>
+            <h2 class="section-title">真实用户评价</h2>
+            <p class="section-subtitle">来自全球10万+用户的真实使用体验</p>
         </div>
-        <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-flask"></i></div>
-            <div class="feature-title">医院研发合作</div>
-            <div class="feature-desc">与浙江大学等顶尖院校建立深度研发合作，结合临床数据持续优化产品设计，真正实现医学与工程的完美融合。</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-bottom:90px;">
+            <div style="background:white;border-radius:20px;padding:36px;box-shadow:0 4px 24px rgba(0,0,0,0.06);border:1px solid var(--purple-100);position:relative;">
+                <div style="display:flex;gap:1px;margin-bottom:18px;"><i class="fas fa-star" style="color:#fbbf24;font-size:16px;"></i><i class="fas fa-star" style="color:#fbbf24;font-size:16px;"></i><i class="fas fa-star" style="color:#fbbf24;font-size:16px;"></i><i class="fas fa-star" style="color:#fbbf24;font-size:16px;"></i><i class="fas fa-star" style="color:#fbbf24;font-size:16px;"></i></div>
+                <p style="font-size:15px;color:#555;line-height:1.85;margin-bottom:22px;">"术后第7天开始穿怀美婷的连体塑身衣，贴合不勒，皮肤没有过敏反应。穿了一个月，腰围已经从78cm降到68cm，效果非常明显！客服也很专业，推荐了合适的尺码。"</p>
+                <div style="display:flex;align-items:center;gap:14px;padding-top:18px;border-top:1px solid #f0f0f0;">
+                    <div style="width:48px;height:48px;background:linear-gradient(135deg,var(--purple-600),var(--purple-400));border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:18px;">陈</div>
+                    <div><strong style="font-size:14px;display:block;">陈女士 · 上海</strong><span style="font-size:12px;color:#999;">腰腹吸脂术后</span></div>
+                </div>
+            </div>
+            <div style="background:white;border-radius:20px;padding:36px;box-shadow:0 4px 24px rgba(0,0,0,0.06);border:1px solid var(--purple-100);">
+                <div style="display:flex;gap:1px;margin-bottom:18px;"><i class="fas fa-star" style="color:#fbbf24;font-size:16px;"></i><i class="fas fa-star" style="color:#fbbf24;font-size:16px;"></i><i class="fas fa-star" style="color:#fbbf24;font-size:16px;"></i><i class="fas fa-star" style="color:#fbbf24;font-size:16px;"></i><i class="fas fa-star" style="color:#fbbf24;font-size:16px;"></i></div>
+                <p style="font-size:15px;color:#555;line-height:1.85;margin-bottom:22px;">"产后42天开始用骨盆矫正裤，配合伦美健康的营养品，三个月后骨盆前倾明显改善，耻骨分离疼痛也消失了。现在身材基本恢复到孕前状态！"</p>
+                <div style="display:flex;align-items:center;gap:14px;padding-top:18px;border-top:1px solid #f0f0f0;">
+                    <div style="width:48px;height:48px;background:linear-gradient(135deg,var(--purple-600),var(--purple-400));border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:18px;">林</div>
+                    <div><strong style="font-size:14px;display:block;">林女士 · 杭州</strong><span style="font-size:12px;color:#999;">产后修复用户</span></div>
+                </div>
+            </div>
+            <div style="background:white;border-radius:20px;padding:36px;box-shadow:0 4px 24px rgba(0,0,0,0.06);border:1px solid var(--purple-100);">
+                <div style="display:flex;gap:1px;margin-bottom:18px;"><i class="fas fa-star" style="color:#fbbf24;font-size:16px;"></i><i class="fas fa-star" style="color:#fbbf24;font-size:16px;"></i><i class="fas fa-star" style="color:#fbbf24;font-size:16px;"></i><i class="fas fa-star" style="color:#fbbf24;font-size:16px;"></i><i class="fas fa-star-half-alt" style="color:#fbbf24;font-size:16px;"></i></div>
+                <p style="font-size:15px;color:#555;line-height:1.85;margin-bottom:22px;">"剖腹产疤痕用了怀美婷的疤痕贴，坚持贴了3个月，现在疤痕几乎看不出来了！比之前用的进口品牌效果好很多，价格也更实惠。强烈推荐给所有剖腹产妈妈！"</p>
+                <div style="display:flex;align-items:center;gap:14px;padding-top:18px;border-top:1px solid #f0f0f0;">
+                    <div style="width:48px;height:48px;background:linear-gradient(135deg,var(--purple-600),var(--purple-400));border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:18px;">王</div>
+                    <div><strong style="font-size:14px;display:block;">王女士 · 深圳</strong><span style="font-size:12px;color:#999;">剖腹产疤痕修复</span></div>
+                </div>
+            </div>
         </div>
-        <div class="feature-card">
-            <div class="feature-icon"><i class="fas fa-atom"></i></div>
-            <div class="feature-title">先进面料科技</div>
-            <div class="feature-desc">医用级抗菌透气面料、梯度压力技术、3D立体剪裁工艺，让康复过程更舒适、更高效、更安全。</div>
+
+        <!-- Partner Institutions -->
+        <div class="section-header">
+            <div class="section-tag">PARTNERS 合作机构</div>
+            <h2 class="section-title"> trusted by 500+ institutions</h2>
+            <p class="section-subtitle">与国内外顶尖医疗机构和健康管理中心建立深度合作关系</p>
+        </div>
+
+        <!-- Partner Categories -->
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-bottom:44px;">
+            <div style="text-align:center;background:white;padding:32px 20px;border-radius:18px;border:2px solid var(--purple-100);transition:all 0.3s;" onmouseover="this.style.borderColor='var(--purple-400)';this.style.transform='translateY(-5px)'" onmouseout="this.style.borderColor='var(--purple-100)';this.style.transform=''">
+                <div style="width:64px;height:64px;background:linear-gradient(135deg,var(--purple-700),var(--purple-500));border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;"><i class="fas fa-hospital" style="color:white;font-size:26px;"></i></div>
+                <h4 style="font-size:16px;font-weight:700;color:var(--purple-900);margin-bottom:6px;">综合医院</h4>
+                <p style="font-size:12px;color:#888;">整形外科 / 烧伤科<br>妇产科 / 普外科</p>
+            </div>
+            <div style="text-align:center;background:white;padding:32px 20px;border-radius:18px;border:2px solid var(--purple-100);transition:all 0.3s;" onmouseover="this.style.borderColor='var(--purple-400)';this.style.transform='translateY(-5px)'" onmouseout="this.style.borderColor='var(--purple-100)';this.style.transform=''">
+                <div style="width:64px;height:64px;background:linear-gradient(135deg,var(--purple-700),var(--purple-500));border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;"><i class="fas fa-spa" style="color:white;font-size:26px;"></i></div>
+                <h4 style="font-size:16px;font-weight:700;color:var(--purple-900);margin-bottom:6px;">医美机构</h4>
+                <p style="font-size:12px;color:#888;">医疗美容诊所<br>整形专科医院</p>
+            </div>
+            <div style="text-align:center;background:white;padding:32px 20px;border-radius:18px;border:2px solid var(--purple-100);transition:all 0.3s;" onmouseover="this.style.borderColor='var(--purple-400)';this.style.transform='translateY(-5px)'" onmouseout="this.style.borderColor='var(--purple-100)';this.style.transform=''">
+                <div style="width:64px;height:64px;background:linear-gradient(135deg,var(--purple-700),var(--purple-500));border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;"><i class="fas fa-baby-carriage" style="color:white;font-size:26px;"></i></div>
+                <h4 style="font-size:16px;font-weight:700;color:var(--purple-900);margin-bottom:6px;">产后修复中心</h4>
+                <p style="font-size:12px;color:#888;">月子中心<br>产后康复会所</p>
+            </div>
+            <div style="text-align:center;background:white;padding:32px 20px;border-radius:18px;border:2px solid var(--purple-100);transition:all 0.3s;" onmouseover="this.style.borderColor='var(--purple-400)';this.style.transform='translateY(-5px)'" onmouseout="this.style.borderColor='var(--purple-100)';this.style.transform=''">
+                <div style="width:64px;height:64px;background:linear-gradient(135deg,var(--gold),var(--gold-light));border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;"><i class="fas fa-pills" style="color:white;font-size:26px;"></i></div>
+                <h4 style="font-size:16px;font-weight:700;color:var(--purple-900);margin-bottom:6px;">健康管理</h4>
+                <p style="font-size:12px;color:#888;">营养管理中心<br>儿童发育门诊</p>
+            </div>
+        </div>
+
+        <!-- Partner Logos Wall -->
+        <div style="background:white;border-radius:20px;padding:40px;text-align:center;border:1px dashed var(--purple-200);">
+            <p style="font-size:13px;color:#aaa;margin-bottom:24px;letter-spacing:2px;">COOPERATION PARTNERS 合作伙伴 LOGO 墙</p>
+            <div style="display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:32px;opacity:0.5;">
+                <div style="padding:12px 28px;border:1px solid #e5e7eb;border-radius:8px;font-size:13px;color:#999;font-weight:500;">浙江大学医学院附属第一医院</div>
+                <div style="padding:12px 28px;border:1px solid #e5e7eb;border-radius:8px;font-size:13px;color:#999;font-weight:500;">上海九院整复外科</div>
+                <div style="padding:12px 28px;border:1px solid #e5e7eb;border-radius:8px;font-size:13px;color:#999;font-weight:500;">北京协和医院</div>
+                <div style="padding:12px 28px;border:1px solid #e5e7eb;border-radius:8px;font-size:13px;color:#999;font-weight:500;">广州中山大学附属医院</div>
+                <div style="padding:12px 28px;border:1px solid #e5e7eb;border-radius:8px;font-size:13px;color:#999;font-weight:500;">成都华西医院</div>
+                <div style="padding:12px 28px;border:1px solid #e5e7eb;border-radius:8px;font-size:13px;color:#999;font-weight:500;">美莱医疗美容集团</div>
+            </div>
         </div>
     </div>
 </section>
@@ -1437,21 +1527,26 @@
 
 <script>
 const products = [
-    // ========== 医美术后修复类 ==========
-    { id: "MED001", name: "连体医用塑身衣", category: "medical", categoryLabel: "医美术后修复类", desc: "吸脂术后专用连体塑身衣，全身包裹式设计，均匀施加压力，有效减少术后水肿和淤青。", scope: "腰腹环吸、大腿吸脂、手臂吸脂、背部抽脂术后", features: "医用级压力面料（20-30mmHg）、前开扣设计方便穿脱、裆部按扣设计、抗菌透气材质、无缝编织技术减少皮肤摩擦", images: ["reference/医美术后修复类/WechatIMG11.jpeg","reference/医美术后修复类/WechatIMG23.png","reference/医美术后修复类/WechatIMG24.jpeg"] },
-    { id: "MED002", name: "分体套装（上衣+长裤）", category: "medical", categoryLabel: "医美术后修复类", desc: "分体式设计，针对不同部位独立施压，适合多部位联合手术后的分段恢复需求。", scope: "上腹/下腹分离手术、大腿+臀部联合塑形、腰腹+大腿综合吸脂", features: "分体设计便于如厕和换药、腰部加强带设计、腿部渐进式压力分布、肩带可调节长度", images: ["reference/医美术后修复类/WechatIMG25.png","reference/医美术后修复类/WechatIMG26.jpeg","reference/医美术后修复类/WechatIMG27.jpeg"] },
-    { id: "MED003", name: "束乳内衣（术后专用）", category: "medical", categoryLabel: "医美术后修复类", desc: "隆胸/缩胸/乳房重建术后专用，前开扣设计避免抬手牵拉伤口。", scope: "假体隆胸、自体脂肪丰胸、乳房切除术、乳房缩小术", features: "前开扣无钢圈设计、加宽肩带分散压力、内侧柔软衬垫保护伤口、可调节松紧度适应消肿变化", images: ["reference/医美术后修复类/WechatIMG28.jpeg","reference/医美术后修复类/WechatIMG29.jpeg","reference/医美术后修复类/WechatIMG30.jpeg"] },
-    { id: "MED004", name: "面部弹力面罩", category: "medical", categoryLabel: "医美术后修复类", desc: "面部拉皮、下颌角、颧骨手术后专用面部加压固定装置。", scope: "面部拉皮术、线雕提升、下颌角整形、双下巴吸脂", features: "全脸覆盖立体剪裁、耳周开口不影响听力、可调节魔术贴固定、高弹力面料舒适贴合", images: ["reference/医美术后修复类/WechatIMG31.jpeg","reference/医美术后修复类/WechatIMG32.jpeg","reference/医美术后修复类/WechatIMG33.png"] },
-    { id: "MED005", name: "手臂套袖", category: "medical", categoryLabel: "医美术后修复类", desc: "蝴蝶袖吸脂、手臂松弛矫正术后专用加压袖套。", scope: "手臂吸脂术、蝴蝶袖去除、上臂松弛矫正", features: "全长覆盖至腋下、拇指开口设计、防滑硅胶条防止移位、渐变压力从上臂到手腕递减", images: ["reference/医美术后修复类/WechatIMG34.jpeg","reference/医美术后修复类/WechatIMG35.jpeg","reference/医美术后修复类/WechatIMG36.jpeg"] },
-    { id: "MED006", name: "腹部加强型束腰带", category: "medical", categoryLabel: "医美术后修复类", desc: "腰腹吸脂术后重点区域加强加压，配合连体衣使用效果更佳。", scope: "腰腹环吸术后、腹壁成形术、剖腹产术后", features: "9根记忆钢骨支撑、双层加压面料、魔术贴多档位调节、腰部两侧加宽设计增强侧腰收拢", images: ["reference/医美术后修复类/WechatIMG37.jpeg","reference/医美术后修复类/WechatIMG38.jpeg"] },
+    // ========== 医美术后修复类 (6 products) ==========
+    { id: "MED001", name: "束腰束腹裤", category: "medical", categoryLabel: "医美术后修复类", desc: "腰腹妈妈臀吸脂术后专用塑身裤，高腰设计配合肩带固定，均匀施加压力有效减少术后水肿。", scope: "腰腹环吸、妈妈臀吸脂、腹部抽脂、腰部塑形术后", features: "医用级压力面料（20-30mmHg）、前开扣排扣设计方便调节松紧、可拆卸肩带防滑移位、裆部按扣设计方便如厕、抗菌透气材质、无缝编织技术减少皮肤摩擦", images: ["reference/医美术后修复类/WechatIMG11.jpeg","reference/医美术后修复类/WechatIMG37.jpeg","reference/医美术后修复类/WechatIMG38.jpeg"], badge: "HOT" },
+
+    { id: "MED002", name: "上半身连体衣", category: "medical", categoryLabel: "医美术后修复类", desc: "腰腹手臂吸脂术后专用连体衣，长袖设计覆盖上肢，胸前开口方便穿脱。", scope: "腰腹环吸+手臂吸脂联合手术、上半身综合塑形、背部抽脂术后", features: "3/4长袖设计覆盖至上臂、胸前U型开口避免抬手牵拉、前拉链+排扣双重固定、分区压力设计（腹部加强/手臂渐进）、高弹面料舒适透气", images: ["reference/医美术后修复类/WechatIMG25.png","reference/医美术后修复类/WechatIMG27.jpeg","reference/医美术后修复类/WechatIMG28.jpeg"] },
+
+    { id: "MED003", name: "肩带高腰中裤", category: "medical", categoryLabel: "医美术后修复类", desc: "大腿环吸术后专用塑身裤，高腰设计收腹提臀，中裤长度覆盖至膝盖上方。", scope: "大腿环吸术、大腿内侧/外侧吸脂、臀线塑形、大腿根部抽脂", features: "高腰设计同步收腹提臀、可调节肩带防止下滑、前拉链设计方便穿脱、大腿根部加压加强、渐变压力从大腿到小腿递减、抗菌面料预防感染", images: ["reference/医美术后修复类/WechatIMG26.jpeg","reference/医美术后修复类/WechatIMG29.jpeg","reference/医美术后修复类/WechatIMG30.jpeg"], badge: "POPULAR" },
+
+    { id: "MED004", name: "中高腰长裤", category: "medical", categoryLabel: "医美术后修复类", desc: "大小腿环吸术后专用长裤，全长覆盖从腰部至脚踝，完整包裹下肢。", scope: "大小腿联合环吸、全腿塑形、小腿肌肉型腿改善、腿部淋巴水肿", features: "全长覆盖至脚踝完整包裹、中高腰设计收腹+瘦腿一体化、9根记忆钢骨支撑腰部、魔术贴多档位调节适应消肿变化、腿部渐进式压力分布、防滑硅胶条防止卷边", images: ["reference/医美术后修复类/WechatIMG35.jpeg","reference/医美术后修复类/WechatIMG36.jpeg","reference/医美术后修复类/WechatIMG29.jpeg"] },
+
+    { id: "MED005", name: "大腿套", category: "medical", categoryLabel: "医美术后修复类", desc: "大腿局部吸脂术后专用套袖，针对性加压大腿部位，适合单独大腿吸脂用户。", scope: "大腿局部吸脂、大腿内侧吸脂、蝴蝶袖去除、大腿松弛矫正", features: "全长覆盖至大腿根部、上端防滑硅胶条防止移位、独立穿戴不影响其他部位、渐变压力从上臂到手腕递减、轻薄透气适合长期佩戴、可与其他塑身衣搭配使用", images: ["reference/医美术后修复类/WechatIMG34.jpeg","reference/医美术后修复类/WechatIMG33.png","reference/医美术后修复类/WechatIMG36.jpeg"], badge: "NEW" },
+
+    { id: "MED006", name: "面部弹力头套", category: "medical", categoryLabel: "医美术后修复类", desc: "面部拉皮/下颌角/颧骨手术后专用面部加压固定装置，全脸覆盖立体剪裁。", scope: "面部拉皮术、线雕提升、下颌角整形、颧骨内推、双下巴吸脂、面部轮廓重塑", features: "全脸覆盖立体剪裁贴合面部曲线、眼口鼻三处开口不影响视觉和呼吸、耳周开口不影响听力、可调节魔术贴多档位固定、高弹力面料舒适贴合不勒、头部环绕式设计均匀施压", images: ["reference/医美术后修复类/WechatIMG24.jpeg","reference/医美术后修复类/WechatIMG23.png","reference/医美术后修复类/WechatIMG31.jpeg"], badge: "FEATURED" },
 
     // ========== 产后修复类 ==========
     { id: "POST001", name: "产后运动修复套装", category: "postpartum", categoryLabel: "产后修复类", desc: "专为产后妈妈设计的运动型修复套装，兼顾日常穿着与轻度运动场景。", scope: "产后42天+恢复期、日常收腹提臀、产后瑜伽普拉提", features: "高弹面料轻盈柔软、运动时无束缚感、4段式分区压力设计、高腰收腹+动态提臀+分压瘦腿三合一、哺乳友好设计", images: ["reference/产后修复类/绘蛙-任务236981843.jpg","reference/产后修复类/绘蛙-任务233584078.jpg","reference/产后修复类/绘蛙-任务233551850.jpg"], badge: "POPULAR" },
     { id: "POST002", name: "骨盆矫正裤", category: "postpartum", categoryLabel: "产后修复类", desc: "针对产后骨盆前倾/耻骨分离问题设计的专业矫正型塑身裤。", scope: "耻骨联合分离、骶髂关节疼痛、骨盆前倾/后倾、产后盆底肌训练辅助", features: "髋骨部位特殊加压设计、3D立体剪裁贴合骨盆曲线、医学级弹性面料稳定支撑、高腰设计同步收腹提臀", images: ["reference/产后修复类/绘蛙-任务233486248.jpg","reference/产后修复类/绘蛙-任务233476733.jpg","reference/产后修复类/IMG_3608.JPG"], badge: "NEW" },
 
     // ========== 疤痕修复类 ==========
-    { id: "SCAR001", name: "医用疤痕贴（胸部）", category: "scar", categoryLabel: "疤痕修复类", desc: "剖胸/心脏手术/乳腺手术后疤痕管理专用硅胶贴片。", scope: "开胸手术疤痕、乳腺手术疤痕、甲状腺手术疤痕", features: "医用级硅胶材质、可反复使用、防水透气、软化淡化增生性疤痕、预防疤痕增生", images: ["reference/疤痕修复类/IMG_4110.HEIC","reference/疤痕修复类/IMG_4104.JPG","reference/疤痕修复类/IMG_4111.JPG"] },
-    { id: "SCAR002", name: "剖腹产疤痕贴", category: "scar", categoryLabel: "疤痕修复类", desc: "剖腹产横切口/竖切口专用疤痕修复贴片，预防妊娠纹扩散。", scope: "剖腹产疤痕、剖宫产伤口愈合后、腹部手术疤痕", features: "符合腹部曲线的弧形设计、超薄隐形可穿衣物遮盖、抑菌成分降低感染风险、持续释放硅凝胶加速修复", images: ["reference/疤痕修复类/IMG_4112.JPG","reference/疤痕修复类/IMG_4113.JPG","reference/疤痕修复类/IMG_4114.JPG"] },
+    { id: "SCAR001", name: "医用疤痕贴（胸部）", category: "scar", categoryLabel: "疤痕修复类", desc: "剖胸/心脏手术/乳腺手术后疤痕管理专用硅胶贴片。", scope: "开胸手术疤痕、乳腺手术疤痕、甲状腺手术疤痕", features: "医用级硅胶材质、可反复使用、防水透气、软化淡化增生性疤痕、预防疤痕增生", images: ["reference/疤痕修复类/IMG_4104.JPG","reference/疤痕修复类/IMG_4111.JPG","reference/疤痕修复类/IMG_4112.JPG"] },
+    { id: "SCAR002", name: "剖腹产疤痕贴", category: "scar", categoryLabel: "疤痕修复类", desc: "剖腹产横切口/竖切口专用疤痕修复贴片，预防妊娠纹扩散。", scope: "剖腹产疤痕、剖宫产伤口愈合后、腹部手术疤痕", features: "符合腹部曲线的弧形设计、超薄隐形可穿衣物遮盖、抑菌成分降低感染风险、持续释放硅凝胶加速修复", images: ["reference/疤痕修复类/IMG_4113.JPG","reference/疤痕修复类/IMG_4114.JPG","reference/疤痕修复类/IMG_4104.JPG"], badge: "NEW" },
 
     // ========== 伦美大健康 ==========
     { id: "LM001", name: "γ-氨基丁酸酪蛋白水解肤饮", category: "health", categoryLabel: "伦美大健康", desc: "儿童营养健康管理核心产品，双重专利成分助力儿童健康成长。", scope: "儿童身高促进、注意力不集中改善、情绪安抚助眠", features: "GABA+酪蛋白水解肽双专利益生元配方、顶格添加500mg γ-氨基丁酸、天然植萃果汁提取木糖醇基底、0色素0激素0添加剂、净含量125ml/支", images: ["reference/伦美大健康/254.JPG","reference/伦美大健康/271.JPG","reference/伦美大健康/272.JPG"], badge: "BESTSELLER" },
