@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>怀美婷医疗 - 专业医用塑身衣品牌</title>
+    <title>怀美婷医疗 - 专业医用塑身衣品牌 v2.0</title>
     <meta name="description" content="怀美婷专注医用塑身衣研发与生产，联合三甲医院临床医师共同研发，为术后、产后人群提供安全有效的康复解决方案。">
+    <meta name="version" content="2.0.0">
+    <meta name="last-updated" content="2026-04-29">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -401,11 +403,50 @@
 
         .product-image {
             width: 100%;
-            height: 180px;
+            height: 220px;
             object-fit: contain;
             margin-bottom: 15px;
             border-radius: 8px;
             background: #f8f8f8;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+
+        .hero-image-actual {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+
+        .modal-main-image {
+            width: 100%;
+            height: 400px;
+            object-fit: contain;
+            background: #f8f8f8;
+            border-radius: 12px;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+
+        .modal-thumbnail {
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: var(--transition);
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
         }
 
         .product-icon {
@@ -1287,26 +1328,26 @@
                 <div class="footer-links">
                     <h4>服务支持</h4>
                     <ul>
-                        <li><a href="#size-chart">尺码指南</a></li>
-                        <li><a href="#">穿戴指导</a></li>
-                        <li><a href="#">售后服务</a></li>
-                        <li><a href="#">常见问题</a></li>
+                        <li><a href="#size-chart" onclick="scrollToSection('size-chart')">尺码指南</a></li>
+                        <li><a href="#" onclick="alert('穿戴指导：请参考产品详情页或联系我们获取专业指导'); return false;">穿戴指导</a></li>
+                        <li><a href="#contact" onclick="scrollToSection('contact')">售后服务</a></li>
+                        <li><a href="#" onclick="alert('常见问题：如有疑问请联系客服'); return false;">常见问题</a></li>
                     </ul>
                 </div>
-                
+
                 <div class="footer-links">
                     <h4>关于我们</h4>
                     <ul>
-                        <li><a href="#">公司介绍</a></li>
-                        <li><a href="#">资质认证</a></li>
-                        <li><a href="#contact">联系我们</a></li>
-                        <li><a href="#partners">合作加盟</a></li>
+                        <li><a href="#" onclick="showCompanyInfo(); return false;">公司介绍</a></li>
+                        <li><a href="#" onclick="showCertification(); return false;">资质认证</a></li>
+                        <li><a href="#contact" onclick="scrollToSection('contact')">联系我们</a></li>
+                        <li><a href="#partners" onclick="scrollToSection('partners')">合作加盟</a></li>
                     </ul>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2024 上海娇美医疗科技. All rights reserved. | 怀美婷医疗</p>
+                <p>&copy; 2024 上海娇美医疗科技. All rights reserved. | 怀美婷医疗 | v2.0.0 | 更新于 2026-04-29</p>
             </div>
         </div>
     </footer>
@@ -1469,13 +1510,15 @@
 
         function renderProducts(category = 'all') {
             const grid = document.getElementById('products-grid');
-            const filteredProducts = category === 'all' 
-                ? products 
+            const filteredProducts = category === 'all'
+                ? products
                 : products.filter(p => p.category === category);
-            
+
             grid.innerHTML = filteredProducts.map((product, index) => `
                 <div class="product-card" onclick="openModal(${products.indexOf(product)})">
-                    <div class="product-icon">
+                    <img src="${product.images[0]}" alt="${product.name}" class="product-image"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    <div class="product-icon" style="display:none;">
                         <i class="fas ${categoryIcons[product.category] || 'fa-box'}"></i>
                     </div>
                     <div class="product-id">编号: ${product.id}</div>
@@ -1566,6 +1609,26 @@
             alert('感谢您的咨询！我们将尽快与您联系。');
             this.reset();
         });
+
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                const headerHeight = document.getElementById('masthead').offsetHeight;
+                const targetPosition = element.offsetTop - headerHeight - 20;
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        function showCompanyInfo() {
+            alert('上海娇美医疗科技有限公司\n\n怀美婷专注医用塑身衣研发与生产，联合三甲医院临床医师共同研发，为术后、产后人群提供安全有效的康复解决方案。\n\n拥有二类医疗器械资质认证，提供专业临床支持。\n\n联系方式：contact@huaimeiting.com');
+        }
+
+        function showCertification() {
+            alert('资质认证信息：\n\n✓ 二类医疗器械注册证\n✓ ISO9001质量管理体系认证\n✓ 医疗器械生产许可证\n\n所有产品均通过国家医疗器械质量监督检验中心检测。');
+        }
 
         document.addEventListener('DOMContentLoaded', function() {
             renderProducts();
