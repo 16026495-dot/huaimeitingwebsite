@@ -217,11 +217,21 @@
 
         .hero-image { position: relative; display: flex; justify-content: center; align-items: center; animation: fadeInRight 1s ease 0.3s both; }
         @keyframes fadeInRight { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
-        .hero-product-wrapper { position: relative; width: 100%; max-width: 420px; }
+        .hero-product-wrapper { position: relative; width: 100%; max-width: 420px; background: linear-gradient(135deg, #7c3aed, #a855f7); border-radius: var(--radius-lg); min-height: 400px; }
         .hero-product {
             width: 100%; border-radius: var(--radius-lg);
             box-shadow: 0 25px 70px rgba(0,0,0,0.35); animation: float-slow 5s ease-in-out infinite;
+            background: linear-gradient(135deg, #7c3aed, #a855f7); min-height: 400px;
         }
+        .img-loading {
+            background: linear-gradient(90deg, #f0e6ff 25%, #e8d5ff 50%, #f0e6ff 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s ease-in-out infinite;
+            min-height: 150px; display: flex; align-items: center; justify-content: center;
+            color: var(--purple-300); font-size: 12px;
+        }
+        @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+        .cat-prod-img { width: 100%; height: 150px; object-fit: cover; display: block; background: #f0e6ff; min-height: 150px; }
         @keyframes float-slow { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
         .float-card {
             position: absolute; background: rgba(255,255,255,0.12);
@@ -261,63 +271,154 @@
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white; border-color: transparent; box-shadow: 0 8px 28px rgba(124,58,237,0.4);
         }
-        .products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+        .products-section { background: linear-gradient(180deg, var(--purple-50) 0%, white 60%); }
+        .category-tabs { display: flex; justify-content: center; gap: 14px; margin-bottom: 48px; flex-wrap: wrap; }
+        .cat-tab {
+            padding: 13px 30px; background: white; border: 2px solid var(--border);
+            border-radius: var(--radius-full); font-size: 14px; font-weight: 600;
+            color: var(--text-secondary); cursor: pointer; transition: var(--transition);
+            display: flex; align-items: center; gap: 10px; box-shadow: var(--shadow-sm);
+        }
+        .cat-tab:hover { border-color: var(--primary-light); color: var(--primary); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+        .cat-tab.active {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white; border-color: transparent; box-shadow: 0 8px 28px rgba(124,58,237,0.4);
+        }
+        .products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; }
         .category-card {
             background: white; border-radius: var(--radius-lg); overflow: hidden;
-            box-shadow: var(--shadow-md); transition: var(--transition); cursor: pointer;
-            border: 2px solid transparent; position: relative;
+            box-shadow: var(--shadow-md); transition: all 0.35s ease;
+            border: 2px solid transparent; position: relative; cursor: pointer;
         }
-        .category-card:hover { transform: translateY(-12px); box-shadow: var(--shadow-lg); border-color: var(--primary-light); }
-        .category-image-wrap { position: relative; overflow: hidden; height: 280px; }
-        .category-image { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-        .category-card:hover .category-image { transform: scale(1.08); }
-        .category-overlay {
+        .category-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); border-color: var(--primary-light); }
+        .card-top {
+            position: relative; height: 200px; overflow: hidden;
+            background: linear-gradient(135deg, var(--purple-900), var(--purple-700));
+        }
+        .card-top-img {
+            width: 100%; height: 100%; object-fit: cover; opacity: 0.45;
+            transition: opacity 0.4s ease; background: linear-gradient(135deg, var(--purple-900), var(--purple-700)); min-height: 200px;
+        }
+        .category-card:hover .card-top-img { opacity: 0.6; }
+        .card-top-overlay {
             position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(180deg, rgba(124,58,237,0) 0%, rgba(26,0,51,0.85) 100%);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            padding: 20px;
         }
-        .category-badge {
-            position: absolute; top: 16px; left: 16px;
-            padding: 8px 18px; background: linear-gradient(135deg, var(--gold), var(--gold-light));
-            color: white; font-size: 12px; font-weight: 700; border-radius: 25px; letter-spacing: 0.5px;
-            box-shadow: 0 4px 15px rgba(217,119,6,0.4);
-        }
-        .category-info { padding: 28px; text-align: center; }
-        .category-icon {
-            width: 60px; height: 60px; margin: -50px auto 16px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        .card-icon {
+            width: 56px; height: 56px; margin-bottom: 12px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
             border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            color: white; font-size: 26px; box-shadow: 0 8px 24px rgba(124,58,237,0.35);
-            border: 4px solid white; position: relative; z-index: 2;
+            color: white; font-size: 24px; box-shadow: 0 6px 20px rgba(217,119,6,0.35);
+            transition: transform 0.3s ease;
         }
-        .category-name { font-size: 20px; font-weight: 800; color: var(--text-primary); margin-bottom: 6px; }
-        .category-name-en { font-size: 12px; color: var(--primary); font-weight: 600; margin-bottom: 12px; letter-spacing: 1px; text-transform: uppercase; }
-        .category-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 18px; }
-        .category-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 18px; }
-        .category-tag { padding: 6px 14px; background: var(--purple-50); color: var(--primary); border-radius: 20px; font-size: 12px; font-weight: 600; }
-        .category-link {
-            display: inline-flex; align-items: center; gap: 8px;
-            padding: 12px 28px; background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white; border-radius: var(--radius-full); font-size: 13px; font-weight: 700;
-            text-decoration: none; transition: var(--transition);
+        .category-card:hover .card-icon { transform: scale(1.15) rotate(-5deg); }
+        .card-title { font-size: 18px; font-weight: 800; color: white; text-align: center; margin-bottom: 2px; }
+        .card-subtitle { font-size: 11px; color: rgba(255,255,255,0.7); letter-spacing: 1px; text-transform: uppercase; }
+        .card-badge {
+            position: absolute; top: 14px; right: 14px;
+            padding: 5px 14px; background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: white; font-size: 11px; font-weight: 700; border-radius: 16px;
+            box-shadow: 0 3px 12px rgba(217,119,6,0.3);
         }
-        .category-link:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(124,58,237,0.35); }
+        .card-body { padding: 22px 20px 18px; }
+        .card-desc { font-size: 12.5px; color: var(--text-secondary); line-height: 1.65; margin-bottom: 12px; text-align: center; min-height: 42px; }
+        .card-tags {
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 6px;
+            margin-bottom: 14px;
+        }
+        .card-tag {
+            padding: 4px 12px; background: var(--purple-50); color: var(--primary);
+            border-radius: 14px; font-size: 10px; font-weight: 600;
+        }
+        .card-expand-hint {
+            text-align: center; padding-top: 12px; border-top: 1px dashed var(--border);
+            font-size: 11px; color: var(--primary); font-weight: 600;
+            display: flex; align-items: center; justify-content: center; gap: 6px;
+            transition: var(--transition);
+        }
+        .category-card:hover .card-expand-hint { color: var(--primary-dark); }
+        .card-expand-hint i { transition: transform 0.3s ease; }
+        .category-card.expanded .card-expand-hint i { transform: rotate(180deg); }
+
+        .cat-expanded-products {
+            max-height: 0; overflow: hidden; transition: max-height 0.5s ease;
+            background: var(--bg-gray); border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+        }
+        .category-card.expanded .cat-expanded-products { max-height: 2000px; overflow: visible; }
+        .cat-expanded-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px;
+            padding: 24px;
+        }
+        .cat-prod-item {
+            background: white; border-radius: var(--radius); overflow: hidden;
+            box-shadow: var(--shadow-sm); transition: var(--transition);
+        }
+        .cat-prod-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+        .cat-prod-img { width: 100%; height: 150px; object-fit: cover; display: block; background: #e8d5ff; min-height: 150px; }
+        .cat-prod-info { padding: 12px; }
+        .cat-prod-name { font-size: 13px; font-weight: 700; color: var(--text-primary); line-height: 1.3; }
+        .cat-prod-desc { font-size: 11px; color: var(--text-secondary); margin-top: 4px; line-height: 1.5; }
 
         /* BODY AREAS */
-        .body-areas-section { padding: 70px 0; background: white; }
-        .body-areas-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; }
+        .body-areas-section { padding: 70px 0; background: linear-gradient(180deg, white 0%, var(--purple-50) 100%); }
+        .body-areas-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
         .body-area-card {
-            text-align: center; padding: 26px 14px; background: var(--purple-50);
-            border-radius: var(--radius); cursor: pointer; transition: var(--transition); border: 2px solid transparent;
+            background: linear-gradient(180deg, #f8f7fc 0%, #ede9f6 60%, #c9b8e8 100%);
+            border-radius: var(--radius-lg); cursor: pointer; transition: all 0.35s ease;
+            border: 2px solid transparent; text-align: center; padding: 40px 24px 32px;
+            position: relative; overflow: hidden;
         }
-        .body-area-card:hover { background: white; border-color: var(--primary); box-shadow: var(--shadow-md); transform: translateY(-5px); }
+        .body-area-card::before {
+            content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 50%;
+            background: linear-gradient(180deg, transparent 0%, rgba(124,58,237,0.08) 100%);
+            border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+        }
+        .body-area-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-lg); border-color: var(--purple-300); }
         .body-area-icon {
-            width: 58px; height: 58px; margin: 0 auto 12px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            width: 64px; height: 64px; margin: 0 auto 16px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
             border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            color: white; font-size: 24px; transition: var(--transition);
+            color: white; font-size: 26px; box-shadow: 0 6px 22px rgba(217,119,6,0.3);
+            transition: transform 0.3s ease; position: relative; z-index: 1;
         }
-        .body-area-card:hover .body-area-icon { background: linear-gradient(135deg, var(--primary-dark), var(--primary)); transform: scale(1.1); }
-        .body-area-name { font-size: 13px; font-weight: 600; color: var(--text-primary); }
+        .body-area-card:hover .body-area-icon { transform: scale(1.12) rotate(-8deg); }
+        .body-area-name { font-size: 17px; font-weight: 800; color: var(--text-primary); position: relative; z-index: 1; }
+        .body-area-sub { font-size: 11px; color: var(--text-light); margin-top: 4px; letter-spacing: 1px; position: relative; z-index: 1; }
+        .area-click-hint {
+            margin-top: 16px; font-size: 10px; color: var(--primary); font-weight: 600;
+            opacity: 0; transition: opacity 0.3s ease; position: relative; z-index: 1;
+            display: flex; align-items: center; justify-content: center; gap: 5px;
+        }
+        .body-area-card:hover .area-click-hint { opacity: 1; }
+
+        .area-expanded-panel {
+            grid-column: 1 / -1; display: none; padding: 28px;
+            background: white; border-radius: var(--radius-lg); box-shadow: var(--shadow-md);
+            animation: fadeSlideIn 0.4s ease;
+        }
+        @keyframes fadeSlideIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        .area-expanded-panel.active { display: block; }
+        .area-panel-title {
+            font-size: 18px; font-weight: 800; color: var(--text-primary); margin-bottom: 20px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .area-panel-title i { color: var(--gold); }
+        .area-prod-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 18px;
+        }
+        .area-prod-card {
+            background: var(--bg-gray); border-radius: var(--radius); overflow: hidden;
+            transition: var(--transition);
+        }
+        .area-prod-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-sm); }
+        .area-prod-card img { width: 100%; height: 170px; object-fit: cover; background: #e8d5ff; min-height: 170px; }
+        .area-prod-card-info { padding: 14px; }
+        .area-prod-card-name { font-size: 14px; font-weight: 700; color: var(--text-primary); }
+        .area-prod-card-cat { font-size: 11px; color: var(--primary); font-weight: 600; margin-top: 4px; }
+
+        .products-grid img, .cat-expanded-products img, .area-prod-grid img, .hero-image img { background: #e8d5ff !important; }
+        .cat-prod-item, .area-prod-card { background: #faf5ff !important; }
 
         /* TRUST */
         .trust-section {
@@ -620,7 +721,8 @@
             </div>
             <div class="hero-image">
                 <div class="hero-product-wrapper">
-                    <img src="reference/医美术后修复类/IMG_4098.JPG" alt="医用压力产品" class="hero-product" onerror="this.src='https://neeko-copilot.bytedance.net/api/text2image?prompt=medical+compression+garment+professional+product+photo+purple+theme&width=400&height=520'">
+                    <img src="reference/医美术后修复类/WechatIMG28.jpeg" alt="医用压力产品" class="hero-product" loading="eager"
+                     onerror="this.style.background='linear-gradient(135deg,#7c3aed,#a855f7)'; this.style.minHeight='400px'; this.alt='产品图片加载中...'">
                     <div class="float-card card-cert">
                         <div class="card-cert-icon"><i class="fas fa-shield-check"></i></div>
                         <div class="card-cert-text"><strong>NMPA认证</strong><span>二类医疗器械</span></div>
@@ -661,31 +763,44 @@
             <p class="section-subtitle">Select by Body Area — 快速找到您需要的康复产品</p>
         </div>
         <div class="body-areas-grid">
-            <div class="body-area-card" onclick="filterProductsByArea('face')">
+            <div class="body-area-card" onclick="toggleAreaPanel('face', this)">
                 <div class="body-area-icon"><i class="fas fa-head-side-mask"></i></div>
                 <div class="body-area-name">面部 Face</div>
+                <div class="body-area-sub">FACE & NECK</div>
+                <div class="area-click-hint"><i class="fas fa-chevron-down"></i> 点击查看产品</div>
             </div>
-            <div class="body-area-card" onclick="filterProductsByArea('neck')">
+            <div class="body-area-card" onclick="toggleAreaPanel('neck', this)">
                 <div class="body-area-icon"><i class="fas fa-necklace"></i></div>
                 <div class="body-area-name">颈部 Neck</div>
+                <div class="body-area-sub">NECK AREA</div>
+                <div class="area-click-hint"><i class="fas fa-chevron-down"></i> 点击查看产品</div>
             </div>
-            <div class="body-area-card" onclick="filterProductsByArea('chest')">
+            <div class="body-area-card" onclick="toggleAreaPanel('chest', this)">
                 <div class="body-area-icon"><i class="fas fa-heart-pulse"></i></div>
                 <div class="body-area-name">胸部 Chest</div>
+                <div class="body-area-sub">CHEST & BUST</div>
+                <div class="area-click-hint"><i class="fas fa-chevron-down"></i> 点击查看产品</div>
             </div>
-            <div class="body-area-card" onclick="filterProductsByArea('waist')">
+            <div class="body-area-card" onclick="toggleAreaPanel('waist', this)">
                 <div class="body-area-icon"><i class="fas fa-arrows-alt-h"></i></div>
                 <div class="body-area-name">腰腹 Waist</div>
+                <div class="body-area-sub">ABDOMEN</div>
+                <div class="area-click-hint"><i class="fas fa-chevron-down"></i> 点击查看产品</div>
             </div>
-            <div class="body-area-card" onclick="filterProductsByArea('hip')">
+            <div class="body-area-card" onclick="toggleAreaPanel('hip', this)">
                 <div class="body-area-icon"><i class="fas fa-square-full"></i></div>
                 <div class="body-area-name">臀部 Hip</div>
+                <div class="body-area-sub">HIP & BUTTOCK</div>
+                <div class="area-click-hint"><i class="fas fa-chevron-down"></i> 点击查看产品</div>
             </div>
-            <div class="body-area-card" onclick="filterProductsByArea('leg')">
+            <div class="body-area-card" onclick="toggleAreaPanel('leg', this)">
                 <div class="body-area-icon"><i class="fas fa-shoe-prints"></i></div>
                 <div class="body-area-name">腿部 Leg</div>
+                <div class="body-area-sub">THIGH & CALF</div>
+                <div class="area-click-hint"><i class="fas fa-chevron-down"></i> 点击查看产品</div>
             </div>
         </div>
+        <div id="areaExpandedContent"></div>
     </div>
 </section>
 
@@ -1107,7 +1222,7 @@ const categories = [
         icon: 'fas fa-hospital-user',
         desc: '专业医用压力产品，促进术后消肿愈合，防止血肿和水肿，加速恢复过程。',
         tags: ['NMPA认证', '术后必备', '压力塑形'],
-        image: 'reference/医美术后修复类/IMG_4098.JPG',
+        image: 'reference/医美术后修复类/WechatIMG27.jpeg',
         productCount: '5款产品'
     },
     {
@@ -1117,7 +1232,7 @@ const categories = [
         icon: 'fas fa-baby-carriage',
         desc: '科学产后身材管理，帮助子宫复位、骨盆矫正、腹部收紧，重塑美丽曲线。',
         tags: ['骨盆矫正', '收腹塑形', '腰部支撑'],
-        image: 'reference/产后修复类/IMG_4100.JPG',
+        image: 'reference/产后修复类/绘蛙-任务233584078.jpg',
         productCount: '4款产品'
     },
     {
@@ -1127,7 +1242,7 @@ const categories = [
         icon: 'fas fa-band-aid',
         desc: '硅凝胶疤痕贴+弹力绷带组合，预防和治疗增生性疤痕，淡化色素沉着。',
         tags: ['防增生', '淡疤痕', '温和修复'],
-        image: 'reference/疤痕修复类/IMG_4102.jpg',
+        image: 'reference/疤痕修复类/IMG_4113.JPG',
         productCount: '3款产品'
     },
     {
@@ -1137,7 +1252,7 @@ const categories = [
         icon: 'fas fa-pills',
         desc: '科学营养补充系列，胶原蛋白肽粉、复合维生素、益生菌，从内而外全面调理。',
         tags: ['营养补充', '免疫提升', '肠道健康'],
-        image: 'reference/伦美大健康/IMG_4104.jpg',
+        image: 'reference/伦美大健康/372.JPG',
         productCount: '3款产品'
     }
 ];
@@ -1147,136 +1262,197 @@ const products = [
         category: 'medical', name: '医用弹力面罩', nameEn: 'Medical Compression Face Mask',
         desc: '术后面部加压固定，促进消肿愈合，适用于颌面整形、双下巴吸脂等术后护理。',
         tags: ['NMPA认证', '透气舒适', '可调节'],
-        image: 'reference/医美术后修复类/IMG_4098.JPG'
+        image: 'reference/医美术后修复类/WechatIMG11.jpeg', areas: ['face', 'neck']
     },
     {
         category: 'medical', name: '塑身衣套装（连体）', nameEn: 'Full Body Compression Suit',
         desc: '全身术后塑形，分段压力设计，腰腹臀腿全覆盖，吸脂/抽脂术后首选。',
         tags: ['全身覆盖', '分段压力', '开档设计'],
-        image: 'reference/医美术后修复类/IMG_4098.JPG'
+        image: 'reference/医美术后修复类/WechatIMG23.png', areas: ['chest', 'waist', 'hip', 'leg']
     },
     {
         category: 'medical', name: '束腰束腹裤', nameEn: 'Waist & Abdomen Compression Panty',
         desc: '腰腹部精准施压，收腹提臀效果显著，适用于腰腹环吸、腹部整形等术后。',
         tags: ['精准施压', '提臀收腹', '高腰设计'],
-        image: 'reference/医美术后修复类/IMG_4098.JPG'
+        image: 'reference/医美术后修复类/WechatIMG24.jpeg', areas: ['waist', 'hip']
     },
     {
         category: 'medical', name: '上臂袖套', nameEn: 'Upper Arm Compression Sleeve',
         desc: '蝴蝶袖/拜拜肉术后压力修复，均匀施压不紧绷，适合手臂吸脂术后。',
         tags: ['手臂专用', '均匀压力', '隐形无痕'],
-        image: 'reference/医美术后修复类/IMG_4098.JPG'
+        image: 'reference/医美术后修复类/WechatIMG25.png', areas: []
     },
     {
         category: 'medical', name: '大腿压力袜', nameEn: 'Thigh High Compression Stockings',
         desc: '大腿吸脂术后必备，梯度压力设计促进静脉回流，预防水肿和血肿。',
         tags: ['梯度压力', '防水肿', '舒适贴合'],
-        image: 'reference/医美术后修复类/IMG_4098.JPG'
+        image: 'reference/医美术后修复类/WechatIMG26.jpeg', areas: ['leg']
     },
     {
         category: 'postpartum', name: '产后骨盆带', nameEn: 'Postpartum Pelvic Belt',
         desc: '产后骨盆恢复矫正，帮助骨盆闭合，缓解耻骨分离疼痛。',
         tags: ['骨盆矫正', '可调节', '透气材质'],
-        image: 'reference/产后修复类/IMG_4100.JPG'
+        image: 'reference/产后修复类/IMG_3608.JPG', areas: ['hip', 'waist']
     },
     {
         category: 'postpartum', name: '产后收腹带', nameEn: 'Postpartum Abdominal Binder',
         desc: '产后子宫复位辅助，收腹塑形，支撑腰部缓解产后腰痛。',
         tags: ['子宫复位', '收腹塑形', '腰部支撑'],
-        image: 'reference/产后修复类/IMG_4100.JPG'
+        image: 'reference/产后修复类/绘蛙-任务233476733.jpg', areas: ['waist']
     },
     {
         category: 'postpartum', name: '哺乳内衣', nameEn: 'Nursing Bra with Support',
         desc: '孕期及产后专用，承托力强且方便哺乳，防止胸部下垂外扩。',
         tags: ['方便哺乳', '强力承托', '防下垂'],
-        image: 'reference/产后修复类/IMG_4100.JPG'
+        image: 'reference/产后修复类/绘蛙-任务233486248.jpg', areas: ['chest']
     },
     {
         category: 'postpartum', name: '产后塑身分体套装', nameEn: 'Postpartum Shapewear Set',
         desc: '上衣+束裤组合，全方位产后身材管理，分段压力科学塑形。',
         tags: ['分体设计', '科学塑形', '四季适用'],
-        image: 'reference/产后修复类/IMG_4100.JPG'
+        image: 'reference/产后修复类/绘蛙-任务233551850.jpg', areas: ['chest', 'waist', 'hip']
     },
     {
         category: 'scar', name: '医用硅凝胶疤痕贴', nameEn: 'Medical Silicone Scar Sheet',
         desc: '预防和治疗增生性疤痕，适用于剖腹产、手术切口、烧伤等疤痕修复。',
         tags: ['防增生', '可重复用', '防水透气'],
-        image: 'reference/疤痕修复类/IMG_4102.jpg'
+        image: 'reference/疤痕修复类/IMG_4104.JPG', areas: ['face', 'chest', 'waist', 'hip', 'leg']
     },
     {
         category: 'scar', name: '弹力绷带（疤痕加压）', nameEn: 'Elastic Scar Compression Bandage',
         desc: '疤痕部位持续加压，抑制增生，配合硅凝胶贴使用效果更佳。',
         tags: ['持续加压', '可裁剪', '多部位适用'],
-        image: 'reference/疤痕修复类/IMG_4102.jpg'
+        image: 'reference/疤痕修复类/IMG_4111.JPG', areas: ['face', 'chest', 'waist', 'hip', 'leg']
     },
     {
         category: 'scar', name: '疤痕修复霜', nameEn: 'Scar Repair Cream',
         desc: '淡化色素沉着，软化硬化疤痕组织，加速疤痕成熟脱落。',
         tags: ['淡色素', '软疤痕', '温和配方'],
-        image: 'reference/疤痕修复类/IMG_4102.jpg'
+        image: 'reference/疤痕修复类/IMG_4112.JPG', areas: ['face', 'chest', 'waist', 'hip', 'leg']
     },
     {
         category: 'health', name: '胶原蛋白肽粉', nameEn: 'Collagen Peptide Powder',
         desc: '伦美大健康核心产品，小分子易吸收，术后/产后修复期营养补充首选。',
         tags: ['小分子', '易吸收', '无添加'],
-        image: 'reference/伦美大健康/IMG_4104.jpg'
+        image: 'reference/伦美大健康/369.JPG', areas: []
     },
     {
         category: 'health', name: '综合维生素矿物质片', nameEn: 'Multivitamin Mineral Complex',
         desc: '术后恢复期全面营养支持，含多种维生素和矿物质，提升免疫力。',
         tags: ['全面营养', '提升免疫', '科学配比'],
-        image: 'reference/伦美大健康/IMG_4104.jpg'
+        image: 'reference/伦美大健康/370.JPG', areas: []
     },
     {
         category: 'health', name: '益生菌固体饮料', nameEn: 'Probiotics Solid Drink',
         desc: '调节肠道菌群平衡，改善消化吸收，助力术后康复期营养吸收效率。',
         tags: ['肠道健康', '改善消化', '活性菌株'],
-        image: 'reference/伦美大健康/IMG_4104.jpg'
+        image: 'reference/伦美大健康/371.JPG', areas: []
     }
 ];
 
 function renderProducts(filter = 'all') {
     const grid = document.getElementById('productsGrid');
     if (filter === 'all') {
-        grid.innerHTML = categories.map(cat => `
-            <div class="category-card" onclick="filterProducts('${cat.id}')">
-                <div class="category-image-wrap">
-                    <img src="${cat.image}" alt="${cat.name}" class="category-image" loading="lazy"
-                         onerror="this.src='https://neeko-copilot.bytedance.net/api/text2image?prompt=${encodeURIComponent(cat.name + ' product photo purple theme')}&width=400&height=280'">
-                    <div class="category-overlay"></div>
-                    <div class="category-badge">${cat.productCount}</div>
-                </div>
-                <div class="category-info">
-                    <div class="category-icon"><i class="${cat.icon}"></i></div>
-                    <div class="category-name">${cat.name}</div>
-                    <div class="category-name-en">${cat.nameEn}</div>
-                    <div class="category-desc">${cat.desc}</div>
-                    <div class="category-tags">
-                        ${cat.tags.map(t => `<span class="category-tag">${t}</span>`).join('')}
+        grid.innerHTML = categories.map(cat => {
+            const catProducts = products.filter(p => p.category === cat.id);
+            return `
+            <div class="category-card" onclick="toggleCategory(this, event)">
+                <div class="card-top">
+                    <img src="${cat.image}" alt="${cat.name}" class="card-top-img" loading="eager"
+                         onerror="this.style.background='linear-gradient(135deg,#7c3aed,#a855f7)'; this.style.minHeight='180px'">
+                    <div class="card-top-overlay">
+                        <div class="card-icon"><i class="${cat.icon}"></i></div>
+                        <div class="card-title">${cat.name}</div>
+                        <div class="card-subtitle">${cat.nameEn}</div>
                     </div>
-                    <div class="category-link">
-                        <i class="fas fa-arrow-right"></i> 查看详情
+                    <div class="card-badge">${cat.productCount}</div>
+                </div>
+                <div class="card-body">
+                    <div class="card-desc">${cat.desc}</div>
+                    <div class="card-tags">
+                        ${cat.tags.map(t => `<span class="card-tag">${t}</span>`).join('')}
+                    </div>
+                    <div class="card-expand-hint"><i class="fas fa-chevron-down"></i> 点击展开查看 ${catProducts.length} 款产品</div>
+                </div>
+                <div class="cat-expanded-products">
+                    <div class="cat-expanded-grid">
+                        ${catProducts.map(p => `
+                        <div class="cat-prod-item">
+                            <img src="${p.image}" alt="${p.name}" class="cat-prod-img" loading="lazy"
+                                 onerror="this.className='img-loading'; this.innerHTML='<i class=\\'fas fa-image\\'></i> 图片加载中...'">
+                            <div class="cat-prod-info">
+                                <div class="cat-prod-name">${p.name}</div>
+                                <div class="cat-prod-desc">${p.desc}</div>
+                            </div>
+                        </div>
+                        `).join('')}
                     </div>
                 </div>
             </div>
-        `).join('');
+            `;
+        }).join('');
     } else {
         const filtered = products.filter(p => p.category === filter);
-        grid.innerHTML = filtered.map(p => `
-            <div class="product-card" data-category="${p.category}">
-                <div class="product-image-wrap">
-                    <img src="${p.image}" alt="${p.name}" class="product-image" loading="lazy"
-                         onerror="this.src='https://neeko-copilot.bytedance.net/api/text2image?prompt=${encodeURIComponent(p.name + ' product photo purple theme')}&width=400&height=260'">
-                    <div class="product-badge">${p.category === 'medical' ? '医美术后' : p.category === 'postpartum' ? '产后修复' : p.category === 'scar' ? '疤痕修复' : '伦美大健康'}</div>
-                </div>
-                <div class="product-info">
-                    <div class="product-name">${p.name}</div>
-                    <div class="product-name-en">${p.nameEn}</div>
-                    <div class="product-desc">${p.desc}</div>
-                    <div class="product-tags">${p.tags.map(t => `<span class="product-tag">${t}</span>`).join('')}</div>
+        const catInfo = categories.find(c => c.id === filter);
+        grid.innerHTML = `
+        <div style="grid-column:1/-1;margin-bottom:20px;display:flex;align-items:center;gap:12px;cursor:pointer" onclick="filterProducts('all');document.querySelectorAll('.category-card').forEach(c=>c.classList.remove('expanded'))">
+            <i class="fas fa-arrow-left" style="color:var(--primary);font-size:18px"></i>
+            <span style="font-size:16px;font-weight:700;color:var(--text-primary)">← 返回全部系列</span>
+        </div>` +
+        filtered.map(p => `
+            <div class="category-card" style="cursor:default">
+                <div class="card-body" style="padding:0;text-align:center;height:100%;display:flex;flex-direction:column;justify-content:center">
+                    <img src="${p.image}" alt="${p.name}" style="width:100%;height:160px;object-fit:cover;border-radius:var(--radius) var(--radius) 0 0;background:#f0e6ff;min-height:160px" loading="lazy"
+                         onerror="this.style.background='linear-gradient(135deg,#e8d5ff,#f0e6ff)'">
+                    <div style="padding:16px">
+                        <div style="font-size:15px;font-weight:700;color:var(--text-primary)">${p.name}</div>
+                        <div style="font-size:11px;color:var(--text-light);margin-bottom:8px">${p.nameEn}</div>
+                        <div style="font-size:12px;color:var(--text-secondary);line-height:1.6;margin-bottom:12px">${p.desc}</div>
+                        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:6px">
+                            ${p.tags.map(t => `<span class="card-tag">${t}</span>`).join('')}
+                        </div>
+                    </div>
                 </div>
             </div>
         `).join('');
+    }
+}
+
+function toggleCategory(card, event) {
+    if (event) event.stopPropagation();
+    card.classList.toggle('expanded');
+}
+
+const areaNames = { face:'面部 Face', neck:'颈部 Neck', chest:'胸部 Chest', waist:'腰腹 Waist', hip:'臀部 Hip', leg:'腿部 Leg' };
+const areaIcons = { face:'fa-head-side-mask', neck:'fa-necklace', chest:'fa-heart-pulse', waist:'fa-arrows-alt-h', hip:'fa-square-full', leg:'fa-shoe-prints' };
+
+function toggleAreaPanel(area, cardEl) {
+    const panel = document.getElementById('areaExpandedContent');
+    const isActive = panel.classList.contains('active');
+    panel.classList.remove('active');
+    document.querySelectorAll('.body-area-card').forEach(c => c.style.borderColor = 'transparent');
+    if (!isActive || panel.dataset.area !== area) {
+        const areaProducts = products.filter(p => p.areas && p.areas.includes(area));
+        panel.innerHTML = `
+            <div class="area-expanded-panel active">
+                <div class="area-panel-title"><i class="fas fa-${areaIcons[area]}"></i> ${areaNames[area]} — 共 ${areaProducts.length} 款产品</div>
+                <div class="area-prod-grid">
+                    ${areaProducts.length > 0 ? areaProducts.map(p => `
+                        <div class="area-prod-card">
+                            <img src="${p.image}" alt="${p.name}" loading="lazy" style="width:100%;height:170px;object-fit:cover;border-radius:var(--radius) var(--radius) 0 0;background:#f0e6ff;min-height:170px"
+                                 onerror="this.style.background='linear-gradient(135deg,#e8d5ff,#f0e6ff)'">
+                            <div class="area-prod-card-info">
+                                <div class="area-prod-card-name">${p.name}</div>
+                                <div class="area-prod-card-cat">${p.category === 'medical' ? '医美术后' : p.category === 'postpartum' ? '产后修复' : p.category === 'scar' ? '疤痕修复' : '伦美大健康'}</div>
+                            </div>
+                        </div>
+                    `).join('') : '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text-light);font-size:14px">暂无该部位产品，敬请期待</div>'}
+                </div>
+            </div>`;
+        panel.classList.add('active');
+        panel.dataset.area = area;
+        cardEl.style.borderColor = 'var(--primary-light)';
+        setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
     }
 }
 
