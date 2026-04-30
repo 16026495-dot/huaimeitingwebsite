@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>怀美婷术后康复护理 | HUAIMEITING Post-Surgery Recovery</title>
-    <meta name="description" content="怀美婷专注医美术后修复、产后恢复、疤痕管理及科学营养领域十余年，提供专业级医用压力产品与健康解决方案。">
+    <meta name="description" content="怀美婷专注医美术后修复、产后恢复、疤痕管理及科学营养领域十余年，提供专业级医用压力产品与健康解决方案。NMPA认证二类医疗器械。">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
@@ -42,1459 +42,830 @@
             --shadow-lg: 0 25px 70px rgba(124,58,237,0.18);
             --radius: 16px;
             --radius-lg: 24px;
-            --radius-full: 100px;
+            --radius-full: 50px;
             --transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; font-size: 16px; }
         body {
             font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
-            color: var(--text-primary);
-            background: var(--bg-white);
-            line-height: 1.65;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
+            color: var(--text-primary); background: var(--bg-white); line-height: 1.65;
+            overflow-x: hidden; -webkit-font-smoothing: antialiased;
         }
-
         .container { max-width: 1400px; margin: 0 auto; padding: 0 40px; }
-        .flex-center { display: flex; align-items: center; justify-content: center; }
-        .text-center { text-align: center; }
-        .section { padding: 80px 0; }
-        .section-title { font-size: 36px; font-weight: 800; color: var(--text-primary); margin-bottom: 16px; }
-        .section-subtitle { font-size: 16px; color: var(--text-secondary); margin-bottom: 48px; }
+        .section { padding: 90px 0; }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-title {
+            font-size: 38px; font-weight: 800; color: var(--text-primary); margin-bottom: 14px;
+            position: relative; display: inline-block;
+        }
+        .section-title::after {
+            content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%);
+            width: 60px; height: 4px; background: linear-gradient(135deg, var(--primary), var(--accent)); border-radius: 2px;
+        }
+        .section-subtitle { font-size: 16px; color: var(--text-secondary); margin-top: 20px; letter-spacing: 0.5px; }
 
-        /* ====== HEADER ====== */
+        /* HEADER */
         header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: linear-gradient(135deg, var(--purple-950) 0%, var(--purple-900) 40%, var(--purple-800) 100%);
-            border-bottom: 1px solid rgba(255,255,255,0.08);
-            transition: var(--transition);
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: linear-gradient(135deg, var(--purple-950) 0%, var(--purple-900) 35%, var(--purple-800) 100%);
+            border-bottom: 1px solid rgba(255,255,255,0.08); transition: var(--transition);
         }
         header.scrolled {
-            background: rgba(255,255,255,0.98);
-            backdrop-filter: blur(20px);
-            box-shadow: var(--shadow-md);
-            border-bottom: 1px solid var(--border);
+            background: rgba(255,255,255,0.97); backdrop-filter: blur(24px);
+            box-shadow: 0 4px 30px rgba(124,58,237,0.12); border-bottom: none;
         }
         header.scrolled .top-bar { display: none; }
-        header.scrolled .logo-cn,
+        header.scrolled .logo-cn { color: var(--primary-dark); }
+        header.scrolled .logo-en, header.scrolled .logo-subtitle { color: var(--text-light); }
         header.scrolled nav a { color: var(--text-primary); }
-        header.scrolled .logo-en,
-        header.scrolled .logo-subtitle { color: var(--text-light); }
         header.scrolled nav a:hover { color: var(--primary); }
         header.scrolled nav a::after { background: var(--primary); }
-        header.scrolled .btn-contact {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-        }
+        header.scrolled .btn-contact { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; }
+        header.scrolled .mobile-menu-btn { color: var(--text-primary); }
 
         .top-bar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 40px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            font-size: 13px;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 10px 40px; border-bottom: 1px solid rgba(255,255,255,0.08); font-size: 13px;
         }
-        .top-bar-left {
-            display: flex;
-            align-items: center;
-            gap: 28px;
-        }
-        .top-bar-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            color: rgba(255,255,255,0.85);
-            text-decoration: none;
-            transition: var(--transition);
-        }
+        .top-bar-left { display: flex; align-items: center; gap: 28px; }
+        .top-bar-item { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.85); text-decoration: none; transition: var(--transition); }
         .top-bar-item:hover { color: white; }
         .top-bar-item i { font-size: 13px; color: var(--gold-light); }
-
-        .top-bar-right {
-            display: flex;
-            align-items: center;
-            gap: 14px;
+        .top-bar-right { display: flex; align-items: center; gap: 14px; }
+        .lang-switch {
+            padding: 6px 18px; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 20px; color: var(--gold-light); font-size: 12px; font-weight: 600; cursor: pointer;
+            transition: var(--transition); backdrop-filter: blur(10px);
         }
+        .lang-switch:hover { background: rgba(255,255,255,0.22); color: white; }
         .social-icon {
-            width: 34px;
-            height: 34px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255,255,255,0.85);
-            text-decoration: none;
-            transition: var(--transition);
-            border-radius: 8px;
-            font-size: 15px;
+            width: 34px; height: 34px; display: flex; align-items: center; justify-content: center;
+            color: rgba(255,255,255,0.85); text-decoration: none; transition: var(--transition);
+            border-radius: 8px; font-size: 15px;
         }
-        .social-icon:hover {
-            color: white;
-            background: rgba(255,255,255,0.15);
-        }
+        .social-icon:hover { color: white; background: rgba(255,255,255,0.15); }
 
         .header-inner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 16px 40px;
-            max-width: 1400px;
-            margin: 0 auto;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 16px 40px; max-width: 1400px; margin: 0 auto;
         }
-
-        .logo {
-            display: flex;
-            flex-direction: column;
-            text-decoration: none;
-        }
-        .logo-cn {
-            font-size: 28px;
-            font-weight: 900;
-            color: white;
-            letter-spacing: -0.5px;
-            line-height: 1.2;
-        }
-        .logo-en {
-            font-size: 12px;
-            font-weight: 500;
-            color: rgba(255,255,255,0.6);
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-        }
-        .logo-subtitle {
-            font-size: 11px;
-            color: rgba(255,255,255,0.55);
-            margin-top: 4px;
-            letter-spacing: 0.5px;
-        }
-
-        nav {
-            display: flex;
-            align-items: center;
-            gap: 40px;
-        }
+        .logo { display: flex; flex-direction: column; text-decoration: none; }
+        .logo-cn { font-size: 26px; font-weight: 900; color: white; letter-spacing: -0.5px; line-height: 1.2; }
+        .logo-en { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.55); letter-spacing: 2px; text-transform: uppercase; }
+        .logo-subtitle { font-size: 10px; color: rgba(255,255,255,0.45); margin-top: 3px; letter-spacing: 0.5px; }
+        nav { display: flex; align-items: center; gap: 36px; }
         nav a {
-            font-size: 14px;
-            font-weight: 600;
-            color: rgba(255,255,255,0.9);
-            text-decoration: none;
-            transition: var(--transition);
-            position: relative;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
+            font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.9); text-decoration: none;
+            transition: var(--transition); position: relative; letter-spacing: 0.5px; text-transform: uppercase;
         }
         nav a:hover { color: var(--gold-light); }
         nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -6px;
-            left: 0;
-            width: 0;
-            height: 3px;
-            background: var(--gold-light);
-            border-radius: 2px;
-            transition: width 0.35s ease;
+            content: ''; position: absolute; bottom: -6px; left: 0; width: 0; height: 2.5px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-light)); border-radius: 2px; transition: width 0.35s ease;
         }
         nav a:hover::after { width: 100%; }
-
         .btn-contact {
-            padding: 12px 28px;
-            background: linear-gradient(135deg, var(--gold), var(--gold-light));
-            color: white;
-            border: none;
-            border-radius: var(--radius-full);
-            font-size: 14px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: var(--transition);
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            box-shadow: 0 6px 20px rgba(219,119,6,0.3);
+            padding: 11px 26px; background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: white; border: none; border-radius: var(--radius-full); font-size: 13px; font-weight: 700;
+            cursor: pointer; transition: var(--transition); text-decoration: none;
+            display: inline-flex; align-items: center; gap: 8px; text-transform: uppercase; letter-spacing: 0.5px;
+            box-shadow: 0 4px 18px rgba(217,119,6,0.3);
         }
-        .btn-contact:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 28px rgba(219,119,6,0.4);
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: transparent;
-            border: none;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-        }
-        header.scrolled .mobile-menu-btn { color: var(--text-primary); }
-
+        .btn-contact:hover { transform: translateY(-2px); box-shadow: 0 8px 26px rgba(217,119,6,0.4); }
+        .mobile-menu-btn { display: none; background: transparent; border: none; color: white; font-size: 24px; cursor: pointer; }
         .mobile-nav {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: white;
-            box-shadow: var(--shadow-md);
-            padding: 20px;
+            display: none; position: absolute; top: 100%; left: 0; right: 0;
+            background: white; box-shadow: var(--shadow-lg); padding: 20px; z-index: 999;
         }
         .mobile-nav a {
-            display: block;
-            padding: 14px 20px;
-            color: var(--text-primary);
-            text-decoration: none;
-            font-weight: 500;
-            border-radius: 8px;
-            transition: var(--transition);
+            display: block; padding: 14px 20px; color: var(--text-primary); text-decoration: none;
+            font-weight: 600; border-radius: 10px; transition: var(--transition); font-size: 15px;
         }
         .mobile-nav a:hover { background: var(--primary-bg); color: var(--primary); }
 
-        /* ====== HERO ====== */
+        /* HERO */
         .hero {
-            margin-top: 0;
-            padding: 140px 0 120px;
-            background: linear-gradient(135deg, var(--purple-900) 0%, var(--purple-800) 30%, var(--purple-700) 60%, var(--purple-600) 100%);
-            position: relative;
-            overflow: hidden;
+            margin-top: 0; padding: 150px 0 130px;
+            background: linear-gradient(135deg, var(--purple-950) 0%, var(--purple-900) 25%, var(--purple-800) 55%, var(--purple-700) 80%, var(--purple-600) 100%);
+            position: relative; overflow: hidden;
         }
         .hero::before {
-            content: '';
-            position: absolute;
-            top: -30%;
-            right: -15%;
-            width: 900px;
-            height: 900px;
-            background: radial-gradient(circle, rgba(139,92,246,0.18) 0%, transparent 60%);
-            border-radius: 50%;
+            content: ''; position: absolute; top: -20%; right: -10%;
+            width: 800px; height: 800px;
+            background: radial-gradient(circle, rgba(139,92,246,0.2) 0%, transparent 65%);
+            border-radius: 50%; animation: pulse-glow 6s ease-in-out infinite;
         }
         .hero::after {
-            content: '';
-            position: absolute;
-            bottom: -25%;
-            left: -15%;
-            width: 700px;
-            height: 700px;
-            background: radial-gradient(circle, rgba(219,119,6,0.1) 0%, transparent 55%);
-            border-radius: 50%;
+            content: ''; position: absolute; bottom: -20%; left: -10%;
+            width: 650px; height: 650px;
+            background: radial-gradient(circle, rgba(251,191,36,0.08) 0%, transparent 60%); border-radius: 50%;
         }
+        @keyframes pulse-glow { 0%, 100% { opacity: 0.6; transform: scale(1); } 50% { opacity: 1; transform: scale(1.05); } }
 
         .hero-grid {
-            display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 60px;
-            align-items: center;
-            position: relative;
-            z-index: 2;
+            display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 60px;
+            align-items: center; position: relative; z-index: 2;
         }
-
-        .hero-content { }
         .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px 24px;
-            background: rgba(255,255,255,0.12);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: var(--radius-full);
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--gold-light);
-            margin-bottom: 36px;
-            backdrop-filter: blur(10px);
+            display: inline-flex; align-items: center; gap: 10px;
+            padding: 12px 26px; background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.18); border-radius: var(--radius-full);
+            font-size: 13px; font-weight: 600; color: var(--gold-light); margin-bottom: 32px;
+            backdrop-filter: blur(12px); animation: fadeInUp 0.8s ease;
         }
-        .hero-badge i { font-size: 12px; }
-
+        .hero-badge i { font-size: 13px; }
         .hero-title {
-            font-size: 56px;
-            font-weight: 900;
-            line-height: 1.1;
-            color: white;
-            margin-bottom: 32px;
-            letter-spacing: -1.5px;
+            font-size: 54px; font-weight: 900; line-height: 1.12; color: white;
+            margin-bottom: 28px; letter-spacing: -1.5px; animation: fadeInUp 0.8s ease 0.15s both;
         }
         .hero-title-accent {
-            background: linear-gradient(135deg, var(--gold-light), #f59e0b);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            background: linear-gradient(135deg, var(--gold-light), #f59e0b, var(--gold));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
         .hero-subtitle {
-            font-size: 18px;
-            color: rgba(255,255,255,0.8);
-            line-height: 1.85;
-            margin-bottom: 48px;
-            max-width: 560px;
-            font-weight: 400;
+            font-size: 17px; color: rgba(255,255,255,0.78); line-height: 1.85;
+            margin-bottom: 42px; max-width: 540px; font-weight: 400; animation: fadeInUp 0.8s ease 0.3s both;
         }
-
         .hero-actions {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 64px;
+            display: flex; gap: 18px; margin-bottom: 56px; animation: fadeInUp 0.8s ease 0.45s both; flex-wrap: wrap;
         }
-        .btn-primary {
-            padding: 20px 44px;
-            background: linear-gradient(135deg, var(--gold), var(--gold-light));
-            color: white;
-            border: none;
-            border-radius: var(--radius);
-            font-size: 15px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: var(--transition);
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 10px 30px rgba(219,119,6,0.35);
+        .btn-hero-primary {
+            padding: 18px 40px; background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: white; border: none; border-radius: var(--radius); font-size: 15px; font-weight: 700;
+            cursor: pointer; transition: var(--transition); text-decoration: none;
+            display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 8px 28px rgba(217,119,6,0.35);
         }
-        .btn-primary:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 14px 40px rgba(219,119,6,0.45);
+        .btn-hero-primary:hover { transform: translateY(-4px); box-shadow: 0 12px 38px rgba(217,119,6,0.48); }
+        .btn-hero-outline {
+            padding: 18px 40px; background: rgba(255,255,255,0.08); color: white;
+            border: 2px solid rgba(255,255,255,0.35); border-radius: var(--radius);
+            font-size: 15px; font-weight: 600; cursor: pointer; transition: var(--transition);
+            text-decoration: none; display: inline-flex; align-items: center; gap: 10px; backdrop-filter: blur(12px);
         }
-        .btn-outline {
-            padding: 20px 44px;
-            background: rgba(255,255,255,0.1);
-            color: white;
-            border: 2px solid rgba(255,255,255,0.4);
-            border-radius: var(--radius);
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            backdrop-filter: blur(10px);
-        }
-        .btn-outline:hover {
-            background: rgba(255,255,255,0.2);
-            border-color: rgba(255,255,255,0.6);
-            transform: translateY(-3px);
-        }
+        .btn-hero-outline:hover { background: rgba(255,255,255,0.16); border-color: rgba(255,255,255,0.55); transform: translateY(-3px); }
+
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
         .hero-stats {
-            display: flex;
-            gap: 64px;
-            padding-top: 44px;
-            border-top: 1px solid rgba(255,255,255,0.15);
+            display: flex; gap: 52px; padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.13); animation: fadeInUp 0.8s ease 0.6s both;
         }
-        .stat-item { }
-        .stat-number {
-            font-size: 42px;
-            font-weight: 900;
-            color: var(--gold-light);
-            line-height: 1;
-            margin-bottom: 8px;
-        }
-        .stat-label {
-            font-size: 14px;
-            color: rgba(255,255,255,0.7);
-            font-weight: 500;
-        }
+        .stat-item { text-align: left; }
+        .stat-number { font-size: 40px; font-weight: 900; color: var(--gold-light); line-height: 1; margin-bottom: 6px; }
+        .stat-label { font-size: 13px; color: rgba(255,255,255,0.65); font-weight: 500; }
 
-        .hero-image {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+        .hero-image { position: relative; display: flex; justify-content: center; align-items: center; animation: fadeInRight 1s ease 0.3s both; }
+        @keyframes fadeInRight { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
+        .hero-product-wrapper { position: relative; width: 100%; max-width: 420px; }
         .hero-product {
-            width: 100%;
-            max-width: 420px;
-            border-radius: var(--radius-lg);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            width: 100%; border-radius: var(--radius-lg);
+            box-shadow: 0 25px 70px rgba(0,0,0,0.35); animation: float-slow 5s ease-in-out infinite;
         }
-        .floating-card {
-            position: absolute;
-            background: rgba(255,255,255,0.14);
-            border-radius: var(--radius);
-            padding: 24px 28px;
-            box-shadow: 0 16px 50px rgba(0,0,0,0.25);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255,255,255,0.2);
-            animation: float 4.5s ease-in-out infinite;
+        @keyframes float-slow { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+        .float-card {
+            position: absolute; background: rgba(255,255,255,0.12);
+            border-radius: var(--radius); padding: 20px 24px;
+            backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.18);
+            animation: float-card 4.5s ease-in-out infinite; z-index: 3;
         }
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-16px); }
-        }
-        .card-cert {
-            bottom: 30px;
-            left: -40px;
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
+        @keyframes float-card { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+        .card-cert { bottom: 20px; left: -30px; display: flex; align-items: center; gap: 14px; animation-delay: 0.5s; }
         .card-cert-icon {
-            width: 52px;
-            height: 52px;
-            background: linear-gradient(135deg, var(--gold), var(--gold-light));
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 24px;
-            box-shadow: 0 8px 24px rgba(219,119,6,0.35);
+            width: 48px; height: 48px; background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            border-radius: 12px; display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 22px; box-shadow: 0 6px 20px rgba(217,119,6,0.35);
         }
-        .card-cert-text strong {
-            display: block;
-            font-size: 14px;
-            color: white;
-            margin-bottom: 4px;
-            font-weight: 700;
+        .card-cert-text strong { display: block; font-size: 13px; color: white; font-weight: 700; margin-bottom: 2px; }
+        .card-cert-text span { font-size: 11px; color: rgba(255,255,255,0.6); }
+        .card-quality { top: 20px; right: -20px; display: flex; align-items: center; gap: 12px; animation-delay: 1s; }
+        .card-quality-icon {
+            width: 44px; height: 44px; background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 12px; display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 20px; box-shadow: 0 6px 20px rgba(124,58,237,0.35);
         }
-        .card-cert-text span { font-size: 12px; color: rgba(255,255,255,0.65); }
+        .card-quality-text strong { display: block; font-size: 12px; color: white; font-weight: 700; }
+        .card-quality-text span { font-size: 11px; color: rgba(255,255,255,0.6); }
 
-        /* ====== PRODUCTS ====== */
-        .products-section {
-            background: linear-gradient(180deg, var(--purple-50) 0%, white 100%);
-        }
-        .section-header {
-            text-align: center;
-            margin-bottom: 56px;
-        }
-        .category-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 16px;
-            margin-bottom: 56px;
-            flex-wrap: wrap;
-        }
+        /* PRODUCTS */
+        .products-section { background: linear-gradient(180deg, var(--purple-50) 0%, white 60%); }
+        .category-tabs { display: flex; justify-content: center; gap: 14px; margin-bottom: 52px; flex-wrap: wrap; }
         .cat-tab {
-            padding: 14px 32px;
-            background: white;
-            border: 2px solid var(--border);
-            border-radius: var(--radius-full);
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-secondary);
-            cursor: pointer;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: var(--shadow-sm);
+            padding: 13px 30px; background: white; border: 2px solid var(--border);
+            border-radius: var(--radius-full); font-size: 14px; font-weight: 600;
+            color: var(--text-secondary); cursor: pointer; transition: var(--transition);
+            display: flex; align-items: center; gap: 10px; box-shadow: var(--shadow-sm);
         }
-        .cat-tab:hover {
-            border-color: var(--primary-light);
-            color: var(--primary);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
+        .cat-tab:hover { border-color: var(--primary-light); color: var(--primary); transform: translateY(-2px); box-shadow: var(--shadow-md); }
         .cat-tab.active {
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            border-color: transparent;
-            box-shadow: 0 8px 28px rgba(124,58,237,0.4);
+            color: white; border-color: transparent; box-shadow: 0 8px 28px rgba(124,58,237,0.4);
         }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
-        }
-
+        .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
         .product-card {
-            background: white;
-            border-radius: var(--radius);
-            overflow: hidden;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
-            cursor: pointer;
+            background: white; border-radius: var(--radius); overflow: hidden;
+            box-shadow: var(--shadow-sm); transition: var(--transition); cursor: pointer; border: 1px solid transparent;
         }
-        .product-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-lg);
+        .product-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); border-color: var(--purple-200); }
+        .product-image-wrap { position: relative; overflow: hidden; background: linear-gradient(145deg, var(--purple-50), var(--purple-100)); }
+        .product-image { width: 100%; height: 260px; object-fit: cover; transition: transform 0.5s ease; }
+        .product-card:hover .product-image { transform: scale(1.06); }
+        .product-badge {
+            position: absolute; top: 14px; left: 14px;
+            padding: 5px 14px; background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white; font-size: 11px; font-weight: 700; border-radius: 20px; letter-spacing: 0.5px;
         }
-        .product-image {
-            width: 100%;
-            height: 240px;
-            object-fit: cover;
-            background: var(--purple-50);
-        }
-        .product-info {
-            padding: 24px;
-        }
+        .product-info { padding: 24px; }
         .product-category {
-            font-size: 12px;
-            color: var(--primary);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
+            font-size: 11px; color: var(--primary); font-weight: 700; text-transform: uppercase;
+            letter-spacing: 1.5px; margin-bottom: 8px; display: flex; align-items: center; gap: 6px;
         }
-        .product-name {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 6px;
-        }
-        .product-name-en {
-            font-size: 13px;
-            color: var(--text-light);
-            margin-bottom: 12px;
-        }
-        .product-desc {
-            font-size: 13px;
-            color: var(--text-secondary);
-            line-height: 1.6;
-            margin-bottom: 16px;
-        }
-        .product-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-        }
-        .product-tag {
-            padding: 4px 12px;
-            background: var(--purple-50);
-            color: var(--primary);
-            border-radius: var(--radius-full);
-            font-size: 11px;
-            font-weight: 500;
-        }
+        .product-category::before { content: ''; width: 4px; height: 4px; background: var(--primary); border-radius: 50%; }
+        .product-name { font-size: 17px; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; line-height: 1.35; }
+        .product-name-en { font-size: 12px; color: var(--text-light); margin-bottom: 12px; }
+        .product-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.65; margin-bottom: 16px; }
+        .product-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+        .product-tag { padding: 4px 12px; background: var(--purple-50); color: var(--primary); border-radius: 20px; font-size: 11px; font-weight: 600; }
 
-        /* ====== BODY AREAS ====== */
-        .body-areas {
-            padding: 60px 0;
-            background: white;
-        }
-        .body-areas-grid {
-            display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 24px;
-        }
+        /* BODY AREAS */
+        .body-areas-section { padding: 70px 0; background: white; }
+        .body-areas-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; }
         .body-area-card {
-            text-align: center;
-            padding: 24px 16px;
-            background: var(--purple-50);
-            border-radius: var(--radius);
-            cursor: pointer;
-            transition: var(--transition);
-            border: 2px solid transparent;
+            text-align: center; padding: 26px 14px; background: var(--purple-50);
+            border-radius: var(--radius); cursor: pointer; transition: var(--transition); border: 2px solid transparent;
         }
-        .body-area-card:hover {
-            background: white;
-            border-color: var(--primary);
-            box-shadow: var(--shadow-md);
-            transform: translateY(-4px);
-        }
+        .body-area-card:hover { background: white; border-color: var(--primary); box-shadow: var(--shadow-md); transform: translateY(-5px); }
         .body-area-icon {
-            width: 56px;
-            height: 56px;
-            margin: 0 auto 12px;
+            width: 58px; height: 58px; margin: 0 auto 12px;
             background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 24px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 24px; transition: var(--transition);
         }
-        .body-area-name {
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
+        .body-area-card:hover .body-area-icon { background: linear-gradient(135deg, var(--primary-dark), var(--primary)); transform: scale(1.1); }
+        .body-area-name { font-size: 13px; font-weight: 600; color: var(--text-primary); }
 
-        /* ====== TRUST ====== */
+        /* TRUST */
         .trust-section {
-            background: linear-gradient(135deg, var(--purple-900) 0%, var(--purple-800) 100%);
-            padding: 80px 0;
+            background: linear-gradient(135deg, var(--purple-900) 0%, var(--purple-800) 50%, var(--purple-700) 100%);
+            padding: 90px 0; position: relative; overflow: hidden;
         }
-        .trust-section .section-title,
-        .trust-section .section-subtitle { color: white; }
-        .trust-section .section-subtitle { opacity: 0.8; }
-
-        .trust-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 28px;
+        .trust-section::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
+        .trust-section .section-title { color: white; }
+        .trust-section .section-title::after { background: linear-gradient(135deg, var(--gold), var(--gold-light)); }
+        .trust-section .section-subtitle { color: rgba(255,255,255,0.72); }
+        .trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; position: relative; z-index: 2; }
         .trust-card {
-            background: rgba(255,255,255,0.1);
-            border-radius: var(--radius);
-            padding: 36px 28px;
-            text-align: center;
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: var(--transition);
+            background: rgba(255,255,255,0.09); border-radius: var(--radius);
+            padding: 38px 26px; text-align: center; border: 1px solid rgba(255,255,255,0.1);
+            transition: var(--transition); backdrop-filter: blur(10px);
         }
-        .trust-card:hover {
-            background: rgba(255,255,255,0.15);
-            transform: translateY(-6px);
-        }
+        .trust-card:hover { background: rgba(255,255,255,0.14); transform: translateY(-8px); border-color: rgba(255,255,255,0.2); }
         .trust-icon {
-            width: 72px;
-            height: 72px;
-            margin: 0 auto 20px;
+            width: 74px; height: 74px; margin: 0 auto 22px;
             background: linear-gradient(135deg, var(--gold), var(--gold-light));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 32px;
-            box-shadow: 0 10px 30px rgba(219,119,6,0.3);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 32px; box-shadow: 0 10px 32px rgba(217,119,6,0.3); transition: var(--transition);
         }
-        .trust-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 10px;
-        }
-        .trust-desc {
-            font-size: 13px;
-            color: rgba(255,255,255,0.7);
-            line-height: 1.65;
-        }
+        .trust-card:hover .trust-icon { transform: scale(1.1) rotate(5deg); }
+        .trust-title { font-size: 18px; font-weight: 700; color: white; margin-bottom: 12px; }
+        .trust-desc { font-size: 13px; color: rgba(255,255,255,0.68); line-height: 1.7; }
 
-        /* ====== TESTIMONIALS ====== */
-        .testimonials-section {
-            background: var(--bg-gray);
-        }
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 28px;
-        }
+        /* TESTIMONIALS */
+        .testimonials-section { background: var(--bg-gray); }
+        .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
         .testimonial-card {
-            background: white;
-            border-radius: var(--radius);
-            padding: 32px;
-            box-shadow: var(--shadow-sm);
-            transition: var(--transition);
+            background: white; border-radius: var(--radius); padding: 34px;
+            box-shadow: var(--shadow-sm); transition: var(--transition); border: 1px solid transparent;
         }
-        .testimonial-card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-md);
-        }
-        .testimonial-stars {
-            color: var(--gold);
-            margin-bottom: 16px;
-        }
-        .testimonial-content {
-            font-size: 14px;
-            color: var(--text-secondary);
-            line-height: 1.75;
-            margin-bottom: 20px;
-        }
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
+        .testimonial-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); border-color: var(--purple-200); }
+        .testimonial-stars { color: var(--gold); margin-bottom: 18px; font-size: 14px; }
+        .testimonial-quote-icon { font-size: 36px; color: var(--purple-200); margin-bottom: 12px; line-height: 1; }
+        .testimonial-content { font-size: 14px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 22px; }
+        .testimonial-author { display: flex; align-items: center; gap: 14px; }
         .author-avatar {
-            width: 44px;
-            height: 44px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 700;
+            width: 46px; height: 46px; background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            color: white; font-weight: 800; font-size: 16px;
         }
-        .author-info { }
-        .author-name {
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-primary);
-        }
-        .author-location {
-            font-size: 12px;
-            color: var(--text-light);
-        }
+        .author-name { font-size: 14px; font-weight: 700; color: var(--text-primary); }
+        .author-location { font-size: 12px; color: var(--text-light); margin-top: 2px; }
 
-        /* ====== FAQ ====== */
-        .faq-section {
-            background: white;
+        /* PARTNERS */
+        .partners-section { background: white; padding: 70px 0; }
+        .partners-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+        .partner-category {
+            background: var(--purple-50); border-radius: var(--radius); padding: 28px;
+            text-align: center; border: 2px solid transparent; transition: var(--transition);
         }
-        .faq-container {
-            max-width: 900px;
-            margin: 0 auto;
+        .partner-category:hover { border-color: var(--primary-light); background: white; box-shadow: var(--shadow-md); }
+        .partner-cat-icon {
+            width: 56px; height: 56px; margin: 0 auto 14px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 14px; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px;
         }
+        .partner-cat-name { font-size: 16px; font-weight: 700; color: var(--text-primary); margin-bottom: 8px; }
+        .partner-cat-count { font-size: 13px; color: var(--text-light); }
+        .partner-logos { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 16px; }
+        .partner-logo-placeholder { padding: 8px 16px; background: white; border: 1px dashed var(--border); border-radius: 8px; font-size: 11px; color: var(--text-light); }
+
+        /* FAQ */
+        .faq-section { background: white; }
+        .faq-container { max-width: 880px; margin: 0 auto; }
         .faq-item {
-            border-bottom: 1px solid var(--border);
-            padding: 24px 0;
-            cursor: pointer;
-            transition: var(--transition);
+            border: 1px solid var(--border); border-radius: var(--radius);
+            margin-bottom: 14px; overflow: hidden; transition: var(--transition);
         }
-        .faq-item:hover { background: var(--purple-50); }
+        .faq-item:hover { border-color: var(--primary-light); box-shadow: var(--shadow-sm); }
         .faq-question {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--text-primary);
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 22px 28px; cursor: pointer; transition: var(--transition); background: white;
         }
-        .faq-icon {
-            color: var(--primary);
-            transition: var(--transition);
-            font-size: 14px;
-        }
+        .faq-question span { font-size: 15px; font-weight: 600; color: var(--text-primary); line-height: 1.5; }
+        .faq-question small { display: block; color: var(--text-light); font-weight: 400; font-size: 13px; margin-top: 4px; }
+        .faq-icon { color: var(--primary); transition: var(--transition); font-size: 13px; }
         .faq-item.active .faq-icon { transform: rotate(180deg); }
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.35s ease;
-        }
-        .faq-item.active .faq-answer { max-height: 500px; }
-        .faq-answer-inner {
-            padding: 20px 0;
-            font-size: 14px;
-            color: var(--text-secondary);
-            line-height: 1.8;
-        }
+        .faq-item.active .faq-question { background: var(--primary-bg); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+        .faq-item.active .faq-answer { max-height: 450px; }
+        .faq-answer-inner { padding: 0 28px 24px; font-size: 14px; color: var(--text-secondary); line-height: 1.85; }
+        .faq-answer-inner strong { color: var(--primary); }
 
-        /* ====== COOPERATION ====== */
-        .cooperation-section {
-            background: linear-gradient(135deg, var(--purple-50) 0%, white 100%);
-        }
-        .cooperation-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 28px;
-        }
+        /* COOPERATION */
+        .cooperation-section { background: linear-gradient(180deg, var(--purple-50) 0%, white 100%); }
+        .cooperation-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
         .cooperation-card {
-            background: white;
-            border-radius: var(--radius);
-            padding: 36px;
-            box-shadow: var(--shadow-sm);
-            border: 2px solid transparent;
-            transition: var(--transition);
+            background: white; border-radius: var(--radius); padding: 38px;
+            box-shadow: var(--shadow-sm); border: 2px solid transparent; transition: var(--transition);
         }
-        .cooperation-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-lg);
-        }
+        .cooperation-card:hover { border-color: var(--primary); transform: translateY(-8px); box-shadow: var(--shadow-lg); }
         .cooperation-icon {
-            width: 64px;
-            height: 64px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            border-radius: var(--radius);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 28px;
-            margin-bottom: 20px;
+            width: 66px; height: 66px; background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: var(--radius); display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 28px; margin-bottom: 22px; transition: var(--transition);
         }
-        .cooperation-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 12px;
-        }
-        .cooperation-desc {
-            font-size: 14px;
-            color: var(--text-secondary);
-            line-height: 1.7;
-            margin-bottom: 20px;
-        }
-        .cooperation-features {
-            list-style: none;
-            padding: 0;
-        }
-        .cooperation-features li {
-            padding: 8px 0;
-            font-size: 13px;
-            color: var(--text-secondary);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .cooperation-features li::before {
-            content: '✓';
-            color: var(--primary);
-            font-weight: 700;
-        }
+        .cooperation-card:hover .cooperation-icon { transform: scale(1.1); }
+        .cooperation-title { font-size: 19px; font-weight: 700; color: var(--text-primary); margin-bottom: 12px; }
+        .cooperation-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 20px; }
+        .cooperation-features { list-style: none; padding: 0; }
+        .cooperation-features li { padding: 8px 0; font-size: 13px; color: var(--text-secondary); display: flex; align-items: center; gap: 10px; }
+        .cooperation-features li::before { content: '✓'; color: var(--primary); font-weight: 800; font-size: 14px; }
 
-        /* ====== CONTACT ====== */
+        /* CONTACT */
         .contact-section {
-            background: linear-gradient(135deg, var(--purple-900) 0%, var(--purple-800) 100%);
-            padding: 80px 0;
+            background: linear-gradient(135deg, var(--purple-950) 0%, var(--purple-900) 40%, var(--purple-800) 100%);
+            padding: 90px 0; position: relative; overflow: hidden;
         }
-        .contact-section .section-title,
-        .contact-section .section-subtitle { color: white; }
-        .contact-section .section-subtitle { opacity: 0.8; }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: 0.4fr 0.6fr;
-            gap: 48px;
+        .contact-section::before {
+            content: ''; position: absolute; top: -30%; right: -15%;
+            width: 600px; height: 600px; background: radial-gradient(circle, rgba(139,92,246,0.15) 0%, transparent 60%); border-radius: 50%;
         }
-
-        .contact-info { }
+        .contact-section .section-title { color: white; }
+        .contact-section .section-title::after { background: linear-gradient(135deg, var(--gold), var(--gold-light)); }
+        .contact-section .section-subtitle { color: rgba(255,255,255,0.7); }
+        .contact-grid { display: grid; grid-template-columns: 0.42fr 0.58fr; gap: 48px; position: relative; z-index: 2; }
         .contact-card {
-            background: rgba(255,255,255,0.1);
-            border-radius: var(--radius);
-            padding: 24px;
-            margin-bottom: 16px;
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: var(--transition);
+            background: rgba(255,255,255,0.09); border-radius: var(--radius);
+            padding: 22px; margin-bottom: 14px; border: 1px solid rgba(255,255,255,0.1);
+            transition: var(--transition); backdrop-filter: blur(10px);
         }
-        .contact-card:hover { background: rgba(255,255,255,0.15); }
-        .contact-card a {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            color: white;
-            text-decoration: none;
-        }
+        .contact-card:hover { background: rgba(255,255,255,0.14); transform: translateX(6px); }
+        .contact-card a { display: flex; align-items: center; gap: 16px; color: white; text-decoration: none; }
         .contact-icon {
-            width: 48px;
-            height: 48px;
-            background: rgba(255,255,255,0.15);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
+            width: 50px; height: 50px; background: rgba(255,255,255,0.14);
+            border-radius: 12px; display: flex; align-items: center; justify-content: center;
+            font-size: 20px; flex-shrink: 0;
         }
-        .contact-text strong {
-            display: block;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-        .contact-text span {
-            font-size: 13px;
-            opacity: 0.8;
-        }
+        .contact-text strong { display: block; font-size: 14px; font-weight: 700; margin-bottom: 3px; }
+        .contact-text span { font-size: 13px; opacity: 0.75; }
 
-        .contact-form {
-            background: white;
-            border-radius: var(--radius);
-            padding: 40px;
-            box-shadow: var(--shadow-lg);
+        .contact-form { background: white; border-radius: var(--radius-lg); padding: 42px; box-shadow: var(--shadow-lg); }
+        .form-title { font-size: 22px; font-weight: 700; color: var(--text-primary); margin-bottom: 28px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-size: 13px; font-weight: 600; color: var(--text-secondary); margin-bottom: 8px; }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%; padding: 14px 18px; border: 2px solid var(--border);
+            border-radius: 12px; font-size: 14px; color: var(--text-primary);
+            font-family: inherit; transition: var(--transition); background: white;
         }
-        .form-title {
-            font-size: 22px;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 28px;
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none; border-color: var(--primary); box-shadow: 0 0 0 4px rgba(124,58,237,0.1);
         }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        .form-group label {
-            display: block;
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--text-secondary);
-            margin-bottom: 8px;
-        }
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 14px 18px;
-            border: 2px solid var(--border);
-            border-radius: 10px;
-            font-size: 14px;
-            color: var(--text-primary);
-            font-family: inherit;
-            transition: var(--transition);
-            background: white;
-        }
-        .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(124,58,237,0.1);
-        }
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
+        .form-group textarea { resize: vertical; min-height: 110px; }
         .btn-submit {
-            width: 100%;
-            padding: 16px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 15px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: var(--transition);
+            width: 100%; padding: 16px; background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white; border: none; border-radius: 12px; font-size: 15px; font-weight: 700;
+            cursor: pointer; transition: var(--transition);
         }
-        .btn-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(124,58,237,0.35);
-        }
+        .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(124,58,237,0.35); }
 
-        /* ====== FOOTER ====== */
-        footer {
-            background: var(--purple-900);
-            padding: 60px 0 30px;
+        /* FOOTER */
+        footer { background: var(--purple-950); padding: 64px 0 0; }
+        .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 44px; margin-bottom: 52px; }
+        .footer-logo-cn { font-size: 24px; font-weight: 900; color: white; margin-bottom: 6px; }
+        .footer-logo-en { font-size: 11px; color: rgba(255,255,255,0.45); letter-spacing: 2px; text-transform: uppercase; }
+        .footer-desc { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.75; margin-top: 18px; }
+        .footer-social { display: flex; gap: 12px; margin-top: 22px; }
+        .footer-social a {
+            width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+            background: rgba(255,255,255,0.08); border-radius: 10px; color: rgba(255,255,255,0.6);
+            text-decoration: none; font-size: 16px; transition: var(--transition);
         }
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 40px;
-            margin-bottom: 48px;
-        }
-        .footer-logo {
-            margin-bottom: 16px;
-        }
-        .footer-logo .logo-cn { font-size: 24px; }
-        .footer-logo .logo-en { font-size: 11px; }
-        .footer-desc {
-            font-size: 13px;
-            color: rgba(255,255,255,0.65);
-            line-height: 1.7;
-            margin-bottom: 20px;
-        }
-        .footer-social {
-            display: flex;
-            gap: 12px;
-        }
-
-        .footer-title {
-            font-size: 15px;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 20px;
-        }
-        .footer-links {
-            list-style: none;
-            padding: 0;
-        }
+        .footer-social a:hover { background: var(--primary); color: white; transform: translateY(-3px); }
+        .footer-title { font-size: 15px; font-weight: 700; color: white; margin-bottom: 20px; }
+        .footer-links { list-style: none; padding: 0; }
         .footer-links li { margin-bottom: 12px; }
-        .footer-links a {
-            font-size: 13px;
-            color: rgba(255,255,255,0.65);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-        .footer-links a:hover { color: white; }
+        .footer-links a { font-size: 13px; color: rgba(255,255,255,0.55); text-decoration: none; transition: var(--transition); }
+        .footer-links a:hover { color: white; padding-left: 4px; }
+        .footer-bottom { padding: 24px 0; border-top: 1px solid rgba(255,255,255,0.07); text-align: center; font-size: 12px; color: rgba(255,255,255,0.4); }
 
-        .footer-bottom {
-            padding-top: 24px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            text-align: center;
-            font-size: 12px;
-            color: rgba(255,255,255,0.5);
-        }
-
-        /* ====== FLOATING BUTTONS ====== */
-        .floating-buttons {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            z-index: 999;
-        }
+        /* FLOATING BUTTONS */
+        .floating-buttons { position: fixed; bottom: 30px; right: 30px; display: flex; flex-direction: column; gap: 12px; z-index: 999; }
         .float-btn {
-            width: 52px;
-            height: 52px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 20px;
-            text-decoration: none;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-            transition: var(--transition);
+            width: 54px; height: 54px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; color: white; font-size: 22px;
+            text-decoration: none; box-shadow: 0 6px 24px rgba(0,0,0,0.25); transition: var(--transition);
         }
-        .float-btn:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.35);
-        }
+        .float-btn:hover { transform: translateY(-4px); box-shadow: 0 10px 34px rgba(0,0,0,0.35); }
         .float-btn-whatsapp { background: #25d366; }
         .float-btn-wechat { background: #07c160; }
-        .float-btn-top {
-            background: var(--primary);
-            opacity: 0;
-            visibility: hidden;
-        }
-        .float-btn-top.visible {
-            opacity: 1;
-            visibility: visible;
-        }
+        .float-btn-top { background: var(--primary); opacity: 0; visibility: hidden; }
+        .float-btn-top.visible { opacity: 1; visibility: visible; }
 
-        /* ====== RESPONSIVE ====== */
+        /* RESPONSIVE */
         @media (max-width: 1200px) {
-            .hero-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+            .hero-grid { grid-template-columns: 1fr; gap: 44px; text-align: center; }
+            .hero-subtitle { max-width: 100%; margin: 0 auto 42px; }
+            .hero-actions { justify-content: center; }
             .hero-stats { justify-content: center; }
-            .card-cert { display: none; }
+            .card-cert, .card-quality { display: none; }
             .products-grid { grid-template-columns: repeat(2, 1fr); }
             .body-areas-grid { grid-template-columns: repeat(3, 1fr); }
             .trust-grid { grid-template-columns: repeat(2, 1fr); }
             .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+            .partners-grid { grid-template-columns: repeat(2, 1fr); }
             .cooperation-grid { grid-template-columns: repeat(2, 1fr); }
             .contact-grid { grid-template-columns: 1fr; }
             .footer-grid { grid-template-columns: repeat(2, 1fr); }
         }
-
         @media (max-width: 768px) {
             .container { padding: 0 20px; }
-            .top-bar { padding: 8px 20px; flex-wrap: wrap; gap: 10px; }
-            .top-bar-left { gap: 16px; }
+            .top-bar { padding: 8px 20px; font-size: 11px; }
+            .top-bar-left { gap: 14px; flex-wrap: wrap; }
             .header-inner { padding: 14px 20px; }
             nav { display: none; }
             .mobile-menu-btn { display: block; }
             .hero { padding: 120px 0 80px; }
-            .hero-title { font-size: 40px; }
-            .hero-subtitle { font-size: 16px; }
+            .hero-title { font-size: 36px; }
+            .hero-subtitle { font-size: 15px; }
             .hero-actions { flex-direction: column; align-items: center; }
-            .hero-stats { gap: 32px; }
-            .stat-number { font-size: 32px; }
-            .section { padding: 50px 0; }
+            .hero-stats { gap: 28px; flex-wrap: wrap; justify-content: center; }
+            .stat-number { font-size: 30px; }
+            .section { padding: 60px 0; }
             .section-title { font-size: 28px; }
             .cat-tab { padding: 10px 20px; font-size: 12px; }
             .products-grid { grid-template-columns: 1fr; }
             .body-areas-grid { grid-template-columns: repeat(2, 1fr); }
             .trust-grid { grid-template-columns: 1fr; }
             .testimonials-grid { grid-template-columns: 1fr; }
+            .partners-grid { grid-template-columns: 1fr; }
             .cooperation-grid { grid-template-columns: 1fr; }
-            .contact-form { padding: 24px; }
+            .contact-form { padding: 26px; }
             .footer-grid { grid-template-columns: 1fr; }
-            .floating-buttons { right: 15px; bottom: 15px; }
-            .float-btn { width: 46px; height: 46px; font-size: 18px; }
+            .floating-buttons { right: 16px; bottom: 16px; }
+            .float-btn { width: 48px; height: 48px; font-size: 18px; }
         }
     </style>
 </head>
 <body>
-    <!-- HEADER -->
-    <header id="header">
-        <div class="top-bar">
-            <div class="top-bar-left">
-                <a href="mailto:huaimeiting@gmail.com" class="top-bar-item"><i class="fas fa-envelope"></i> huaimeiting@gmail.com</a>
-                <a href="tel:4008689994" class="top-bar-item"><i class="fas fa-phone"></i> 400-868-9994</a>
-                <span class="top-bar-item"><i class="fas fa-user-tie"></i> 业务经理: 191-2134-1333</span>
-            </div>
-            <div class="top-bar-right">
-                <button class="lang-switch" onclick="toggleLang()" id="langBtn"><i class="fas fa-globe"></i> EN / 中文</button>
-                <a href="https://wa.me/861921341333" target="_blank" class="social-icon" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                <a href="#" onclick="alert('WeChat: 19121341333')" class="social-icon" title="WeChat"><i class="fab fa-weixin"></i></a>
-            </div>
-        </div>
-        <div class="header-inner">
-            <a href="#home" class="logo">
-                <span class="logo-cn">怀美婷术后康复护理</span>
-                <span class="logo-en">HUAIMEITING</span>
-                <span class="logo-subtitle">术后 / 产后 / 疤痕修复 全周期压力产品解决方案</span>
-            </a>
-            <nav id="mainNav">
-                <a href="#home">首页 HOME</a>
-                <a href="#products">产品中心 PRODUCTS</a>
-                <a href="#products" onclick="filterProducts('health')">伦美大健康 LUMMORE</a>
-                <a href="#about">关于我们 ABOUT</a>
-            </nav>
-            <a href="#contact" class="btn-contact">立即咨询 INQUIRY</a>
-            <button class="mobile-menu-btn" onclick="toggleMobileNav()"><i class="fas fa-bars"></i></button>
-        </div>
-        <div class="mobile-nav" id="mobileNav">
-            <a href="#home" onclick="closeMobileNav()">首页 Home</a>
-            <a href="#products" onclick="closeMobileNav()">产品 Products</a>
-            <a href="#products" onclick="filterProducts('health'); closeMobileNav();">伦美大健康 Lummore</a>
-            <a href="#about" onclick="closeMobileNav()">关于 About</a>
-            <a href="#faq" onclick="closeMobileNav()">FAQ</a>
-            <a href="#contact" onclick="closeMobileNav()">联系 Contact</a>
-        </div>
-    </header>
 
-    <!-- HERO -->
-    <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-grid">
-                <div class="hero-content">
-                    <div class="hero-badge"><i class="fas fa-shield-halved"></i><span>NMPA Certified · ISO9001 · 10+ Years</span></div>
-                    <h1 class="hero-title">专业<span class="hero-title-accent">术后康复</span><br>全周期解决方案</h1>
-                    <p class="hero-subtitle">怀美婷专注医美术后修复、产后恢复、疤痕管理及科学营养领域十余年。为全球医疗机构与个人用户提供专业级医用压力产品与健康解决方案。</p>
-                    <div class="hero-actions">
-                        <a href="#products" class="btn-primary"><i class="fas fa-th-large"></i> 浏览产品 Browse</a>
-                        <a href="https://wa.me/861921341333?text=Hi, I'm interested in your products" target="_blank" class="btn-outline"><i class="fab fa-whatsapp"></i> WhatsApp 咨询</a>
-                    </div>
-                    <div class="hero-stats">
-                        <div class="stat-item">
-                            <div class="stat-number">10+</div>
-                            <div class="stat-label">年研发经验</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">500+</div>
-                            <div class="stat-label">合作机构</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">100K+</div>
-                            <div class="stat-label">服务用户</div>
-                        </div>
-                    </div>
+<!-- ====== HEADER ====== -->
+<header id="header">
+    <div class="top-bar">
+        <div class="top-bar-left">
+            <a href="mailto:huaimeiting@gmail.com" class="top-bar-item"><i class="fas fa-envelope"></i> huaimeiting@gmail.com</a>
+            <a href="tel:4008689994" class="top-bar-item"><i class="fas fa-phone"></i> 400-868-9994</a>
+            <span class="top-bar-item"><i class="fas fa-user-tie"></i> 业务经理: 191-2134-1333</span>
+        </div>
+        <div class="top-bar-right">
+            <button class="lang-switch" onclick="toggleLang()" id="langBtn"><i class="fas fa-globe"></i> EN / 中文</button>
+            <a href="https://wa.me/861921341333" target="_blank" class="social-icon" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" onclick="alert('WeChat: 19121341333')" class="social-icon" title="WeChat"><i class="fab fa-weixin"></i></a>
+        </div>
+    </div>
+    <div class="header-inner">
+        <a href="#home" class="logo">
+            <span class="logo-cn">怀美婷术后康复护理</span>
+            <span class="logo-en">HUAIMEITING</span>
+            <span class="logo-subtitle">术后 / 产后 / 疤痕修复 全周期压力产品解决方案</span>
+        </a>
+        <nav id="mainNav">
+            <a href="#home">首页 HOME</a>
+            <a href="#products">产品中心 PRODUCTS</a>
+            <a href="#products" onclick="filterProducts('health')">伦美大健康 LUMMORE</a>
+            <a href="#about">关于我们 ABOUT</a>
+            <a href="#faq">常见问题 FAQ</a>
+        </nav>
+        <a href="#contact" class="btn-contact">立即咨询 INQUIRY</a>
+        <button class="mobile-menu-btn" onclick="toggleMobileNav()"><i class="fas fa-bars"></i></button>
+    </div>
+    <div class="mobile-nav" id="mobileNav">
+        <a href="#home" onclick="closeMobileNav()">首页 Home</a>
+        <a href="#products" onclick="closeMobileNav()">产品 Products</a>
+        <a href="#products" onclick="filterProducts('health'); closeMobileNav();">伦美大健康 Lummore</a>
+        <a href="#about" onclick="closeMobileNav()">关于 About</a>
+        <a href="#faq" onclick="closeMobileNav()">FAQ</a>
+        <a href="#contact" onclick="closeMobileNav()">联系 Contact</a>
+    </div>
+</header>
+
+<!-- ====== HERO SECTION ====== -->
+<section class="hero" id="home">
+    <div class="container">
+        <div class="hero-grid">
+            <div class="hero-content">
+                <div class="hero-badge"><i class="fas fa-shield-halved"></i><span>NMPA Certified · ISO9001 · CE · 10+ Years Experience</span></div>
+                <h1 class="hero-title">专业<span class="hero-title-accent">术后康复</span><br>全周期解决方案</h1>
+                <p class="hero-subtitle">怀美婷专注医美术后修复、产后恢复、疤痕管理及科学营养领域十余年。为全球医疗机构与个人用户提供专业级医用压力产品与健康解决方案。NMPA认证二类医疗器械，品质值得信赖。</p>
+                <div class="hero-actions">
+                    <a href="#products" class="btn-hero-primary"><i class="fas fa-th-large"></i> 浏览全部产品</a>
+                    <a href="https://wa.me/861921341333?text=Hi, I'm interested in your products" target="_blank" class="btn-hero-outline"><i class="fab fa-whatsapp"></i> WhatsApp 立即咨询</a>
                 </div>
-                <div class="hero-image">
-                    <img src="https://neeko-copilot.bytedance.net/api/text2image?prompt=medical%20compression%20garment%20product%20photo%20on%20white%20background%20professional%20medical%20aesthetic%20purple%20theme&width=400&height=500" alt="医用压力产品" class="hero-product">
-                    <div class="floating-card card-cert">
+                <div class="hero-stats">
+                    <div class="stat-item"><div class="stat-number">10+</div><div class="stat-label">年研发经验</div></div>
+                    <div class="stat-item"><div class="stat-number">500+</div><div class="stat-label">合作医疗机构</div></div>
+                    <div class="stat-item"><div class="stat-number">100K+</div><div class="stat-label">服务全球用户</div></div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-product-wrapper">
+                    <img src="reference/医美术后修复类/IMG_4098.JPG" alt="医用压力产品" class="hero-product" onerror="this.src='https://neeko-copilot.bytedance.net/api/text2image?prompt=medical+compression+garment+professional+product+photo+purple+theme&width=400&height=520'">
+                    <div class="float-card card-cert">
                         <div class="card-cert-icon"><i class="fas fa-shield-check"></i></div>
-                        <div class="card-cert-text">
-                            <strong>NMPA认证</strong>
-                            <span>二类医疗器械</span>
-                        </div>
+                        <div class="card-cert-text"><strong>NMPA认证</strong><span>二类医疗器械</span></div>
+                    </div>
+                    <div class="float-card card-quality">
+                        <div class="card-quality-icon"><i class="fas fa-certificate"></i></div>
+                        <div class="card-quality-text"><strong>ISO9001</strong><span>质量管理体系</span></div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- PRODUCTS -->
-    <section class="products-section section" id="products">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">完整康复解决方案</h2>
-                <p class="section-subtitle">Complete Recovery Solution</p>
+<!-- ====== PRODUCTS ====== -->
+<section class="products-section section" id="products">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">四大产品系列</h2>
+            <p class="section-subtitle">Four Product Categories — 专业覆盖术后/产后/疤痕修复及健康管理全场景</p>
+        </div>
+        <div class="category-tabs">
+            <button class="cat-tab active" data-cat="all" onclick="filterProducts('all')"><i class="fas fa-th-large"></i> 全部产品 ALL</button>
+            <button class="cat-tab" data-cat="medical" onclick="filterProducts('medical')"><i class="fas fa-hospital-user"></i> 医美术后修复</button>
+            <button class="cat-tab" data-cat="postpartum" onclick="filterProducts('postpartum')"><i class="fas fa-baby-carriage"></i> 产后修复</button>
+            <button class="cat-tab" data-cat="scar" onclick="filterProducts('scar')"><i class="fas fa-band-aid"></i> 疤痕修复</button>
+            <button class="cat-tab" data-cat="health" onclick="filterProducts('health')"><i class="fas fa-pills"></i> 伦美大健康</button>
+        </div>
+        <div class="products-grid" id="productsGrid"></div>
+    </div>
+</section>
+
+<!-- ====== BODY AREAS QUICK SELECT ====== -->
+<section class="body-areas-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">按部位选择产品</h2>
+            <p class="section-subtitle">Select by Body Area — 快速找到您需要的康复产品</p>
+        </div>
+        <div class="body-areas-grid">
+            <div class="body-area-card" onclick="filterProductsByArea('face')">
+                <div class="body-area-icon"><i class="fas fa-head-side-mask"></i></div>
+                <div class="body-area-name">面部 Face</div>
             </div>
-
-            <div class="category-tabs">
-                <button class="cat-tab active" data-cat="medical" onclick="filterProducts('medical')"><i class="fas fa-hospital-user"></i> 医美术后修复</button>
-                <button class="cat-tab" data-cat="postpartum" onclick="filterProducts('postpartum')"><i class="fas fa-baby-carriage"></i> 产后修复</button>
-                <button class="cat-tab" data-cat="scar" onclick="filterProducts('scar')"><i class="fas fa-band-aid"></i> 疤痕修复</button>
-                <button class="cat-tab" data-cat="health" onclick="filterProducts('health')"><i class="fas fa-pills"></i> 伦美大健康</button>
+            <div class="body-area-card" onclick="filterProductsByArea('neck')">
+                <div class="body-area-icon"><i class="fas fa-necklace"></i></div>
+                <div class="body-area-name">颈部 Neck</div>
             </div>
-
-            <div class="products-grid" id="productsGrid">
-                <!-- Products will be loaded dynamically -->
+            <div class="body-area-card" onclick="filterProductsByArea('chest')">
+                <div class="body-area-icon"><i class="fas fa-heart-pulse"></i></div>
+                <div class="body-area-name">胸部 Chest</div>
+            </div>
+            <div class="body-area-card" onclick="filterProductsByArea('waist')">
+                <div class="body-area-icon"><i class="fas fa-arrows-alt-h"></i></div>
+                <div class="body-area-name">腰腹 Waist</div>
+            </div>
+            <div class="body-area-card" onclick="filterProductsByArea('hip')">
+                <div class="body-area-icon"><i class="fas fa-square-full"></i></div>
+                <div class="body-area-name">臀部 Hip</div>
+            </div>
+            <div class="body-area-card" onclick="filterProductsByArea('leg')">
+                <div class="body-area-icon"><i class="fas fa-shoe-prints"></i></div>
+                <div class="body-area-name">腿部 Leg</div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- BODY AREAS -->
-    <section class="body-areas">
-        <div class="container">
-            <div class="body-areas-grid">
-                <div class="body-area-card" onclick="filterProductsByArea('face')">
-                    <div class="body-area-icon"><i class="fas fa-head-side"></i></div>
-                    <div class="body-area-name">面部</div>
-                </div>
-                <div class="body-area-card" onclick="filterProductsByArea('neck')">
-                    <div class="body-area-icon"><i class="fas fa-necklace"></i></div>
-                    <div class="body-area-name">颈部</div>
-                </div>
-                <div class="body-area-card" onclick="filterProductsByArea('chest')">
-                    <div class="body-area-icon"><i class="fas fa-heart"></i></div>
-                    <div class="body-area-name">胸部</div>
-                </div>
-                <div class="body-area-card" onclick="filterProductsByArea('waist')">
-                    <div class="body-area-icon"><i class="fas fa-arrows-alt-h"></i></div>
-                    <div class="body-area-name">腰腹</div>
-                </div>
-                <div class="body-area-card" onclick="filterProductsByArea('hip')">
-                    <div class="body-area-icon"><i class="fas fa-square"></i></div>
-                    <div class="body-area-name">臀部</div>
-                </div>
-                <div class="body-area-card" onclick="filterProductsByArea('leg')">
-                    <div class="body-area-icon"><i class="fas fa-footprints"></i></div>
-                    <div class="body-area-name">腿部</div>
-                </div>
+<!-- ====== WHY CHOOSE US / TRUST ====== -->
+<section class="trust-section" id="about">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">为什么选择怀美婷</h2>
+            <p class="section-subtitle">Why Choose Huaimeiting — 十余年专业积淀，值得信赖的合作伙伴</p>
+        </div>
+        <div class="trust-grid">
+            <div class="trust-card">
+                <div class="trust-icon"><i class="fas fa-shield-check"></i></div>
+                <div class="trust-title">NMPA 二类医疗认证</div>
+                <div class="trust-desc">国家药品监督管理局注册认证，严格遵循医疗器械生产规范，确保每一件产品的安全性与有效性。</div>
+            </div>
+            <div class="trust-card">
+                <div class="trust-icon"><i class="fas fa-award"></i></div>
+                <div class="trust-title">ISO 9001 质量体系</div>
+                <div class="trust-desc">国际标准化组织质量管理体系认证，从原料筛选到成品出库全程可追溯，品质始终如一。</div>
+            </div>
+            <div class="trust-card">
+                <div class="trust-icon"><i class="fas fa-flask-vial"></i></div>
+                <div class="trust-title">临床数据驱动研发</div>
+                <div class="trust-desc">与多家三甲医院及医美机构深度合作，基于真实临床反馈持续优化产品压力分布与面料工艺。</div>
+            </div>
+            <div class="trust-card">
+                <div class="trust-icon"><i class="fas fa-earth-americas"></i></div>
+                <div class="trust-title">全球物流 & 清关支持</div>
+                <div class="trust-desc">DHL/FedEx/EMS 多渠道物流合作，专业清关团队协助，产品已远销港澳台、东南亚及欧美市场。</div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- TRUST -->
-    <section class="trust-section" id="about">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">行业领先优势</h2>
-                <p class="section-subtitle">Industry-Leading Excellence</p>
-            </div>
-
-            <div class="trust-grid">
-                <div class="trust-card">
-                    <div class="trust-icon"><i class="fas fa-shield-check"></i></div>
-                    <div class="trust-title">NMPA认证</div>
-                    <div class="trust-desc">二类医疗器械注册证，严格遵循国家医疗器械法规，确保产品安全有效。</div>
-                </div>
-                <div class="trust-card">
-                    <div class="trust-icon"><i class="fas fa-award"></i></div>
-                    <div class="trust-title">ISO9001认证</div>
-                    <div class="trust-desc">国际质量管理体系认证，从原料采购到生产交付全程质量可控。</div>
-                </div>
-                <div class="trust-card">
-                    <div class="trust-icon"><i class="fas fa-flask"></i></div>
-                    <div class="trust-title">临床研发</div>
-                    <div class="trust-desc">与多家三甲医院合作，基于临床数据持续优化产品设计与压力分布。</div>
-                </div>
-                <div class="trust-card">
-                    <div class="trust-icon"><i class="fas fa-truck"></i></div>
-                    <div class="trust-title">全球物流</div>
-                    <div class="trust-desc">支持全球发货，与DHL/FedEx/EMS合作，提供专业清关协助服务。</div>
-                </div>
-            </div>
+<!-- ====== TESTIMONIALS ====== -->
+<section class="testimonials-section section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">用户真实评价</h2>
+            <p class="section-subtitle">Real User Reviews — 来自真实用户的口碑见证</p>
         </div>
-    </section>
-
-    <!-- TESTIMONIALS -->
-    <section class="testimonials-section section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">用户真实反馈</h2>
-                <p class="section-subtitle">Genuine User Testimonials</p>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <div class="testimonial-quote-icon"><i class="fas fa-quote-left"></i></div>
+                <div class="testimonial-content">"腰腹吸脂术后第七天开始穿怀美婷束腰束腹裤，压力均匀不勒人，面料透气性很好，夏天穿也不闷。恢复效果超出预期，客服推荐的尺码非常精准！"</div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">陈</div>
+                    <div><div class="author-name">陈女士 · 吸脂术后用户</div><div class="author-location">上海</div></div>
+                </div>
             </div>
-
-            <div class="testimonials-grid">
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="testimonial-content">"腰腹吸脂术后第七天开始穿，压力均匀不勒，面料透气，恢复效果很好。客服很专业，推荐的尺码非常合适！"</div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">陈</div>
-                        <div class="author-info">
-                            <div class="author-name">陈女士</div>
-                            <div class="author-location">上海</div>
-                        </div>
-                    </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                <div class="testimonial-quote-icon"><i class="fas fa-quote-left"></i></div>
+                <div class="testimonial-content">"产后修复选了很多品牌对比，最终选了怀美婷。面料最舒服，支撑力也够但不紧绷。坚持穿了三个月，肚子收得非常明显，身材基本恢复了！"</div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">林</div>
+                    <div><div class="author-name">林女士 · 产后修复用户</div><div class="author-location">杭州</div></div>
                 </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="testimonial-content">"产后修复选了很多品牌，这家的面料最舒服，支撑力也够。穿了三个月，肚子收得很明显，强烈推荐！"</div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">林</div>
-                        <div class="author-info">
-                            <div class="author-name">林女士</div>
-                            <div class="author-location">杭州</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="testimonial-stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <div class="testimonial-content">"疤痕修复产品效果不错，坚持用了半年，增生疤痕明显变软变平。客服指导很耐心，解答了很多问题。"</div>
-                    <div class="testimonial-author">
-                        <div class="author-avatar">王</div>
-                        <div class="author-info">
-                            <div class="author-name">王先生</div>
-                            <div class="author-location">深圳</div>
-                        </div>
-                    </div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+                <div class="testimonial-quote-icon"><i class="fas fa-quote-left"></i></div>
+                <div class="testimonial-content">"疤痕修复产品用了半年多，增生疤痕明显变软变平了。硅胶贴和弹力绷带的组合效果很好，客服小姐姐指导很耐心，有问必答。"</div>
+                <div class="testimonial-author">
+                    <div class="author-avatar">王</div>
+                    <div><div class="author-name">王先生 · 疤痕修复用户</div><div class="author-location">深圳</div></div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- FAQ -->
-    <section class="faq-section section" id="faq">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">常见问题</h2>
-                <p class="section-subtitle">Frequently Asked Questions</p>
+<!-- ====== PARTNERS ====== -->
+<section class="partners-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">合作伙伴</h2>
+            <p class="section-subtitle">Our Partners — 携手行业领先机构，共建康复生态</p>
+        </div>
+        <div class="partners-grid">
+            <div class="partner-category">
+                <div class="partner-cat-icon"><i class="fas fa-hospital"></i></div>
+                <div class="partner-cat-name">三甲医院</div>
+                <div class="partner-cat-count">50+ 合作科室</div>
+                <div class="partner-logos"><span class="partner-logo-placeholder">整形外科</span><span class="partner-logo-placeholder">烧伤科</span><span class="partner-logo-placeholder">产科</span></div>
             </div>
-
-            <div class="faq-container">
-                <div class="faq-item" onclick="toggleFaq(this)">
-                    <div class="faq-question">
-                        <span>产品是否为医疗器械？有哪些认证？<br><small style="color:var(--text-light)">Are your products medical devices? What certifications do you have?</small></span>
-                        <i class="fas fa-chevron-down faq-icon"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">
-                            <strong>✅ 二类医疗器械认证</strong> - 我们的医用压力产品已获得NMPA（国家药品监督管理局）二类医疗器械注册证。<br>
-                            <strong>✅ ISO 9001认证</strong> - 通过国际质量管理体系认证，确保产品质量稳定可靠。<br>
-                            <strong>✅ CE认证</strong> - 符合欧盟医疗器械指令要求，可出口欧盟市场。<br>
-                            如需查看资质文件，可联系客服获取电子版。
-                        </div>
-                    </div>
-                </div>
-
-                <div class="faq-item" onclick="toggleFaq(this)">
-                    <div class="faq-question">
-                        <span>如何选择合适的尺码？<br><small style="color:var(--text-light)">How to choose the right size?</small></span>
-                        <i class="fas fa-chevron-down faq-icon"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">
-                            我们建议：<br>
-                            • 术前测量：腰围、臀围、大腿围（精确到厘米）<br>
-                            • 术后时间：术后1-7天建议选择稍宽松尺码，7天后根据恢复情况调整<br>
-                            • 专业指导：联系客服提供您的身高、体重、手术方式和术后天数，我们会为您推荐最合适的尺码<br>
-                            • 退换政策：未拆封使用的产品支持7天无理由退换
-                        </div>
-                    </div>
-                </div>
-
-                <div class="faq-item" onclick="toggleFaq(this)">
-                    <div class="faq-question">
-                        <span>是否支持海外发货？关税和运费如何计算？<br><small style="color:var(--text-light)">Do you ship internationally? How about duties & shipping?</small></span>
-                        <i class="fas fa-chevron-down faq-icon"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">
-                            <strong>✅ 支持全球发货</strong>（港澳台、东南亚、欧美等）。我们与多家国际物流商合作，可提供DHL/FedEx/EMS等多种运输方式。<br>
-                            • 运费根据目的地和重量实时报价<br>
-                            • 可协助办理清关手续<br>
-                            • 部分国家/地区享受包邮优惠<br>
-                            • 支持14天无理由退换货（未拆封使用）<br>
-                            具体费用请咨询客服获取详细报价单。
-                        </div>
-                    </div>
-                </div>
-
-                <div class="faq-item" onclick="toggleFaq(this)">
-                    <div class="faq-question">
-                        <span>售后服务政策是怎样的？<br><small style="color:var(--text-light)">What is your after-sales policy?</small></span>
-                        <i class="fas fa-chevron-down faq-icon"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">
-                            • <strong>国内用户</strong>：7天无理由退换（未拆封），质量问题终身换新<br>
-                            • <strong>海外用户</strong>：14天无理由退换（未拆封），国际运费需自理<br>
-                            • <strong>产品保修</strong>：正常使用情况下，产品如有质量问题可免费更换<br>
-                            • <strong>专业指导</strong>：提供术后穿戴指导、护理建议等专业服务
-                        </div>
-                    </div>
-                </div>
-
-                <div class="faq-item" onclick="toggleFaq(this)">
-                    <div class="faq-question">
-                        <span>有哪些联系方式？<br><small style="color:var(--text-light)">What contact channels are available?</small></span>
-                        <i class="fas fa-chevron-down faq-icon"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">
-                            • <strong>热线电话</strong>：400-868-9994（工作日 9:00-18:00）<br>
-                            • <strong>业务经理</strong>：191-2134-1333（微信同号）<br>
-                            • <strong>WhatsApp</strong>：+86 191 2134 1333（24小时在线）<br>
-                            • <strong>邮箱</strong>：huaimeiting@gmail.com（24小时内回复）<br>
-                            • <strong>在线咨询</strong>：页面右下角悬浮按钮
-                        </div>
-                    </div>
-                </div>
-
-                <div class="faq-item" onclick="toggleFaq(this)">
-                    <div class="faq-question">
-                        <span>是否提供B2B合作或OEM服务？<br><small style="color:var(--text-light)">Do you offer B2B cooperation or OEM services?</small></span>
-                        <i class="fas fa-chevron-down faq-icon"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">
-                            我们提供多种合作模式：<br>
-                            • <strong>医院合作</strong>：为医疗机构提供专业医用压力产品<br>
-                            • <strong>医美机构合作</strong>：定制专属产品方案<br>
-                            • <strong>产后修复中心</strong>：提供产后康复全套解决方案<br>
-                            • <strong>OEM/ODM</strong>：支持品牌定制、贴牌生产<br>
-                            • <strong>渠道分销</strong>：诚招国内外经销商<br>
-                            详情请联系业务经理洽谈合作方案。
-                        </div>
-                    </div>
-                </div>
+            <div class="partner-category">
+                <div class="partner-cat-icon"><i class="fas fa-spa"></i></div>
+                <div class="partner-cat-name">医美机构</div>
+                <div class="partner-cat-count">200+ 合作品牌</div>
+                <div class="partner-logos"><span class="partner-logo-placeholder">连锁医美</span><span class="partner-logo-placeholder">专科门诊</span><span class="partner-logo-placeholder">皮肤管理</span></div>
+            </div>
+            <div class="partner-category">
+                <div class="partner-cat-icon"><i class="fas fa-baby"></i></div>
+                <div class="partner-cat-name">产后修复中心</div>
+                <div class="partner-cat-count">80+ 合作门店</div>
+                <div class="partner-logos"><span class="partner-logo-placeholder">月子中心</span><span class="partner-logo-placeholder">产康连锁</span><span class="partner-logo-placeholder">瑜伽馆</span></div>
+            </div>
+            <div class="partner-category">
+                <div class="partner-cat-icon"><i class="fas fa-truck-fast"></i></div>
+                <div class="partner-cat-name">物流合作伙伴</div>
+                <div class="partner-cat-count">全球配送</div>
+                <div class="partner-logos"><span class="partner-logo-placeholder">DHL</span><span class="partner-logo-placeholder">FedEx</span><span class="partner-logo-placeholder">EMS</span></div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- COOPERATION -->
-    <section class="cooperation-section section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">灵活合作模式</h2>
-                <p class="section-subtitle">Flexible Cooperation Models</p>
-            </div>
-
-            <div class="cooperation-grid">
-                <div class="cooperation-card">
-                    <div class="cooperation-icon"><i class="fas fa-hospital"></i></div>
-                    <div class="cooperation-title">医院合作</div>
-                    <div class="cooperation-desc">为三甲医院、专科医院提供专业医用压力产品，支持科室定制方案。</div>
-                    <ul class="cooperation-features">
-                        <li>批量采购优惠</li>
-                        <li>专业培训支持</li>
-                        <li>优先供货保障</li>
-                        <li>专属客服对接</li>
-                    </ul>
-                </div>
-                <div class="cooperation-card">
-                    <div class="cooperation-icon"><i class="fas fa-building"></i></div>
-                    <div class="cooperation-title">医美机构合作</div>
-                    <div class="cooperation-desc">与医美机构深度合作，为术后客户提供配套康复产品。</div>
-                    <ul class="cooperation-features">
-                        <li>定制品牌包装</li>
-                        <li>产品陈列支持</li>
-                        <li>营销物料提供</li>
-                        <li>分润模式灵活</li>
-                    </ul>
-                </div>
-                <div class="cooperation-card">
-                    <div class="cooperation-icon"><i class="fas fa-industry"></i></div>
-                    <div class="cooperation-title">OEM/ODM定制</div>
-                    <div class="cooperation-desc">提供从产品设计到生产的一站式定制服务，支持品牌贴牌。</div>
-                    <ul class="cooperation-features">
-                        <li>专业设计团队</li>
-                        <li>快速打样服务</li>
-                        <li>质量管控体系</li>
-                        <li>灵活起订量</li>
-                    </ul>
-                </div>
-            </div>
+<!-- ====== FAQ ====== -->
+<section class="faq-section section" id="faq">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">常见问题 FAQ</h2>
+            <p class="section-subtitle">Frequently Asked Questions — 快速解答您的疑问</p>
         </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section class="contact-section" id="contact">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">联系我们</h2>
-                <p class="section-subtitle">Contact Us</p>
+        <div class="faq-container">
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">
+                    <span>产品是否为医疗器械？有哪些权威认证？<br><small>Are your products certified medical devices?</small></span>
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <strong>✅ NMPA 二类医疗器械注册证</strong> — 我们的医用压力系列产品均已获得国家药品监督管理局（NMPA）颁发的二类医疗器械注册证。<br><br>
+                        <strong>✅ ISO 9001 国际质量管理体系认证</strong> — 从原料采购到生产交付全程符合国际标准。<br><br>
+                        <strong>✅ CE 认证</strong> — 符合欧盟医疗器械指令（MDR），可合法出口至欧盟成员国。<br><br>
+                        所有资质文件均可向客服申请查看电子版或复印件。
+                    </div>
+                </div>
             </div>
-
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <div class="contact-card">
-                        <a href="tel:4008689994">
-                            <div class="contact-icon"><i class="fas fa-phone"></i></div>
-                            <div class="contact-text">
-                                <strong>咨询热线</strong>
-                                <span>400-868-9994</span>
-                            </div>
-                        </a>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">
+                    <span>如何选择最合适的尺码？<br><small>How do I choose the right size?</small></span>
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        我们建议按以下步骤选择：<br><br>
+                        • <strong>术前测量</strong>：精确测量腰围、臀围、大腿围（单位：厘米）<br>
+                        • <strong>考虑术后时间</strong>：术后1-7天建议选偏宽松一码；7天后根据消肿情况调整<br>
+                        • <strong>联系专业客服</strong>：提供身高、体重、手术类型及术后天数，我们为您推荐最佳尺码<br>
+                        • <strong>退换保障</strong>：未拆封使用的产品支持 7 天无理由退换<br><br>
+                        💡 <strong>小贴士</strong>：吸脂术后会有肿胀期，建议术前测量并预留 1-2cm 余量。
                     </div>
-                    <div class="contact-card">
-                        <a href="tel:19121341333">
-                            <div class="contact-icon"><i class="fas fa-user-tie"></i></div>
-                            <div class="contact-text">
-                                <strong>业务经理</strong>
-                                <span>191-2134-1333</span>
-                            </div>
-                        </a>
+                </div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">
+                    <span>是否支持海外发货？运费和关税怎么算？<br><small>Do you ship internationally?</small></span>
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <strong>✅ 支持全球发货</strong>，覆盖港澳台、东南亚、欧美等主要国家和地区。<br><br>
+                        • <strong>物流渠道</strong>：DHL / FedEx / EMS / 专线物流<br>
+                        • <strong>运费计算</strong>：根据包裹重量和目的地实时报价<br>
+                        • <strong>清关协助</strong>：提供专业的出口报关和目的国清关指导<br>
+                        • <strong>退换政策</strong>：海外订单享受 14 天无理由退换（未拆封使用）<br><br>
+                        具体费用请通过 WhatsApp 或邮件联系我们获取详细报价单。
                     </div>
-                    <div class="contact-card">
-                        <a href="mailto:huaimeiting@gmail.com">
-                            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-                            <div class="contact-text">
-                                <strong>商务邮箱</strong>
-                                <span>huaimeiting@gmail.com</span>
-                            </div>
-                        </a>
+                </div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">
+                    <span>售后政策是怎样的？<br><small>After-sales policy?</small></span>
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        • <strong>国内用户</strong>：7 天无理由退换（未拆封）；质量问题终身免费换新<br>
+                        • <strong>海外用户</strong>：14 天无理由退换（未拆封，国际运费自理）<br>
+                        • <strong>产品质保</strong>：正常使用情况下质量问题可免费更换同款新品<br>
+                        • <strong>专业指导</strong>：提供术后穿戴指南、清洗保养建议等专业服务<br>
+                        • <strong>响应承诺</strong>：所有咨询 24 小时内回复
                     </div>
-                    <div class="contact-card">
-                        <a href="https://wa.me/861921341333" target="_blank">
+                </div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">
+                    <span>有哪些联系方式？<br><small>Contact channels?</small></span>
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        • <strong>全国热线</strong>：<a href="tel:4008689994" style="color:var(--primary)">400-868-9994</a>（工作日 9:00–18:00）<br>
+                        • <strong>业务经理</strong>：<a href="tel:19121341333" style="color:var(--primary)">191-2134-1333</a>（微信同号）<br>
+                        • <strong>WhatsApp</strong>：<a href="https://wa.me/861921341333" target="_blank" style="color:var(--primary)">+86 191 2134 1333</a><br>
+                        • <strong>邮箱</strong>：<a href="mailto:huaimeiting@gmail.com" style="color:var(--primary)">huaimeiting@gmail.com</a>
+                    </div>
+                </div>
+            </div>
+            <div class="faq-item" onclick="toggleFaq(this)">
+                <div class="faq-question">
+                    <span>是否提供B2B/OEM定制合作？<br><small>B2B or OEM cooperation?</small></span>
+                    <i class="fas fa-chevron-down faq-icon"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        我们提供多种合作模式：<br><br>
+                        • <strong>🏥 医院
