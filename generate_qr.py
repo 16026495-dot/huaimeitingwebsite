@@ -1,0 +1,33 @@
+#!/usr/bin/env python3
+import os
+
+# Create a simple SVG QR code as placeholder
+svg_content = '''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" width="220" height="220">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#7c3aed;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#5b21b6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="220" height="220" rx="16" fill="url(#bg)"/>
+  <rect x="20" y="20" width="60" height="60" rx="8" fill="white"/>
+  <rect x="30" y="30" width="40" height="40" rx="4" fill="#7c3aed"/>
+  <rect x="140" y="20" width="60" height="60" rx="8" fill="white"/>
+  <rect x="150" y="30" width="40" height="40" rx="4" fill="#7c3aed"/>
+  <rect x="20" y="140" width="60" height="60" rx="8" fill="white"/>
+  <rect x="30" y="150" width="40" height="40" rx="4" fill="#7c3aed"/>
+  <text x="110" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="white">微信</text>
+  <text x="110" y="155" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" fill="white">Anne1413191</text>
+  <text x="110" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="rgba(255,255,255,0.9)">扫码添加</text>
+</svg>'''
+
+# Save the QR code
+output_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'assets', 'wechat-qr.png')
+os.makedirs(os.path.dirname(output_path), exist_ok=True)
+
+# For now, save as SVG (we can convert to PNG later if needed)
+svg_path = output_path.replace('.png', '.svg')
+with open(svg_path, 'w', encoding='utf-8') as f:
+    f.write(svg_content)
+
+print(f'QR code saved to: {svg_path}')

@@ -1,0 +1,21 @@
+
+╔══════════════════════════════════════════════════════════════╗
+║                    IMPORTANT INSTRUCTIONS                      ║
+╠══════════════════════════════════════════════════════════════╣
+║                                                               ║
+║  The user has provided their OFFICIAL WeChat QR code image.   ║
+║                                                               ║
+║  Please manually save the user's WeChat QR code image to:     ║
+║                                                               ║
+║  /Users/chenting/Desktop/huaimeitingwebsite/assets/wechat-qr-user-real.png                                       
+║                                                               ║
+║  Steps:                                                       ║
+║  1. Right-click on the user's WeChat QR code image            ║
+║  2. Save it as: wechat-qr-user-real.png                       ║
+║  3. Copy it to: /Users/chenting/Desktop/huaimeitingwebsite/assets/
+║  4. Replace any existing file with this name                  ║
+║                                                               ║
+║  This is the REAL scannable QR code from WeChat official!     ║
+║  It will show "Anne 怀美婷塑身衣创始人" when scanned!        ║
+║                                                               ║
+╚══════════════════════════════════════════════════════════════╝
