@@ -1215,139 +1215,63 @@
 
 <script>
 const categories = [
-    {
-        id: 'medical',
-        name: '医美术后修复',
-        nameEn: 'Medical Recovery',
-        icon: 'fas fa-hospital-user',
-        desc: '专业医用压力产品，促进术后消肿愈合，防止血肿和水肿，加速恢复过程。',
-        tags: ['NMPA认证', '术后必备', '压力塑形'],
-        image: 'reference/医美术后修复类/WechatIMG27.jpeg',
-        productCount: '5款产品'
-    },
-    {
-        id: 'postpartum',
-        name: '产后修复',
-        nameEn: 'Postpartum Recovery',
-        icon: 'fas fa-baby-carriage',
-        desc: '科学产后身材管理，帮助子宫复位、骨盆矫正、腹部收紧，重塑美丽曲线。',
-        tags: ['骨盆矫正', '收腹塑形', '腰部支撑'],
-        image: 'reference/产后修复类/绘蛙-任务233584078.jpg',
-        productCount: '4款产品'
-    },
-    {
-        id: 'scar',
-        name: '疤痕修复',
-        nameEn: 'Scar Management',
-        icon: 'fas fa-band-aid',
-        desc: '硅凝胶疤痕贴+弹力绷带组合，预防和治疗增生性疤痕，淡化色素沉着。',
-        tags: ['防增生', '淡疤痕', '温和修复'],
-        image: 'reference/疤痕修复类/IMG_4113.JPG',
-        productCount: '3款产品'
-    },
-    {
-        id: 'health',
-        name: '伦美大健康',
-        nameEn: 'Lummore Health',
-        icon: 'fas fa-pills',
-        desc: '科学营养补充系列，胶原蛋白肽粉、复合维生素、益生菌，从内而外全面调理。',
-        tags: ['营养补充', '免疫提升', '肠道健康'],
-        image: 'reference/伦美大健康/372.JPG',
-        productCount: '3款产品'
-    }
+    { id: 'medical', name: '医美术后修复', nameEn: 'Medical Recovery', icon: 'fas fa-hospital-user', desc: '专业医用压力产品，促进术后消肿愈合，防止血肿和水肿，加速恢复过程。', tags: ['NMPA认证', '术后必备', '压力塑形'], image: 'reference/医美术后修复类/上半身连体衣.jpeg', productCount: '17款产品' },
+    { id: 'postpartum', name: '产后修复', nameEn: 'Postpartum Recovery', icon: 'fas fa-baby-carriage', desc: '科学产后身材管理，帮助子宫复位、骨盆矫正、腹部收紧，重塑美丽曲线。', tags: ['骨盆矫正', '收腹塑形', '腰部支撑'], image: 'reference/产后修复类/产后连体裤.jpg', productCount: '6款产品' },
+    { id: 'scar', name: '疤痕修复', nameEn: 'Scar Management', icon: 'fas fa-band-aid', desc: '硅凝胶疤痕贴+弹力绷带组合，预防和治疗增生性疤痕，淡化色素沉着。', tags: ['防增生', '淡疤痕', '温和修复'], image: 'reference/疤痕修复类/疤痕加压弹力套.JPG', productCount: '6款产品' },
+    { id: 'health', name: '伦美大健康', nameEn: 'Lummore Health', icon: 'fas fa-pills', desc: '科学营养补充系列，胶原蛋白肽粉、复合维生素、益生菌，从内而外全面调理。', tags: ['营养补充', '免疫提升', '肠道健康'], image: 'reference/伦美大健康/伦美大健康全家福.JPG', productCount: '20款产品' }
 ];
 
 const products = [
-    {
-        category: 'medical', name: '医用弹力面罩', nameEn: 'Medical Compression Face Mask',
-        desc: '术后面部加压固定，促进消肿愈合，适用于颌面整形、双下巴吸脂等术后护理。',
-        tags: ['NMPA认证', '透气舒适', '可调节'],
-        image: 'reference/医美术后修复类/WechatIMG11.jpeg', areas: ['face', 'neck']
-    },
-    {
-        category: 'medical', name: '塑身衣套装（连体）', nameEn: 'Full Body Compression Suit',
-        desc: '全身术后塑形，分段压力设计，腰腹臀腿全覆盖，吸脂/抽脂术后首选。',
-        tags: ['全身覆盖', '分段压力', '开档设计'],
-        image: 'reference/医美术后修复类/WechatIMG23.png', areas: ['chest', 'waist', 'hip', 'leg']
-    },
-    {
-        category: 'medical', name: '束腰束腹裤', nameEn: 'Waist & Abdomen Compression Panty',
-        desc: '腰腹部精准施压，收腹提臀效果显著，适用于腰腹环吸、腹部整形等术后。',
-        tags: ['精准施压', '提臀收腹', '高腰设计'],
-        image: 'reference/医美术后修复类/WechatIMG24.jpeg', areas: ['waist', 'hip']
-    },
-    {
-        category: 'medical', name: '上臂袖套', nameEn: 'Upper Arm Compression Sleeve',
-        desc: '蝴蝶袖/拜拜肉术后压力修复，均匀施压不紧绷，适合手臂吸脂术后。',
-        tags: ['手臂专用', '均匀压力', '隐形无痕'],
-        image: 'reference/医美术后修复类/WechatIMG25.png', areas: []
-    },
-    {
-        category: 'medical', name: '大腿压力袜', nameEn: 'Thigh High Compression Stockings',
-        desc: '大腿吸脂术后必备，梯度压力设计促进静脉回流，预防水肿和血肿。',
-        tags: ['梯度压力', '防水肿', '舒适贴合'],
-        image: 'reference/医美术后修复类/WechatIMG26.jpeg', areas: ['leg']
-    },
-    {
-        category: 'postpartum', name: '产后骨盆带', nameEn: 'Postpartum Pelvic Belt',
-        desc: '产后骨盆恢复矫正，帮助骨盆闭合，缓解耻骨分离疼痛。',
-        tags: ['骨盆矫正', '可调节', '透气材质'],
-        image: 'reference/产后修复类/IMG_3608.JPG', areas: ['hip', 'waist']
-    },
-    {
-        category: 'postpartum', name: '产后收腹带', nameEn: 'Postpartum Abdominal Binder',
-        desc: '产后子宫复位辅助，收腹塑形，支撑腰部缓解产后腰痛。',
-        tags: ['子宫复位', '收腹塑形', '腰部支撑'],
-        image: 'reference/产后修复类/绘蛙-任务233476733.jpg', areas: ['waist']
-    },
-    {
-        category: 'postpartum', name: '哺乳内衣', nameEn: 'Nursing Bra with Support',
-        desc: '孕期及产后专用，承托力强且方便哺乳，防止胸部下垂外扩。',
-        tags: ['方便哺乳', '强力承托', '防下垂'],
-        image: 'reference/产后修复类/绘蛙-任务233486248.jpg', areas: ['chest']
-    },
-    {
-        category: 'postpartum', name: '产后塑身分体套装', nameEn: 'Postpartum Shapewear Set',
-        desc: '上衣+束裤组合，全方位产后身材管理，分段压力科学塑形。',
-        tags: ['分体设计', '科学塑形', '四季适用'],
-        image: 'reference/产后修复类/绘蛙-任务233551850.jpg', areas: ['chest', 'waist', 'hip']
-    },
-    {
-        category: 'scar', name: '医用硅凝胶疤痕贴', nameEn: 'Medical Silicone Scar Sheet',
-        desc: '预防和治疗增生性疤痕，适用于剖腹产、手术切口、烧伤等疤痕修复。',
-        tags: ['防增生', '可重复用', '防水透气'],
-        image: 'reference/疤痕修复类/IMG_4104.JPG', areas: ['face', 'chest', 'waist', 'hip', 'leg']
-    },
-    {
-        category: 'scar', name: '弹力绷带（疤痕加压）', nameEn: 'Elastic Scar Compression Bandage',
-        desc: '疤痕部位持续加压，抑制增生，配合硅凝胶贴使用效果更佳。',
-        tags: ['持续加压', '可裁剪', '多部位适用'],
-        image: 'reference/疤痕修复类/IMG_4111.JPG', areas: ['face', 'chest', 'waist', 'hip', 'leg']
-    },
-    {
-        category: 'scar', name: '疤痕修复霜', nameEn: 'Scar Repair Cream',
-        desc: '淡化色素沉着，软化硬化疤痕组织，加速疤痕成熟脱落。',
-        tags: ['淡色素', '软疤痕', '温和配方'],
-        image: 'reference/疤痕修复类/IMG_4112.JPG', areas: ['face', 'chest', 'waist', 'hip', 'leg']
-    },
-    {
-        category: 'health', name: '胶原蛋白肽粉', nameEn: 'Collagen Peptide Powder',
-        desc: '伦美大健康核心产品，小分子易吸收，术后/产后修复期营养补充首选。',
-        tags: ['小分子', '易吸收', '无添加'],
-        image: 'reference/伦美大健康/369.JPG', areas: []
-    },
-    {
-        category: 'health', name: '综合维生素矿物质片', nameEn: 'Multivitamin Mineral Complex',
-        desc: '术后恢复期全面营养支持，含多种维生素和矿物质，提升免疫力。',
-        tags: ['全面营养', '提升免疫', '科学配比'],
-        image: 'reference/伦美大健康/370.JPG', areas: []
-    },
-    {
-        category: 'health', name: '益生菌固体饮料', nameEn: 'Probiotics Solid Drink',
-        desc: '调节肠道菌群平衡，改善消化吸收，助力术后康复期营养吸收效率。',
-        tags: ['肠道健康', '改善消化', '活性菌株'],
-        image: 'reference/伦美大健康/371.JPG', areas: []
-    }
+    { category: 'medical', name: '医用弹力面罩', nameEn: 'Compression Face Mask', desc: '术后面部加压固定，促进消肿愈合，适用于颌面整形、双下巴吸脂等术后护理。', tags: ['NMPA认证','透气舒适','可调节'], image: 'reference/医美术后修复类/医用弹力面罩.jpeg', areas: ['face','neck'] },
+    { category: 'medical', name: '医用弹力下颌套', nameEn: 'Chin Strap', desc: '下颌及颈部术后专用加压固定，预防血肿形成，加速伤口愈合。', tags: ['精准定位','透气面料','可调节'], image: 'reference/医美术后修复类/医用弹力下颌套.jpeg', areas: ['face','neck'] },
+    { category: 'medical', name: '上半身连体塑身衣', nameEn: 'Upper Body Suit', desc: '肩部至腰部全覆盖连体设计，分段压力均匀施压，适合上肢及躯干吸脂术后。', tags: ['连体设计','分段压力','开档方便'], image: 'reference/医美术后修复类/上半身连体衣.jpeg', areas: ['chest','waist'] },
+    { category: 'medical', name: '手臂肩胸连体衣', nameEn: 'Arm & Chest Suit', desc: '手臂+肩部+胸部三合一连体塑形，蝴蝶袖/拜拜肉术后恢复首选。', tags: ['三合一设计','均匀施压','隐形无痕'], image: 'reference/医美术后修复类/手臂肩胸衣.jpeg', areas: ['chest'] },
+    { category: 'medical', name: '半包胸托', nameEn: 'Half Chest Support', desc: '半包裹式胸部塑形托，提供适度压力支撑，适合隆胸及胸部整形术后。', tags: ['半包设计','舒适贴合','透气材质'], image: 'reference/医美术后修复类/半包胸托.jpeg', areas: ['chest'] },
+    { category: 'medical', name: '手臂后背压力套', nameEn: 'Arm & Back Sleeve', desc: '手臂至后背区域覆盖式压力套，适合背部抽脂及手臂吸脂联合术后。', tags: ['大面积覆盖','均匀压力','舒适不紧绷'], image: 'reference/医美术后修复类/手臂后背.jpeg', areas: [] },
+    { category: 'medical', name: '医用上肢压力套', nameEn: 'Upper Limb Compression', desc: '上肢（手臂）专用压力套，适合手臂吸脂、副乳切除等术后护理。', tags: ['上肢专用','灵活穿戴','透气网眼'], image: 'reference/医美术后修复类/上肢套.jpeg', areas: [] },
+    { category: 'medical', name: '束腰束腹裤', nameEn: 'Waist & Abdomen Panty', desc: '腰腹部精准施压，收腹提臀效果显著，适用于腰腹环吸、腹部整形等术后。', tags: ['精准施压','提臀收腹','高腰设计'], image: 'reference/医美术后修复类/束腰束腹裤.jpeg', areas: ['waist','hip'] },
+    { category: 'medical', name: '医用腰夹', nameEn: 'Waist Cincher', desc: '腰部局部加压固定夹板，针对腰线塑形及腰椎术后支撑保护。', tags: ['局部加压','支撑护腰','可调节松紧'], image: 'reference/医美术后修复类/腰夹.jpeg', areas: ['waist'] },
+    { category: 'medical', name: '大腿压力套', nameEn: 'Thigh Compression Sleeve', desc: '大腿部位独立压力套，适合大腿单独吸脂或环吸术后局部加压。', tags: ['大腿专用','梯度压力','防卷边'], image: 'reference/医美术后修复类/大腿压力套.jpeg', areas: ['leg'] },
+    { category: 'medical', name: '大腿压力弹力套', nameEn: 'Thigh Elastic Sleeve', desc: '高弹力面料大腿套，提供持续稳定压力，适合大腿吸脂术后长期佩戴。', tags: ['高弹面料','持续压力','舒适耐穿'], image: 'reference/医美术后修复类/大腿压力弹力套.jpeg', areas: ['leg'] },
+    { category: 'medical', name: '大腿环吸中裤', nameEn: 'Thigh Liposuction Mid-Pants', desc: '大腿环吸术后专用中长度塑形裤，覆盖大腿至膝盖上方区域。', tags: ['中长设计','环吸专用','防滑落'], image: 'reference/医美术后修复类/大腿环吸中裤.jpeg', areas: ['leg'] },
+    { category: 'medical', name: '吊带大腿塑形裤', nameEn: 'Strap Thigh Shaper', desc: '吊带设计大腿塑形裤，避免压迫腰部，适合单纯大腿吸脂术后使用。', tags: ['吊带设计','不勒腰腹','自由调节'], image: 'reference/医美术后修复类/吊带大腿裤.jpeg', areas: ['hip','leg'] },
+    { category: 'medical', name: '大小腿环吸术后裤', nameEn: 'Full Leg Liposuction Pant', desc: '大小腿全覆盖环吸术后裤，从臀部到脚踝完整压力覆盖。', tags: ['全长覆盖','环吸必备','分段压力'], image: 'reference/医美术后修复类/大小腿环吸裤.jpeg', areas: ['hip','leg'] },
+    { category: 'medical', name: '大小腿加压长裤', nameEn: 'Full Leg Compression Pant', desc: '大小腿全长加压塑形裤，适合腿部综合吸脂及静脉曲张术后。', tags: ['全长设计','静脉回流','防水肿'], image: 'reference/医美术后修复类/大小腿长裤.jpeg', areas: ['leg'] },
+    { category: 'medical', name: '大小腿压力袜', nameEn: 'Full Leg Compression Sock', desc: '大小腿一体式压力袜，梯度压力设计促进静脉回流，预防血栓形成。', tags: ['梯度压力','预防血栓','医用级'], image: 'reference/医美术后修复类/大小腿压力袜.jpeg', areas: ['leg'] },
+    { category: 'medical', name: '小腿压力套', nameEn: 'Calf Compression Sleeve', desc: '小腿部位独立压力套，适合小腿单独吸脂或肌肉型小腿塑形。', tags: ['小腿专用','肌肉塑形','透气轻薄'], image: 'reference/医美术后修复类/小腿压力套.jpeg', areas: ['leg'] },
+
+    { category: 'postpartum', name: '产后连体塑形裤', nameEn: 'Postpartum Full Body Pant', desc: '产后全身连体塑形裤，从胸部到大腿全覆盖，全方位身材管理。', tags: ['全身覆盖','连体设计','高效塑形'], image: 'reference/产后修复类/产后连体裤.jpg', areas: ['chest','waist','hip','leg'] },
+    { category: 'postpartum', name: '产后美体裤', nameEn: 'Postpartum Shaping Pant', desc: '产后高腰美体收腹裤，重点收紧腰腹部和臀部线条。', tags: ['高腰设计','收腹提臀','舒适透气'], image: 'reference/产后修复类/产后美体裤.jpg', areas: ['waist','hip','leg'] },
+    { category: 'postpartum', name: '产后无袖三分塑形裤', nameEn: 'Postpartum 3/4 Length Pant', desc: '三分长度无袖设计产后裤，夏季穿着清爽，不影响日常活动。', tags: ['三分长度','无袖设计','夏季首选'], image: 'reference/产后修复类/产后无袖三分裤.jpg', areas: ['hip','leg'] },
+    { category: 'postpartum', name: '塑形美体衣', nameEn: 'Shaping Bodysuit', desc: '产后上半身塑形美体衣，收紧腰腹背部线条，改善体态。', tags: ['上半身塑形','改善体态','无缝设计'], image: 'reference/产后修复类/塑形美体衣.jpg', areas: ['chest','waist','hip'] },
+    { category: 'postpartum', name: '日常塑身衣', nameEn: 'Daily Shapewear Top', desc: '轻压日常塑身衣，适合产后日常穿着，持续温和塑形效果。', tags: ['日常轻压','舒适百搭','四季适用'], image: 'reference/产后修复类/日常塑身衣.jpg', areas: ['chest','waist'] },
+    { category: 'postpartum', name: '日常塑形美体裤', nameEn: 'Daily Shaping Pant', desc: '轻压日常塑形裤，产后日常穿着即可达到持续塑形效果，方便哺乳期妈妈。', tags: ['日常轻压','方便穿脱','哺乳友好'], image: 'reference/产后修复类/日常塑形美体裤.JPG', areas: ['hip','leg'] },
+
+    { category: 'scar', name: '面部祛疤修复贴', nameEn: 'Face Scar Repair Patch', desc: '面部专用祛疤修复贴，淡化痘印、手术疤痕，敏感肌适用。', tags: ['面部专用','淡疤祛印','敏感肌适用'], image: 'reference/疤痕修复类/面部祛疤修复.JPG', areas: ['face'] },
+    { category: 'scar', name: '凹坑疤痕修复贴', nameEn: 'Pitted Scar Repair Patch', desc: '针对凹陷性疤痕（如痘坑、水痘坑）的专用修复贴，填充凹陷平滑肌肤。', tags: ['凹坑专用','填充修复','平滑肌肤'], image: 'reference/疤痕修复类/凹坑疤痕修复.JPG', areas: ['face','chest'] },
+    { category: 'scar', name: '疤痕加压弹力套', nameEn: 'Scar Compression Elastic Sleeve', desc: '疤痕部位持续加压弹力套，抑制疤痕增生，配合硅凝胶贴使用效果更佳。', tags: ['持续加压','抑制增生','弹性舒适'], image: 'reference/疤痕修复类/疤痕加压弹力套.JPG', areas: ['face','chest','waist','hip','leg'] },
+    { category: 'scar', name: '疤痕弹力套（定制）', nameEn: 'Custom Scar Elastic Sleeve', desc: '根据疤痕位置和形状定制的专属弹力套，完美贴合疤痕区域。', tags: ['量身定制','完美贴合','专业测量'], image: 'reference/疤痕修复类/疤痕弹力套定制.JPG', areas: ['face','chest','waist','hip','leg'] },
+    { category: 'scar', name: '妊娠纹修复霜', nameEn: 'Stretch Mark Repair Cream', desc: '专门针对妊娠纹（生长纹）的修复霜，淡化纹路恢复肌肤弹性。', tags: ['妊娠纹专用','淡化纹路','恢复弹性'], image: 'reference/疤痕修复类/妊娠纹修复.JPG', areas: ['waist','hip'] },
+    { category: 'scar', name: '妊娠纹祛除套装', nameEn: 'Stretch Mark Removal Kit', desc: '妊娠纹全套祛除方案，修复霜+按摩手法+压力辅助三管齐下。', tags: ['全套方案','三管齐下','显著效果'], image: 'reference/疤痕修复类/妊娠纹祛除.JPG', areas: ['waist','hip'] },
+
+    { category: 'health', name: '伦美大健康全家福', nameEn: 'Lummore Complete Set', desc: '伦美大健康全系列产品合集，一站式满足术后及日常营养需求。', tags: ['全家福','一站式','全面调理'], image: 'reference/伦美大健康/伦美大健康全家福.JPG', areas: [] },
+    { category: 'health', name: '红参胶原蛋白多肽', nameEn: 'Red Ginseng Collagen Peptide', desc: '红参提取物+小分子胶原蛋白肽双重配方，深层滋养修复肌肤。', tags: ['红参精华','胶原蛋白','深层滋养'], image: 'reference/伦美大健康/红参胶原蛋白多肽.JPG', areas: [] },
+    { category: 'health', name: '女性年轻态管理套餐', nameEn: 'Women Anti-Aging Program', desc: '专为女性设计的抗衰老营养套餐，内调外养保持年轻状态。', tags: ['抗衰老','女性专享','内调外养'], image: 'reference/伦美大健康/女性年轻态管理.JPG', areas: [] },
+    { category: 'health', name: '女性美白管理套餐', nameEn: 'Women Whitening Program', desc: '女性全身美白营养管理套餐，由内而外焕发透亮光泽。', tags: ['全身美白','内调养颜','透亮光泽'], image: 'reference/伦美大健康/女性美白管理.JPG', areas: [] },
+    { category: 'health', name: '儿童助长管理套餐', nameEn: 'Children Growth Support', desc: '儿童青少年生长发育期营养支持，助力健康成长。', tags: ['儿童专享','助长发育','健康成长'], image: 'reference/伦美大健康/儿童助长管理.JPG', areas: [] },
+    { category: 'health', name: '儿童成长管理套餐', nameEn: 'Children Development Program', desc: '儿童全方位成长营养管理，补充成长所需关键营养素。', tags: ['成长关键期','营养全面','科学配比'], image: 'reference/伦美大健康/儿童成长管理.JPG', areas: [] },
+    { category: 'health', name: '冠军产品系列', nameEn: 'Champion Product Series', desc: '伦美大健康销量冠军产品集合，口碑之选。', tags: ['销量冠军','口碑之选','明星产品'], image: 'reference/伦美大健康/大健康冠军产品.JPG', areas: [] },
+    { category: 'health', name: '南极磷虾油', nameEn: 'Antarctic Krill Oil', desc: '纯净南极海域磷虾油提取，富含Omega-3和磷脂，心脑血管保健佳品。', tags: ['南极纯净','Omega-3','心脑血管'], image: 'reference/伦美大健康/大健康南极 磷虾油.JPG', areas: [] },
+    { category: 'health', name: '深海磷虾油', nameEn: 'Deep Sea Krill Oil', desc: '深海优质磷虾油，高纯度磷脂型Omega-3，易吸收利用率高。', tags: ['深海珍品','高纯度磷脂','易吸收'], image: 'reference/伦美大健康/大健康磷虾油.JPG', areas: [] },
+    { category: 'health', name: '红魔饮', nameEn: 'Red Magic Drink', desc: '活力提升功能性饮品，快速恢复体力，增强运动表现。', tags: ['活力提升','快速恢复','运动必备'], image: 'reference/伦美大健康/大健康红魔饮.JPG', areas: [] },
+    { category: 'health', name: '元气饮', nameEn: 'Vitality Drink', desc: '每日元气补给饮品，补充精力缓解疲劳，提升整体状态。', tags: ['元气满满','抗疲劳','每日必备'], image: 'reference/伦美大健康/大健康元气饮.JPG', areas: [] },
+    { category: 'health', name: '青春饮', nameEn: 'Youth Drink', desc: '抗衰老青春保养饮品，对抗自由基延缓衰老，保持年轻状态。', tags: ['抗衰老','抗氧化','冻龄秘籍'], image: 'reference/伦美大健康/大健康青春饮.JPG', areas: [] },
+    { category: 'health', name: '亮光饮', nameEn: 'Brightening Drink', desc: '皮肤亮白内调饮品，改善暗沉提亮肤色，由内而外散发光泽。', tags: ['提亮肤色','改善暗沉','内调养颜'], image: 'reference/伦美大健康/大健康亮光饮.JPG', areas: [] },
+    { category: 'health', name: '清肠饮', nameEn: 'Cleanse Drink', desc: '肠道清理排毒饮品，清除宿便改善便秘，轻盈身体从肠道开始。', tags: ['清肠排毒','改善便秘','轻盈体感'], image: 'reference/伦美大健康/大健康清肠饮.JPG', areas: [] },
+    { category: 'health', name: '白白片', nameEn: 'Whitening Tablet', desc: '全身美白内服片剂，抑制黑色素生成，均匀肤色焕发光彩。', tags: ['全身美白','抑制黑色素','均匀肤色'], image: 'reference/伦美大健康/大健康白白片.JPG', areas: [] },
+    { category: 'health', name: '轻体粉', nameEn: 'Slim Powder', desc: '科学体重管理代餐粉，控制热量摄入同时保证营养均衡。', tags: ['体重管理','代餐饱腹','营养均衡'], image: 'reference/伦美大健康/大健康轻体粉.JPG', areas: [] },
+    { category: 'health', name: '轻养膏', nameEn: 'Light Nourishing Paste', desc: '轻断食期间营养支持膏方，维持代谢不掉肌肉，健康减重。', tags: ['轻断食','维持代谢','健康减重'], image: 'reference/伦美大健康/大健康轻养膏.JPG', areas: [] },
+    { category: 'health', name: '黑金糖果', nameEn: 'Black Gold Candy', desc: '便携式黑金营养软糖，随时随地补充关键营养，好吃又有效。', tags: ['便携零食','软糖口感','随时随地'], image: 'reference/伦美大健康/大健康黑金糖果.JPG', areas: [] }
 ];
 
 function renderProducts(filter = 'all') {
