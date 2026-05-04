@@ -654,6 +654,29 @@
             .float-btn { width: 48px; height: 48px; font-size: 18px; }
         }
     </style>
+    <style>
+        .wechat-modal-overlay { display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:10000;align-items:center;justify-content:center;backdrop-filter:blur(8px);animation:wmFadeIn .25s ease }
+        .wechat-modal-overlay.active { display:flex }
+        .wechat-modal-box { background:#fff;border-radius:24px;padding:40px 36px;max-width:400px;width:90%;text-align:center;box-shadow:0 25px 80px rgba(124,58,237,.35);animation:wmPopIn .3s ease;position:relative }
+        .wechat-qr-wrap { width:220px;height:220px;margin:0 auto 20px;border-radius:16px;overflow:hidden;border:3px solid #7c3aed;box-shadow:0 4px 20px rgba(124,58,237,.2) }
+        .wechat-qr-wrap img { width:100%;height:100%;object-fit:cover }
+        .wechat-modal-title { font-size:20px;font-weight:800;color:#1a1a2e;margin-bottom:6px }
+        .wechat-modal-id { font-size:18px;font-weight:700;color:#7c3aed;letter-spacing:1px;margin-bottom:4px }
+        .wechat-modal-phone { font-size:14px;color:#666;margin-bottom:6px }
+        .wechat-modal-hint { font-size:12px;color:#999;line-height:1.6;margin-top:12px;padding:10px;background:#f8f5ff;border-radius:10px }
+        .wechat-close-btn { position:absolute;top:12px;right:14px;background:none;border:none;font-size:22px;color:#aaa;cursor:pointer;width:32px;height:32px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:.2s }
+        .wechat-close-btn:hover { background:#f0e6ff;color:#7c3aed }
+        @keyframes wmFadeIn { from{opacity:0} to{opacity:1} }
+        @keyframes wmPopIn { from{opacity:0;transform:scale(.85)} to{opacity:1;transform:scale(1)} }
+
+        .form-success-msg { display:none;background:linear-gradient(135deg,#d4edda,#c3e6cb);color:#155724;border:1px solid #c3e6cb;border-radius:12px;padding:20px;text-align:center;margin-top:16px;animation:fadeInUp .4s ease }
+        .form-success-msg.show { display:block }
+        .form-success-msg i { font-size:28px;color:#28a745;margin-bottom:8px;display:block }
+        .btn-submit.loading { opacity:.7;pointer-events:none;position:relative }
+        .btn-submit.loading::after { content:'';position:absolute;inset:0;background:rgba(255,255,255,.5);border-radius:inherit }
+        .btn-submit.loading i { animation:spin 1s linear infinite }
+        @keyframes spin { to{transform:rotate(360deg)} }
+    </style>
 </head>
 <body>
 
@@ -668,7 +691,7 @@
         <div class="top-bar-right">
             <button class="lang-switch" onclick="toggleLang()" id="langBtn"><i class="fas fa-globe"></i> EN / 中文</button>
             <a href="https://wa.me/861921341333" target="_blank" class="social-icon" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-            <a href="#" onclick="alert('WeChat: 19121341333')" class="social-icon" title="WeChat"><i class="fab fa-weixin"></i></a>
+            <a href="javascript:void(0)" onclick="openWechatModal()" class="social-icon" title="WeChat"><i class="fab fa-weixin"></i></a>
             <a href="https://www.youtube.com/@huaimeiting417" target="_blank" class="social-icon" title="YouTube"><i class="fab fa-youtube"></i></a>
             <a href="https://www.instagram.com/huaimeiting417" target="_blank" class="social-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
             <a href="https://www.pinterest.com/huaimeiting417" target="_blank" class="social-icon" title="Pinterest"><i class="fab fa-pinterest"></i></a>
@@ -1090,11 +1113,11 @@
                     </a>
                 </div>
                 <div class="contact-card">
-                    <a href="#" onclick="alert('WeChat ID: 19121341333')">
+                    <a href="javascript:void(0)" onclick="openWechatModal()">
                         <div class="contact-icon"><i class="fab fa-weixin"></i></div>
                         <div class="contact-text">
                             <strong>微信 WeChat</strong>
-                            <span>19121341333</span>
+                            <span>点击查看二维码</span>
                         </div>
                     </a>
                 </div>
@@ -1119,33 +1142,39 @@
             </div>
             <div class="contact-form">
                 <div class="form-title">📝 在线询价 Inquiry Form</div>
-                <form onsubmit="handleSubmit(event)">
+                <form id="inquiryForm" onsubmit="handleSubmit(event)">
                     <div class="form-group">
                         <label>姓名 Name *</label>
-                        <input type="text" placeholder="请输入您的姓名" required>
+                        <input type="text" id="formName" placeholder="请输入您的姓名" required>
                     </div>
                     <div class="form-group">
                         <label>联系方式 Contact *</label>
-                        <input type="text" placeholder="手机号 / WhatsApp / Email" required>
+                        <input type="text" id="formContact" placeholder="手机号 / WhatsApp / Email" required>
                     </div>
                     <div class="form-group">
                         <label>感兴趣的产品 Product Interest</label>
-                        <select>
+                        <select id="formProduct">
                             <option value="">请选择产品类别</option>
-                            <option value="medical">医美术后修复类</option>
-                            <option value="postpartum">产后修复类</option>
-                            <option value="scar">疤痕修复类</option>
-                            <option value="health">伦美大健康</option>
-                            <option value="oem">OEM/ODM 定制</option>
-                            <option value="other">其他</option>
+                            <option value="医美术后修复类">医美术后修复类</option>
+                            <option value="产后修复类">产后修复类</option>
+                            <option value="疤痕修复类">疤痕修复类</option>
+                            <option value="伦美大健康">伦美大健康</option>
+                            <option value="OEM/ODM 定制">OEM/ODM 定制</option>
+                            <option value="其他">其他</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label>留言 Message</label>
-                        <textarea placeholder="请描述您的需求，如产品型号、数量、用途等..."></textarea>
+                        <textarea id="formMessage" placeholder="请描述您的需求，如产品型号、数量、用途等..."></textarea>
                     </div>
-                    <button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> 提交咨询 Submit</button>
+                    <button type="submit" class="btn-submit" id="btnSubmit"><i class="fas fa-paper-plane"></i> 提交咨询 Submit</button>
                 </form>
+                <div class="form-success-msg" id="formSuccessMsg">
+                    <i class="fas fa-check-circle"></i>
+                    <strong>提交成功！✅</strong><br>
+                    感谢您的咨询，我们会尽快与您联系！<br>
+                    <span style="font-size:12px;color:#666">Thank you! We'll contact you soon.</span>
+                </div>
             </div>
         </div>
     </div>
@@ -1161,7 +1190,7 @@
                 <p class="footer-desc">专注医美术后修复、产后恢复、疤痕管理及科学营养领域十余年。NMPA认证二类医疗器械制造商，为全球医疗机构与个人用户提供专业级医用压力产品与健康解决方案。</p>
                 <div class="footer-social">
                     <a href="https://wa.me/861921341333" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                    <a href="#" onclick="alert('WeChat: 19121341333')" title="WeChat"><i class="fab fa-weixin"></i></a>
+                    <a href="javascript:void(0)" onclick="openWechatModal()" title="WeChat"><i class="fab fa-weixin"></i></a>
                     <a href="https://www.youtube.com/@huaimeiting417" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
                     <a href="https://www.instagram.com/huaimeiting417" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
                     <a href="https://www.pinterest.com/huaimeiting417" target="_blank" title="Pinterest"><i class="fab fa-pinterest"></i></a>
@@ -1209,7 +1238,7 @@
 <!-- ====== FLOATING BUTTONS ====== -->
 <div class="floating-buttons">
     <a href="https://wa.me/861921341333?text=Hi, I'm interested in your products" target="_blank" class="float-btn float-btn-whatsapp" title="WhatsApp 咨询"><i class="fab fa-whatsapp"></i></a>
-    <a href="#" onclick="alert('WeChat: 19121341333')" class="float-btn float-btn-wechat" title="微信咨询"><i class="fab fa-weixin"></i></a>
+    <a href="javascript:void(0)" onclick="openWechatModal()" class="float-btn float-btn-wechat" title="微信咨询"><i class="fab fa-weixin"></i></a>
     <a href="#home" class="float-btn float-btn-top" id="backToTop" onclick="scrollToTop()" title="回到顶部"><i class="fas fa-chevron-up"></i></a>
 </div>
 
@@ -1404,7 +1433,52 @@ function toggleLang() {
 
 function handleSubmit(e) {
     e.preventDefault();
-    alert('感谢您的咨询！我们会尽快与您联系。\n\nThank you for your inquiry! We will contact you soon.');
+    const btn = document.getElementById('btnSubmit');
+    const name = document.getElementById('formName').value.trim();
+    const contact = document.getElementById('formContact').value.trim();
+    const product = document.getElementById('formProduct').value || '未选择';
+    const message = document.getElementById('formMessage').value.trim() || '无';
+
+    btn.classList.add('loading');
+    btn.innerHTML = '<i class="fas fa-spinner"></i> 发送中...';
+
+    const formData = new FormData();
+    formData.append('access_key', '0c9e8f8a-1b2c-3d4e-5f6a-7b8c9d0e1f2a');
+    formData.append('subject', '【怀美婷官网询价】' + name + (product ? ' - ' + product : ''));
+    formData.append('from_name', name);
+    formData.append('email', contact.includes('@') ? contact : 'inquiry@huaimeiting.com');
+    formData.append('message',
+        '━━━━━━━━━━━━━━━━━━━━━━\n' +
+        '📋 客户咨询信息 / Customer Inquiry\n' +
+        '━━━━━━━━━━━━━━━━━━━━━━\n' +
+        '👤 姓名 Name: ' + name + '\n' +
+        '📱 联系方式 Contact: ' + contact + '\n' +
+        '📦 感兴趣产品 Product: ' + product + '\n' +
+        '💬 留言 Message: ' + message + '\n' +
+        '━━━━━━━━━━━━━━━━━━━━━━\n' +
+        '⏰ 提交时间: ' + new Date().toLocaleString('zh-CN', {timeZone:'Asia/Shanghai'}) + '\n' +
+        '🌐 来源: 怀美婷官方网站 Huaimeiting Website'
+    );
+    formData.append('reply_to', contact);
+    formData.append('botcheck', '');
+
+    fetch('https://api.web3forms.com/submit', { method:'POST', body:formData })
+        .then(r => r.json())
+        .then(data => {
+            btn.classList.remove('loading');
+            btn.innerHTML = '<i class="fas fa-paper-plane"></i> 提交咨询 Submit';
+            if(data.success) {
+                document.getElementById('formSuccessMsg').classList.add('show');
+                document.getElementById('inquiryForm').reset();
+            } else {
+                alert('发送失败，请直接通过 WhatsApp 或微信联系我们。\n\nFailed to send. Please contact us via WhatsApp or WeChat directly.');
+            }
+        })
+        .catch(err => {
+            btn.classList.remove('loading');
+            btn.innerHTML = '<i class="fas fa-paper-plane"></i> 提交咨询 Submit';
+            alert('网络错误，请稍后重试或通过 WhatsApp/微信联系我们。\nNetwork error. Please try again or use WhatsApp/WeChat.');
+        });
 }
 
 window.addEventListener('scroll', () => {
@@ -1417,6 +1491,29 @@ window.addEventListener('scroll', () => {
 });
 
 renderProducts();
+</script>
+
+<div class="wechat-modal-overlay" id="wechatModal" onclick="if(event.target===this)closeWechatModal()">
+    <div class="wechat-modal-box">
+        <button class="wechat-close-btn" onclick="closeWechatModal()">&times;</button>
+        <div class="wechat-qr-wrap">
+            <img src="assets/wechat-qr.png" alt="WeChat QR Code" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 220 220%22><rect fill=%22%237c3aed%22 width=%22220%22 height=%22220%22 rx=%2216%22/><text x=%22110%22 y=%22115%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2240%22>微信</text><text x=%22110%22 y=%22150%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2216%22>Anne1413191</text></svg>'">
+        </div>
+        <div class="wechat-modal-title">扫码添加微信</div>
+        <div class="wechat-modal-id"><i class="fab fa-weixin"></i> Anne1413191</div>
+        <div class="wechat-modal-phone"><i class="fas fa-mobile-alt"></i> 手机号搜索：19121341333</div>
+        <div class="wechat-modal-hint">
+            <i class="fas fa-info-circle"></i> 打开微信 → 扫描上方二维码<br>
+            或在微信中搜索微信号 <strong>Anne1413191</strong><br>
+            也可通过手机号 <strong>19121341333</strong> 搜索添加
+        </div>
+    </div>
+</div>
+
+<script>
+function openWechatModal() { document.getElementById('wechatModal').classList.add('active'); document.body.style.overflow='hidden' }
+function closeWechatModal() { document.getElementById('wechatModal').classList.remove('active'); document.body.style.overflow='' }
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeWechatModal() });
 </script>
 
 </body>
