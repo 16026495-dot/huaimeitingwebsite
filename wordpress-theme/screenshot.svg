@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+  <rect fill="#7c3aed" width="1200" height="900"/>
+  <text x="600" y="450" text-anchor="middle" fill="white" font-size="48" font-weight="bold" font-family="Arial, sans-serif">
+    怀美婷医疗 Huaimeiting Medical
+  </text>
+  <text x="600" y="520" text-anchor="middle" fill="white" font-size="24" opacity="0.8" font-family="Arial, sans-serif">
+    专业医用塑身衣品牌 | Version 2.5.0
+  </text>
+</svg>
