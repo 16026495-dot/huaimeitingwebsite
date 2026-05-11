@@ -1,3 +1,9 @@
+<!--
+    🏥 怀美婷医疗 - Huaimeiting Medical
+    Version: 2.5.0 (2026-05-05)
+    Features: WeChat QR Code, EmailJS Form, Optimized Images, Fast Loading
+    Deploy: GitHub Pages + Netlify Auto-Deploy via Actions
+-->
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -9,6 +15,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <style>
         :root {
             --purple-950: #1a0033;
@@ -420,6 +427,17 @@
         .products-grid img, .cat-expanded-products img, .area-prod-grid img, .hero-image img { background: #e8d5ff !important; }
         .cat-prod-item, .area-prod-card { background: #faf5ff !important; }
 
+        /* Image Loading States */
+        .img-wrapper { position: relative; overflow: hidden; background: linear-gradient(135deg, #f0e6ff 25%, #e8d5ff 50%, #f0e6ff 75%); background-size: 200% 200%; animation: shimmer 2s infinite; min-height: 160px; display: flex; align-items: center; justify-content: center; }
+        .img-wrapper.loaded { animation: none; background: transparent; }
+        @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+        .img-wrapper img { opacity: 0; transition: opacity 0.3s ease; width: 100%; height: 100%; object-fit: cover; }
+        .img-wrapper img.loaded { opacity: 1; }
+        .img-wrapper .img-error { color: #7c3aed; text-align: center; padding: 20px; }
+        .img-wrapper .img-error i { font-size: 32px; margin-bottom: 10px; display: block; }
+        .img-wrapper .img-loading-spinner { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #7c3aed; font-size: 24px; animation: spin 1s linear infinite; }
+        @keyframes spin { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+
         /* TRUST */
         .trust-section {
             background: linear-gradient(135deg, var(--purple-900) 0%, var(--purple-800) 50%, var(--purple-700) 100%);
@@ -744,8 +762,12 @@
             </div>
             <div class="hero-image">
                 <div class="hero-product-wrapper">
-                    <img src="reference/医美术后修复类/WechatIMG28.jpeg" alt="医用压力产品" class="hero-product" loading="eager"
-                     onerror="this.style.background='linear-gradient(135deg,#7c3aed,#a855f7)'; this.style.minHeight='400px'; this.alt='产品图片加载中...'">
+                    <div class="img-wrapper" style="min-height:400px;border-radius:var(--radius)">
+                        <img src="reference/医美术后修复类/上半身连体衣_optimized.jpeg" alt="医用压力产品" class="hero-product" loading="eager"
+                             onload="this.classList.add('loaded'); this.parentElement.classList.add('loaded')"
+                             onerror="this.onerror=null; this.src='reference/医美术后修复类/上半身连体衣.jpeg'; this.onload=function(){this.classList.add('loaded'); this.parentElement.classList.add('loaded')};">
+                        <i class="fas fa-spinner img-loading-spinner"></i>
+                    </div>
                     <div class="float-card card-cert">
                         <div class="card-cert-icon"><i class="fas fa-shield-check"></i></div>
                         <div class="card-cert-text"><strong>NMPA认证</strong><span>二类医疗器械</span></div>
@@ -1311,8 +1333,12 @@ function renderProducts(filter = 'all') {
             return `
             <div class="category-card" onclick="toggleCategory(this, event)">
                 <div class="card-top">
-                    <img src="${cat.image}" alt="${cat.name}" class="card-top-img" loading="eager"
-                         onerror="this.style.background='linear-gradient(135deg,#7c3aed,#a855f7)'; this.style.minHeight='180px'">
+                    <div class="img-wrapper">
+                        <img src="${cat.image.replace(/\.(jpg|jpeg|JPG|JPEG)$/, '_optimized.$1')}" alt="${cat.name}" class="card-top-img" loading="eager"
+                             onload="this.classList.add('loaded'); this.parentElement.classList.add('loaded')"
+                             onerror="this.parentElement.innerHTML='<div class=\\'img-error\\'><i class=\\'fas fa-image\\'></i><div>图片加载中...</div></div>'">
+                        <i class="fas fa-spinner img-loading-spinner"></i>
+                    </div>
                     <div class="card-top-overlay">
                         <div class="card-icon"><i class="${cat.icon}"></i></div>
                         <div class="card-title">${cat.name}</div>
@@ -1331,8 +1357,12 @@ function renderProducts(filter = 'all') {
                     <div class="cat-expanded-grid">
                         ${catProducts.map(p => `
                         <div class="cat-prod-item">
-                            <img src="${p.image}" alt="${p.name}" class="cat-prod-img" loading="lazy"
-                                 onerror="this.className='img-loading'; this.innerHTML='<i class=\\'fas fa-image\\'></i> 图片加载中...'">
+                            <div class="img-wrapper" style="min-height:120px">
+                                <img src="${p.image.replace(/\.(jpg|jpeg|JPG|JPEG)$/, '_optimized.$1')}" alt="${p.name}" class="cat-prod-img" loading="lazy"
+                                     onload="this.classList.add('loaded'); this.parentElement.classList.add('loaded')"
+                                     onerror="this.onerror=null; this.src='${p.image}'; this.onload=function(){this.classList.add('loaded'); this.parentElement.classList.add('loaded')};">
+                                <i class="fas fa-spinner img-loading-spinner"></i>
+                            </div>
                             <div class="cat-prod-info">
                                 <div class="cat-prod-name">${p.name}</div>
                                 <div class="cat-prod-desc">${p.desc}</div>
@@ -1355,8 +1385,12 @@ function renderProducts(filter = 'all') {
         filtered.map(p => `
             <div class="category-card" style="cursor:default">
                 <div class="card-body" style="padding:0;text-align:center;height:100%;display:flex;flex-direction:column;justify-content:center">
-                    <img src="${p.image}" alt="${p.name}" style="width:100%;height:160px;object-fit:cover;border-radius:var(--radius) var(--radius) 0 0;background:#f0e6ff;min-height:160px" loading="lazy"
-                         onerror="this.style.background='linear-gradient(135deg,#e8d5ff,#f0e6ff)'">
+                    <div class="img-wrapper">
+                        <img src="${p.image.replace(/\.(jpg|jpeg|JPG|JPEG)$/, '_optimized.$1')}" alt="${p.name}" style="width:100%;height:160px;object-fit:cover;border-radius:var(--radius) var(--radius) 0 0;min-height:160px" loading="lazy"
+                             onload="this.classList.add('loaded'); this.parentElement.classList.add('loaded')"
+                             onerror="this.onerror=null; this.src='${p.image}'; this.onload=function(){this.classList.add('loaded'); this.parentElement.classList.add('loaded')};">
+                        <i class="fas fa-spinner img-loading-spinner"></i>
+                    </div>
                     <div style="padding:16px">
                         <div style="font-size:15px;font-weight:700;color:var(--text-primary)">${p.name}</div>
                         <div style="font-size:11px;color:var(--text-light);margin-bottom:8px">${p.nameEn}</div>
@@ -1439,45 +1473,55 @@ function handleSubmit(e) {
     const product = document.getElementById('formProduct').value || '未选择';
     const message = document.getElementById('formMessage').value.trim() || '无';
 
+    if (!name || !contact) {
+        alert('请填写姓名和联系方式\nPlease fill in name and contact');
+        return;
+    }
+
     btn.classList.add('loading');
-    btn.innerHTML = '<i class="fas fa-spinner"></i> 发送中...';
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 发送中...';
 
-    const formData = new FormData();
-    formData.append('access_key', '0c9e8f8a-1b2c-3d4e-5f6a-7b8c9d0e1f2a');
-    formData.append('subject', '【怀美婷官网询价】' + name + (product ? ' - ' + product : ''));
-    formData.append('from_name', name);
-    formData.append('email', contact.includes('@') ? contact : 'inquiry@huaimeiting.com');
-    formData.append('message',
-        '━━━━━━━━━━━━━━━━━━━━━━\n' +
-        '📋 客户咨询信息 / Customer Inquiry\n' +
-        '━━━━━━━━━━━━━━━━━━━━━━\n' +
-        '👤 姓名 Name: ' + name + '\n' +
-        '📱 联系方式 Contact: ' + contact + '\n' +
-        '📦 感兴趣产品 Product: ' + product + '\n' +
-        '💬 留言 Message: ' + message + '\n' +
-        '━━━━━━━━━━━━━━━━━━━━━━\n' +
-        '⏰ 提交时间: ' + new Date().toLocaleString('zh-CN', {timeZone:'Asia/Shanghai'}) + '\n' +
-        '🌐 来源: 怀美婷官方网站 Huaimeiting Website'
-    );
-    formData.append('reply_to', contact);
-    formData.append('botcheck', '');
+    const templateParams = {
+        from_name: name,
+        to_name: 'Huaimeiting Team',
+        contact: contact,
+        product: product,
+        message: message,
+        reply_to: contact.includes('@') ? contact : '',
+        submit_time: new Date().toLocaleString('zh-CN', {timeZone:'Asia/Shanghai'})
+    };
 
-    fetch('https://api.web3forms.com/submit', { method:'POST', body:formData })
-        .then(r => r.json())
-        .then(data => {
+    emailjs.send('service_huaimeiting', 'template_inquiry', templateParams, 'YOUR_EMAILJS_PUBLIC_KEY')
+        .then(function(response) {
+            console.log('SUCCESS!', response.status, response.text);
+            btn.classList.remove('loading');
+            btn.innerHTML = '<i class="fas fa-check"></i> 提交成功！';
+            btn.style.background = '#10b981';
+            document.getElementById('formSuccessMsg').classList.add('show');
+            document.getElementById('inquiryForm').reset();
+
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-paper-plane"></i> 提交咨询 Submit';
+                btn.style.background = '';
+            }, 3000);
+        }, function(error) {
+            console.log('FAILED...', error);
             btn.classList.remove('loading');
             btn.innerHTML = '<i class="fas fa-paper-plane"></i> 提交咨询 Submit';
-            if(data.success) {
-                document.getElementById('formSuccessMsg').classList.add('show');
-                document.getElementById('inquiryForm').reset();
-            } else {
-                alert('发送失败，请直接通过 WhatsApp 或微信联系我们。\n\nFailed to send. Please contact us via WhatsApp or WeChat directly.');
-            }
-        })
-        .catch(err => {
-            btn.classList.remove('loading');
-            btn.innerHTML = '<i class="fas fa-paper-plane"></i> 提交咨询 Submit';
-            alert('网络错误，请稍后重试或通过 WhatsApp/微信联系我们。\nNetwork error. Please try again or use WhatsApp/WeChat.');
+
+            // Fallback: Open email client
+            const subject = encodeURIComponent('【怀美婷官网询价】' + name + (product ? ' - ' + product : ''));
+            const body = encodeURIComponent(
+                '客户信息 Customer Info:\n' +
+                '姓名 Name: ' + name + '\n' +
+                '联系方式 Contact: ' + contact + '\n' +
+                '感兴趣产品 Product: ' + product + '\n' +
+                '留言 Message: ' + message + '\n' +
+                '\n提交时间: ' + new Date().toLocaleString('zh-CN')
+            );
+            window.open(`mailto:huaimeiting@gmail.com?subject=${subject}&body=${body}`);
+
+            alert('表单发送遇到问题，已为您打开邮件客户端作为备选方案。\nForm submission issue, opening email client as fallback.');
         });
 }
 
@@ -1490,6 +1534,32 @@ window.addEventListener('scroll', () => {
     else backToTop.classList.remove('visible');
 });
 
+// Lazy Loading Observer for Images
+if ('IntersectionObserver' in window) {
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                if (img.dataset.src) {
+                    img.src = img.dataset.src;
+                    img.removeAttribute('data-src');
+                }
+                observer.unobserve(img);
+            }
+        });
+    }, {
+        rootMargin: '50px 0px',
+        threshold: 0.01
+    });
+
+    // Observe all lazy images after DOM loads
+    document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+            imageObserver.observe(img);
+        });
+    });
+}
+
 renderProducts();
 </script>
 
@@ -1497,7 +1567,7 @@ renderProducts();
     <div class="wechat-modal-box">
         <button class="wechat-close-btn" onclick="closeWechatModal()">&times;</button>
         <div class="wechat-qr-wrap">
-            <img src="assets/wechat-qr.png" alt="WeChat QR Code" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 220 220%22><rect fill=%22%237c3aed%22 width=%22220%22 height=%22220%22 rx=%2216%22/><text x=%22110%22 y=%22115%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2240%22>微信</text><text x=%22110%22 y=%22150%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2216%22>Anne1413191</text></svg>'">
+            <img src="reference/correct_wechat_qr.jpg" alt="WeChat QR Code - Anne1413191">
         </div>
         <div class="wechat-modal-title">扫码添加微信</div>
         <div class="wechat-modal-id"><i class="fab fa-weixin"></i> Anne1413191</div>
