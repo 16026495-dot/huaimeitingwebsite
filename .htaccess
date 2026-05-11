@@ -1,5 +1,5 @@
 Options +Indexes
-DirectoryIndex index.html preview.html
+DirectoryIndex preview.html index.html
 
 <FilesMatch "\.(html|htm|css|js|jpg|jpeg|png|gif|ico|pdf|svg)$">
   Order Allow,Deny
@@ -10,7 +10,14 @@ DirectoryIndex index.html preview.html
   RewriteEngine On
   RewriteBase /
   
-  # Force HTTPS (uncomment if needed)
-  # RewriteCond %{HTTPS} off
-  # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+  # Rewrite requests for non-existing files to preview.html
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(.*)$ preview.html [L]
 </IfModule>
+
+# PHP settings
+php_value memory_limit 256M
+php_value post_max_size 64M
+php_value upload_max_filesize 64M
+php_value max_execution_time 300
