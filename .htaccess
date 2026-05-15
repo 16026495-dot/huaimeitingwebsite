@@ -8,12 +8,20 @@ DirectoryIndex preview.html index.html
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
+  
+  # Handle /site/ subdirectory access
   RewriteBase /
   
-  # Rewrite requests for non-existing files to preview.html
+  # If accessing /site/, serve index.html
+  RewriteRule ^site/?$ index.html [L]
+  
+  # If accessing /site/anything, serve index.html (for SPA routing)
+  RewriteRule ^site/(.*)$ index.html [L]
+  
+  # For root access, serve index.html
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^(.*)$ preview.html [L]
+  RewriteRule ^(.*)$ index.html [L]
 </IfModule>
 
 # PHP settings
